@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>函数的扩展(Function) | 涵月天-microzz.com | IT技术分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript,JS,ES6,ECMAScript6,Function">
+    <meta name="description" content="函数的扩展函数参数的默认值基本用法在ES6之前，不能直接为函数的参数指定默认值，只能采用变通的方法。
+function log(x, y) {
+  y = y || &amp;#39;World&amp;#39;;
+  console.log(x, y);
+}
+
+log(&amp;#39;Hello&amp;#39;) // Hello World
+log(&amp;#39;Hello&amp;#39;, &amp;#39;China&amp;#39;) //">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数的扩展(Function)">
+<meta property="og:url" content="https://microzz.com/2016/12/10/function/index.html">
+<meta property="og:site_name" content="涵月天-microzz.com">
+<meta property="og:description" content="函数的扩展函数参数的默认值基本用法在ES6之前，不能直接为函数的参数指定默认值，只能采用变通的方法。
+function log(x, y) {
+  y = y || &amp;#39;World&amp;#39;;
+  console.log(x, y);
+}
+
+log(&amp;#39;Hello&amp;#39;) // Hello World
+log(&amp;#39;Hello&amp;#39;, &amp;#39;China&amp;#39;) //">
+<meta property="og:updated_time" content="2017-08-21T11:34:41.790Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数的扩展(Function)">
+<meta name="twitter:description" content="函数的扩展函数参数的默认值基本用法在ES6之前，不能直接为函数的参数指定默认值，只能采用变通的方法。
+function log(x, y) {
+  y = y || &amp;#39;World&amp;#39;;
+  console.log(x, y);
+}
+
+log(&amp;#39;Hello&amp;#39;) // Hello World
+log(&amp;#39;Hello&amp;#39;, &amp;#39;China&amp;#39;) //">
+    
+        <link rel="alternative" href="/atom.xml" title="涵月天-microzz.com" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- <link rel="stylesheet" href="/css/style.css?v=1.4.5"> -->
+    <!-- <link rel="stylesheet" href="css.css" media="none" onload="if(media!='all')media='all'"> -->
+    <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/style.css?v=2">
+    <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/atom-one-dark.1.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background:none;">
+      <div class="brand" style="background-color:#4154b2;">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" style="height:100%;">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Microzz</h5>
+          <a href="mailto:zhaohui@microzz.com" title="zhaohui@microzz.com" class="mail">zhaohui@microzz.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/archives/"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/microzz" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                GitHub
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://juejin.im/user/57f0f27a128fe100542d29ad" target="_blank" >
+                <i class="icon icon-lg icon-pencil"></i>
+                掘金专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/microzz/posts" target="_blank" >
+                <i class="icon icon-lg icon-leaf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-music/" target="_blank" >
+                <i class="icon icon-lg icon-music"></i>
+                Vue音乐播放器
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-cnode/" target="_blank" >
+                <i class="icon icon-lg icon-comments"></i>
+                Vue CNode社区
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-chat/" target="_blank" >
+                <i class="icon icon-lg icon-globe"></i>
+                智能聊天室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/github-ranking/" target="_blank" >
+                <i class="icon icon-lg icon-star"></i>
+                GitHub排行榜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/about/friendly.html"  >
+                <i class="icon icon-lg icon-link"></i>
+                友链
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">函数的扩展(Function)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">函数的扩展(Function)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-12-10T07:45:19.000Z" itemprop="datePublished" class="page-time">
+  2016-12-10
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    <script src="https://icdn.microzz.com/microzz/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    Array.prototype.slice.call(document.querySelectorAll('pre code')).forEach(function(block) {
+      hljs.highlightBlock(block);
+  } )
+</script>
+
+<article id="post-function"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">函数的扩展(Function)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016年12月10日 15:45" datetime="2016-12-10T07:45:19.000Z"  itemprop="datePublished">2016-12-10</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="函数的扩展"><a href="#函数的扩展" class="headerlink" title="函数的扩展"></a>函数的扩展</h1><h2 id="函数参数的默认值"><a href="#函数参数的默认值" class="headerlink" title="函数参数的默认值"></a>函数参数的默认值</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>在ES6之前，不能直接为函数的参数指定默认值，只能采用变通的方法。</p>
+<pre><code class="javascript">function log(x, y) {
+  y = y || &#39;World&#39;;
+  console.log(x, y);
+}
+
+log(&#39;Hello&#39;) // Hello World
+log(&#39;Hello&#39;, &#39;China&#39;) // Hello China
+log(&#39;Hello&#39;, &#39;&#39;) // Hello World
+</code></pre>
+<p>上面代码检查函数<code>log</code>的参数<code>y</code>有没有赋值，如果没有，则指定默认值为<code>World</code>。这种写法的缺点在于，如果参数<code>y</code>赋值了，但是对应的布尔值为<code>false</code>，则该赋值不起作用。就像上面代码的最后一行，参数<code>y</code>等于空字符，结果被改为默认值。</p>
+<p>为了避免这个问题，通常需要先判断一下参数<code>y</code>是否被赋值，如果没有，再等于默认值。</p>
+<pre><code class="javascript">if (typeof y === &#39;undefined&#39;) {
+  y = &#39;World&#39;;
+}
+</code></pre>
+<p>ES6允许为函数的参数设置默认值，即直接写在参数定义的后面。</p>
+<pre><code class="javascript">function log(x, y = &#39;World&#39;) {
+  console.log(x, y);
+}
+
+log(&#39;Hello&#39;) // Hello World
+log(&#39;Hello&#39;, &#39;China&#39;) // Hello China
+log(&#39;Hello&#39;, &#39;&#39;) // Hello
+</code></pre>
+<p>可以看到，ES6的写法比ES5简洁许多，而且非常自然。下面是另一个例子。</p>
+<pre><code class="javascript">function Point(x = 0, y = 0) {
+  this.x = x;
+  this.y = y;
+}
+
+var p = new Point();
+p // { x: 0, y: 0 }
+</code></pre>
+<p>除了简洁，ES6的写法还有两个好处：首先，阅读代码的人，可以立刻意识到哪些参数是可以省略的，不用查看函数体或文档；其次，有利于将来的代码优化，即使未来的版本在对外接口中，彻底拿掉这个参数，也不会导致以前的代码无法运行。</p>
+<p>参数变量是默认声明的，所以不能用<code>let</code>或<code>const</code>再次声明。</p>
+<pre><code class="javascript">function foo(x = 5) {
+  let x = 1; // error
+  const x = 2; // error
+}
+</code></pre>
+<p>上面代码中，参数变量<code>x</code>是默认声明的，在函数体中，不能用<code>let</code>或<code>const</code>再次声明，否则会报错。</p>
+<h3 id="与解构赋值默认值结合使用"><a href="#与解构赋值默认值结合使用" class="headerlink" title="与解构赋值默认值结合使用"></a>与解构赋值默认值结合使用</h3><p>参数默认值可以与解构赋值的默认值，结合起来使用。</p>
+<pre><code class="javascript">function foo({x, y = 5}) {
+  console.log(x, y);
+}
+
+foo({}) // undefined, 5
+foo({x: 1}) // 1, 5
+foo({x: 1, y: 2}) // 1, 2
+foo() // TypeError: Cannot read property &#39;x&#39; of undefined
+</code></pre>
+<p>上面代码使用了对象的解构赋值默认值，而没有使用函数参数的默认值。只有当函数<code>foo</code>的参数是一个对象时，变量<code>x</code>和<code>y</code>才会通过解构赋值而生成。如果函数<code>foo</code>调用时参数不是对象，变量<code>x</code>和<code>y</code>就不会生成，从而报错。如果参数对象没有<code>y</code>属性，<code>y</code>的默认值5才会生效。</p>
+<p>下面是另一个对象的解构赋值默认值的例子。</p>
+<pre><code class="javascript">function fetch(url, { body = &#39;&#39;, method = &#39;GET&#39;, headers = {} }) {
+  console.log(method);
+}
+
+fetch(&#39;http://example.com&#39;, {})
+// &quot;GET&quot;
+
+fetch(&#39;http://example.com&#39;)
+// 报错
+</code></pre>
+<p>上面代码中，如果函数<code>fetch</code>的第二个参数是一个对象，就可以为它的三个属性设置默认值。</p>
+<p>上面的写法不能省略第二个参数，如果结合函数参数的默认值，就可以省略第二个参数。这时，就出现了双重默认值。</p>
+<pre><code class="javascript">function fetch(url, { method = &#39;GET&#39; } = {}) {
+  console.log(method);
+}
+
+fetch(&#39;http://example.com&#39;)
+// &quot;GET&quot;
+</code></pre>
+<p>上面代码中，函数<code>fetch</code>没有第二个参数时，函数参数的默认值就会生效，然后才是解构赋值的默认值生效，变量<code>method</code>才会取到默认值<code>GET</code>。</p>
+<p>再请问下面两种写法有什么差别？</p>
+<pre><code class="javascript">// 写法一
+function m1({x = 0, y = 0} = {}) {
+  return [x, y];
+}
+
+// 写法二
+function m2({x, y} = { x: 0, y: 0 }) {
+  return [x, y];
+}
+</code></pre>
+<p>上面两种写法都对函数的参数设定了默认值，区别是写法一函数参数的默认值是空对象，但是设置了对象解构赋值的默认值；写法二函数参数的默认值是一个有具体属性的对象，但是没有设置对象解构赋值的默认值。</p>
+<pre><code class="javascript">// 函数没有参数的情况
+m1() // [0, 0]
+m2() // [0, 0]
+
+// x和y都有值的情况
+m1({x: 3, y: 8}) // [3, 8]
+m2({x: 3, y: 8}) // [3, 8]
+
+// x有值，y无值的情况
+m1({x: 3}) // [3, 0]
+m2({x: 3}) // [3, undefined]
+
+// x和y都无值的情况
+m1({}) // [0, 0];
+m2({}) // [undefined, undefined]
+
+m1({z: 3}) // [0, 0]
+m2({z: 3}) // [undefined, undefined]
+</code></pre>
+<h3 id="参数默认值的位置"><a href="#参数默认值的位置" class="headerlink" title="参数默认值的位置"></a>参数默认值的位置</h3><p>通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。如果非尾部的参数设置默认值，实际上这个参数是没法省略的。</p>
+<pre><code class="javascript">// 例一
+function f(x = 1, y) {
+  return [x, y];
+}
+
+f() // [1, undefined]
+f(2) // [2, undefined])
+f(, 1) // 报错
+f(undefined, 1) // [1, 1]
+
+// 例二
+function f(x, y = 5, z) {
+  return [x, y, z];
+}
+
+f() // [undefined, 5, undefined]
+f(1) // [1, 5, undefined]
+f(1, ,2) // 报错
+f(1, undefined, 2) // [1, 5, 2]
+</code></pre>
+<p>上面代码中，有默认值的参数都不是尾参数。这时，无法只省略该参数，而不省略它后面的参数，除非显式输入<code>undefined</code>。</p>
+<p>如果传入<code>undefined</code>，将触发该参数等于默认值，<code>null</code>则没有这个效果。</p>
+<pre><code class="javascript">function foo(x = 5, y = 6) {
+  console.log(x, y);
+}
+
+foo(undefined, null)
+// 5 null
+</code></pre>
+<p>上面代码中，<code>x</code>参数对应<code>undefined</code>，结果触发了默认值，<code>y</code>参数等于<code>null</code>，就没有触发默认值。</p>
+<h3 id="函数的length属性"><a href="#函数的length属性" class="headerlink" title="函数的length属性"></a>函数的length属性</h3><p>指定了默认值以后，函数的<code>length</code>属性，将返回没有指定默认值的参数个数。也就是说，指定了默认值后，<code>length</code>属性将失真。</p>
+<pre><code class="javascript">(function (a) {}).length // 1
+(function (a = 5) {}).length // 0
+(function (a, b, c = 5) {}).length // 2
+</code></pre>
+<p>上面代码中，<code>length</code>属性的返回值，等于函数的参数个数减去指定了默认值的参数个数。比如，上面最后一个函数，定义了3个参数，其中有一个参数<code>c</code>指定了默认值，因此<code>length</code>属性等于<code>3</code>减去<code>1</code>，最后得到<code>2</code>。</p>
+<p>这是因为<code>length</code>属性的含义是，该函数预期传入的参数个数。某个参数指定默认值以后，预期传入的参数个数就不包括这个参数了。同理，rest参数也不会计入<code>length</code>属性。</p>
+<pre><code class="javascript">(function(...args) {}).length // 0
+</code></pre>
+<p>如果设置了默认值的参数不是尾参数，那么<code>length</code>属性也不再计入后面的参数了。</p>
+<pre><code class="javascript">(function (a = 0, b, c) {}).length // 0
+(function (a, b = 1, c) {}).length // 1
+</code></pre>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>一个需要注意的地方是，如果参数默认值是一个变量，则该变量所处的作用域，与其他变量的作用域规则是一样的，即先是当前函数的作用域，然后才是全局作用域。</p>
+<pre><code class="javascript">var x = 1;
+
+function f(x, y = x) {
+  console.log(y);
+}
+
+f(2) // 2
+</code></pre>
+<p>上面代码中，参数<code>y</code>的默认值等于<code>x</code>。调用时，由于函数作用域内部的变量<code>x</code>已经生成，所以<code>y</code>等于参数<code>x</code>，而不是全局变量<code>x</code>。</p>
+<p>如果调用时，函数作用域内部的变量<code>x</code>没有生成，结果就会不一样。</p>
+<pre><code class="javascript">let x = 1;
+
+function f(y = x) {
+  let x = 2;
+  console.log(y);
+}
+
+f() // 1
+</code></pre>
+<p>上面代码中，函数调用时，<code>y</code>的默认值变量<code>x</code>尚未在函数内部生成，所以<code>x</code>指向全局变量。</p>
+<p>如果此时，全局变量<code>x</code>不存在，就会报错。</p>
+<pre><code class="javascript">function f(y = x) {
+  let x = 2;
+  console.log(y);
+}
+
+f() // ReferenceError: x is not defined
+</code></pre>
+<p>下面这样写，也会报错。</p>
+<pre><code class="javascript">var x = 1;
+
+function foo(x = x) {
+  // ...
+}
+
+foo() // ReferenceError: x is not defined
+</code></pre>
+<p>上面代码中，函数<code>foo</code>的参数<code>x</code>的默认值也是<code>x</code>。这时，默认值<code>x</code>的作用域是函数作用域，而不是全局作用域。由于在函数作用域中，存在变量<code>x</code>，但是默认值在<code>x</code>赋值之前先执行了，所以这时属于暂时性死区（参见《let和const命令》一章），任何对<code>x</code>的操作都会报错。</p>
+<p>如果参数的默认值是一个函数，该函数的作用域是其声明时所在的作用域。请看下面的例子。</p>
+<pre><code class="javascript">let foo = &#39;outer&#39;;
+
+function bar(func = x =&gt; foo) {
+  let foo = &#39;inner&#39;;
+  console.log(func()); // outer
+}
+
+bar();
+</code></pre>
+<p>上面代码中，函数<code>bar</code>的参数<code>func</code>的默认值是一个匿名函数，返回值为变量<code>foo</code>。这个匿名函数声明时，<code>bar</code>函数的作用域还没有形成，所以匿名函数里面的<code>foo</code>指向外层作用域的<code>foo</code>，输出<code>outer</code>。</p>
+<p>如果写成下面这样，就会报错。</p>
+<pre><code class="javascript">function bar(func = () =&gt; foo) {
+  let foo = &#39;inner&#39;;
+  console.log(func());
+}
+
+bar() // ReferenceError: foo is not defined
+</code></pre>
+<p>上面代码中，匿名函数里面的<code>foo</code>指向函数外层，但是函数外层并没有声明<code>foo</code>，所以就报错了。</p>
+<p>下面是一个更复杂的例子。</p>
+<pre><code class="javascript">var x = 1;
+function foo(x, y = function() { x = 2; }) {
+  var x = 3;
+  y();
+  console.log(x);
+}
+
+foo() // 3
+</code></pre>
+<p>上面代码中，函数<code>foo</code>的参数<code>y</code>的默认值是一个匿名函数。函数<code>foo</code>调用时，它的参数<code>x</code>的值为<code>undefined</code>，所以<code>y</code>函数内部的<code>x</code>一开始是<code>undefined</code>，后来被重新赋值<code>2</code>。但是，函数<code>foo</code>内部重新声明了一个<code>x</code>，值为<code>3</code>，这两个<code>x</code>是不一样的，互相不产生影响，因此最后输出<code>3</code>。</p>
+<p>如果将<code>var x = 3</code>的<code>var</code>去除，两个<code>x</code>就是一样的，最后输出的就是<code>2</code>。</p>
+<pre><code class="javascript">var x = 1;
+function foo(x, y = function() { x = 2; }) {
+  x = 3;
+  y();
+  console.log(x);
+}
+
+foo() // 2
+</code></pre>
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>利用参数默认值，可以指定某一个参数不得省略，如果省略就抛出一个错误。</p>
+<pre><code class="javascript">function throwIfMissing() {
+  throw new Error(&#39;Missing parameter&#39;);
+}
+
+function foo(mustBeProvided = throwIfMissing()) {
+  return mustBeProvided;
+}
+
+foo()
+// Error: Missing parameter
+</code></pre>
+<p>上面代码的<code>foo</code>函数，如果调用的时候没有参数，就会调用默认值<code>throwIfMissing</code>函数，从而抛出一个错误。</p>
+<p>从上面代码还可以看到，参数<code>mustBeProvided</code>的默认值等于<code>throwIfMissing</code>函数的运行结果（即函数名之后有一对圆括号），这表明参数的默认值不是在定义时执行，而是在运行时执行（即如果参数已经赋值，默认值中的函数就不会运行），这与python语言不一样。</p>
+<p>另外，可以将参数默认值设为<code>undefined</code>，表明这个参数是可以省略的。</p>
+<pre><code class="javascript">function foo(optional = undefined) { ··· }
+</code></pre>
+<h2 id="rest参数"><a href="#rest参数" class="headerlink" title="rest参数"></a>rest参数</h2><p>ES6引入rest参数（形式为“…变量名”），用于获取函数的多余参数，这样就不需要使用arguments对象了。rest参数搭配的变量是一个数组，该变量将多余的参数放入数组中。</p>
+<pre><code class="javascript">function add(...values) {
+  let sum = 0;
+
+  for (var val of values) {
+    sum += val;
+  }
+
+  return sum;
+}
+
+add(2, 5, 3) // 10
+</code></pre>
+<p>上面代码的add函数是一个求和函数，利用rest参数，可以向该函数传入任意数目的参数。</p>
+<p>下面是一个rest参数代替arguments变量的例子。</p>
+<pre><code class="javascript">// arguments变量的写法
+function sortNumbers() {
+  return Array.prototype.slice.call(arguments).sort();
+}
+
+// rest参数的写法
+const sortNumbers = (...numbers) =&gt; numbers.sort();
+</code></pre>
+<p>上面代码的两种写法，比较后可以发现，rest参数的写法更自然也更简洁。</p>
+<p>rest参数中的变量代表一个数组，所以数组特有的方法都可以用于这个变量。下面是一个利用rest参数改写数组push方法的例子。</p>
+<pre><code class="javascript">function push(array, ...items) {
+  items.forEach(function(item) {
+    array.push(item);
+    console.log(item);
+  });
+}
+
+var a = [];
+push(a, 1, 2, 3)
+</code></pre>
+<p>注意，rest参数之后不能再有其他参数（即只能是最后一个参数），否则会报错。</p>
+<pre><code class="javascript">// 报错
+function f(a, ...b, c) {
+  // ...
+}
+</code></pre>
+<p>函数的length属性，不包括rest参数。</p>
+<pre><code class="javascript">(function(a) {}).length  // 1
+(function(...a) {}).length  // 0
+(function(a, ...b) {}).length  // 1
+</code></pre>
+<h2 id="扩展运算符"><a href="#扩展运算符" class="headerlink" title="扩展运算符"></a>扩展运算符</h2><h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>扩展运算符（spread）是三个点（<code>...</code>）。它好比rest参数的逆运算，将一个数组转为用逗号分隔的参数序列。</p>
+<pre><code class="javascript">console.log(...[1, 2, 3])
+// 1 2 3
+
+console.log(1, ...[2, 3, 4], 5)
+// 1 2 3 4 5
+
+[...document.querySelectorAll(&#39;div&#39;)]
+// [&lt;div&gt;, &lt;div&gt;, &lt;div&gt;]
+</code></pre>
+<p>该运算符主要用于函数调用。</p>
+<pre><code class="javascript">function push(array, ...items) {
+  array.push(...items);
+}
+
+function add(x, y) {
+  return x + y;
+}
+
+var numbers = [4, 38];
+add(...numbers) // 42
+</code></pre>
+<p>上面代码中，<code>array.push(...items)</code>和<code>add(...numbers)</code>这两行，都是函数的调用，它们的都使用了扩展运算符。该运算符将一个数组，变为参数序列。</p>
+<p>扩展运算符与正常的函数参数可以结合使用，非常灵活。</p>
+<pre><code class="javascript">function f(v, w, x, y, z) { }
+var args = [0, 1];
+f(-1, ...args, 2, ...[3]);
+</code></pre>
+<h3 id="替代数组的apply方法"><a href="#替代数组的apply方法" class="headerlink" title="替代数组的apply方法"></a>替代数组的apply方法</h3><p>由于扩展运算符可以展开数组，所以不再需要<code>apply</code>方法，将数组转为函数的参数了。</p>
+<pre><code class="javascript">// ES5的写法
+function f(x, y, z) {
+  // ...
+}
+var args = [0, 1, 2];
+f.apply(null, args);
+
+// ES6的写法
+function f(x, y, z) {
+  // ...
+}
+var args = [0, 1, 2];
+f(...args);
+</code></pre>
+<p>下面是扩展运算符取代<code>apply</code>方法的一个实际的例子，应用<code>Math.max</code>方法，简化求出一个数组最大元素的写法。</p>
+<pre><code class="javascript">// ES5的写法
+Math.max.apply(null, [14, 3, 77])
+
+// ES6的写法
+Math.max(...[14, 3, 77])
+
+// 等同于
+Math.max(14, 3, 77);
+</code></pre>
+<p>上面代码表示，由于JavaScript不提供求数组最大元素的函数，所以只能套用<code>Math.max</code>函数，将数组转为一个参数序列，然后求最大值。有了扩展运算符以后，就可以直接用<code>Math.max</code>了。</p>
+<p>另一个例子是通过<code>push</code>函数，将一个数组添加到另一个数组的尾部。</p>
+<pre><code class="javascript">// ES5的写法
+var arr1 = [0, 1, 2];
+var arr2 = [3, 4, 5];
+Array.prototype.push.apply(arr1, arr2);
+
+// ES6的写法
+var arr1 = [0, 1, 2];
+var arr2 = [3, 4, 5];
+arr1.push(...arr2);
+</code></pre>
+<p>上面代码的ES5写法中，<code>push</code>方法的参数不能是数组，所以只好通过<code>apply</code>方法变通使用<code>push</code>方法。有了扩展运算符，就可以直接将数组传入<code>push</code>方法。</p>
+<p>下面是另外一个例子。</p>
+<pre><code class="javascript">// ES5
+new (Date.bind.apply(Date, [null, 2015, 1, 1]))
+// ES6
+new Date(...[2015, 1, 1]);
+</code></pre>
+<h3 id="扩展运算符的应用"><a href="#扩展运算符的应用" class="headerlink" title="扩展运算符的应用"></a>扩展运算符的应用</h3><p><strong>（1）合并数组</strong></p>
+<p>扩展运算符提供了数组合并的新写法。</p>
+<pre><code class="javascript">// ES5
+[1, 2].concat(more)
+// ES6
+[1, 2, ...more]
+
+var arr1 = [&#39;a&#39;, &#39;b&#39;];
+var arr2 = [&#39;c&#39;];
+var arr3 = [&#39;d&#39;, &#39;e&#39;];
+
+// ES5的合并数组
+arr1.concat(arr2, arr3);
+// [ &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39; ]
+
+// ES6的合并数组
+[...arr1, ...arr2, ...arr3]
+// [ &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39; ]
+</code></pre>
+<p><strong>（2）与解构赋值结合</strong></p>
+<p>扩展运算符可以与解构赋值结合起来，用于生成数组。</p>
+<pre><code class="javascript">// ES5
+a = list[0], rest = list.slice(1)
+// ES6
+[a, ...rest] = list
+</code></pre>
+<p>下面是另外一些例子。</p>
+<pre><code class="javascript">const [first, ...rest] = [1, 2, 3, 4, 5];
+first // 1
+rest  // [2, 3, 4, 5]
+
+const [first, ...rest] = [];
+first // undefined
+rest  // []:
+
+const [first, ...rest] = [&quot;foo&quot;];
+first  // &quot;foo&quot;
+rest   // []
+</code></pre>
+<p>如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。</p>
+<pre><code class="javascript">const [...butLast, last] = [1, 2, 3, 4, 5];
+// 报错
+
+const [first, ...middle, last] = [1, 2, 3, 4, 5];
+// 报错
+</code></pre>
+<p><strong>（3）函数的返回值</strong></p>
+<p>JavaScript的函数只能返回一个值，如果需要返回多个值，只能返回数组或对象。扩展运算符提供了解决这个问题的一种变通方法。</p>
+<pre><code class="javascript">var dateFields = readDateFields(database);
+var d = new Date(...dateFields);
+</code></pre>
+<p>上面代码从数据库取出一行数据，通过扩展运算符，直接将其传入构造函数<code>Date</code>。</p>
+<p><strong>（4）字符串</strong></p>
+<p>扩展运算符还可以将字符串转为真正的数组。</p>
+<pre><code class="javascript">[...&#39;hello&#39;]
+// [ &quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot; ]
+</code></pre>
+<p>上面的写法，有一个重要的好处，那就是能够正确识别32位的Unicode字符。</p>
+<pre><code class="javascript">&#39;x\uD83D\uDE80y&#39;.length // 4
+[...&#39;x\uD83D\uDE80y&#39;].length // 3
+</code></pre>
+<p>上面代码的第一种写法，JavaScript会将32位Unicode字符，识别为2个字符，采用扩展运算符就没有这个问题。因此，正确返回字符串长度的函数，可以像下面这样写。</p>
+<pre><code class="javascript">function length(str) {
+  return [...str].length;
+}
+
+length(&#39;x\uD83D\uDE80y&#39;) // 3
+</code></pre>
+<p>凡是涉及到操作32位Unicode字符的函数，都有这个问题。因此，最好都用扩展运算符改写。</p>
+<pre><code class="javascript">let str = &#39;x\uD83D\uDE80y&#39;;
+
+str.split(&#39;&#39;).reverse().join(&#39;&#39;)
+// &#39;y\uDE80\uD83Dx&#39;
+
+[...str].reverse().join(&#39;&#39;)
+// &#39;y\uD83D\uDE80x&#39;
+</code></pre>
+<p>上面代码中，如果不用扩展运算符，字符串的<code>reverse</code>操作就不正确。</p>
+<p><strong>（5）实现了Iterator接口的对象</strong></p>
+<p>任何Iterator接口的对象，都可以用扩展运算符转为真正的数组。</p>
+<pre><code class="javascript">var nodeList = document.querySelectorAll(&#39;div&#39;);
+var array = [...nodeList];
+</code></pre>
+<p>上面代码中，<code>querySelectorAll</code>方法返回的是一个<code>nodeList</code>对象。它不是数组，而是一个类似数组的对象。这时，扩展运算符可以将其转为真正的数组，原因就在于<code>NodeList</code>对象实现了Iterator接口。</p>
+<p>对于那些没有部署Iterator接口的类似数组的对象，扩展运算符就无法将其转为真正的数组。</p>
+<pre><code class="javascript">let arrayLike = {
+  &#39;0&#39;: &#39;a&#39;,
+  &#39;1&#39;: &#39;b&#39;,
+  &#39;2&#39;: &#39;c&#39;,
+  length: 3
+};
+
+// TypeError: Cannot spread non-iterable object.
+let arr = [...arrayLike];
+</code></pre>
+<p>上面代码中，<code>arrayLike</code>是一个类似数组的对象，但是没有部署Iterator接口，扩展运算符就会报错。这时，可以改为使用<code>Array.from</code>方法将<code>arrayLike</code>转为真正的数组。</p>
+<p><strong>（6）Map和Set结构，Generator函数</strong></p>
+<p>扩展运算符内部调用的是数据结构的Iterator接口，因此只要具有Iterator接口的对象，都可以使用扩展运算符，比如Map结构。</p>
+<pre><code class="javascript">let map = new Map([
+  [1, &#39;one&#39;],
+  [2, &#39;two&#39;],
+  [3, &#39;three&#39;],
+]);
+
+let arr = [...map.keys()]; // [1, 2, 3]
+</code></pre>
+<p>Generator函数运行后，返回一个遍历器对象，因此也可以使用扩展运算符。</p>
+<pre><code class="javascript">var go = function*(){
+  yield 1;
+  yield 2;
+  yield 3;
+};
+
+[...go()] // [1, 2, 3]
+</code></pre>
+<p>上面代码中，变量<code>go</code>是一个Generator函数，执行后返回的是一个遍历器对象，对这个遍历器对象执行扩展运算符，就会将内部遍历得到的值，转为一个数组。</p>
+<p>如果对没有<code>iterator</code>接口的对象，使用扩展运算符，将会报错。</p>
+<pre><code class="javascript">var obj = {a: 1, b: 2};
+let arr = [...obj]; // TypeError: Cannot spread non-iterable object
+</code></pre>
+<h2 id="严格模式"><a href="#严格模式" class="headerlink" title="严格模式"></a>严格模式</h2><p>从ES5开始，函数内部可以设定为严格模式。</p>
+<pre><code class="javascript">function doSomething(a, b) {
+  &#39;use strict&#39;;
+  // code
+}
+</code></pre>
+<p>《ECMAScript 2016标准》做了一点修改，规定只要函数参数使用了默认值、解构赋值、或者扩展运算符，那么函数内部就不能显式设定为严格模式，否则会报错。</p>
+<pre><code class="javascript">// 报错
+function doSomething(a, b = a) {
+  &#39;use strict&#39;;
+  // code
+}
+
+// 报错
+const doSomething = function ({a, b}) {
+  &#39;use strict&#39;;
+  // code
+};
+
+// 报错
+const doSomething = (...a) =&gt; {
+  &#39;use strict&#39;;
+  // code
+};
+
+const obj = {
+  // 报错
+  doSomething({a, b}) {
+    &#39;use strict&#39;;
+    // code
+  }
+};
+</code></pre>
+<p>这样规定的原因是，函数内部的严格模式，同时适用于函数体代码和函数参数代码。但是，函数执行的时候，先执行函数参数代码，然后再执行函数体代码。这样就有一个不合理的地方，只有从函数体代码之中，才能知道参数代码是否应该以严格模式执行，但是参数代码却应该先于函数体代码执行。</p>
+<pre><code class="javascript">// 报错
+function doSomething(value = 070) {
+  &#39;use strict&#39;;
+  return value;
+}
+</code></pre>
+<p>上面代码中，参数<code>value</code>的默认值是八进制数<code>070</code>，但是严格模式下不能用前缀<code>0</code>表示八进制，所以应该报错。但是实际上，JavaScript引擎会先成功执行<code>value = 070</code>，然后进入函数体内部，发现需要用严格模式执行，这时才会报错。</p>
+<p>虽然可以先解析函数体代码，再执行参数代码，但是这样无疑就增加了复杂性。因此，标准索性禁止了这种用法，只要参数使用了默认值、解构赋值、或者扩展运算符，就不能显式指定严格模式。</p>
+<p>两种方法可以规避这种限制。第一种是设定全局性的严格模式，这是合法的。</p>
+<pre><code class="javascript">&#39;use strict&#39;;
+
+function doSomething(a, b = a) {
+  // code
+}
+</code></pre>
+<p>第二种是把函数包在一个无参数的立即执行函数里面。</p>
+<pre><code class="javascript">const doSomething = (function () {
+  &#39;use strict&#39;;
+  return function(value = 42) {
+    return value;
+  };
+}());
+</code></pre>
+<h2 id="name-属性"><a href="#name-属性" class="headerlink" title="name 属性"></a>name 属性</h2><p>函数的<code>name</code>属性，返回该函数的函数名。</p>
+<pre><code class="javascript">function foo() {}
+foo.name // &quot;foo&quot;
+</code></pre>
+<p>这个属性早就被浏览器广泛支持，但是直到 ES6，才将其写入了标准。</p>
+<p>需要注意的是，ES6 对这个属性的行为做出了一些修改。如果将一个匿名函数赋值给一个变量，ES5 的<code>name</code>属性，会返回空字符串，而 ES6 的<code>name</code>属性会返回实际的函数名。</p>
+<pre><code class="javascript">var f = function () {};
+
+// ES5
+f.name // &quot;&quot;
+
+// ES6
+f.name // &quot;f&quot;
+</code></pre>
+<p>上面代码中，变量<code>f</code>等于一个匿名函数，ES5 和 ES6 的<code>name</code>属性返回的值不一样。</p>
+<p>如果将一个具名函数赋值给一个变量，则 ES5 和 ES6 的<code>name</code>属性都返回这个具名函数原本的名字。</p>
+<pre><code class="javascript">const bar = function baz() {};
+
+// ES5
+bar.name // &quot;baz&quot;
+
+// ES6
+bar.name // &quot;baz&quot;
+</code></pre>
+<p><code>Function</code>构造函数返回的函数实例，<code>name</code>属性的值为<code>anonymous</code>。</p>
+<pre><code class="javascript">(new Function).name // &quot;anonymous&quot;
+</code></pre>
+<p><code>bind</code>返回的函数，<code>name</code>属性值会加上<code>bound</code>前缀。</p>
+<pre><code class="javascript">function foo() {};
+foo.bind({}).name // &quot;bound foo&quot;
+
+(function(){}).bind({}).name // &quot;bound &quot;
+</code></pre>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><h3 id="基本用法-1"><a href="#基本用法-1" class="headerlink" title="基本用法"></a>基本用法</h3><p>ES6允许使用“箭头”（<code>=&gt;</code>）定义函数。</p>
+<pre><code class="javascript">var f = v =&gt; v;
+</code></pre>
+<p>上面的箭头函数等同于：</p>
+<pre><code class="javascript">var f = function(v) {
+  return v;
+};
+</code></pre>
+<p>如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。</p>
+<pre><code class="javascript">var f = () =&gt; 5;
+// 等同于
+var f = function () { return 5 };
+
+var sum = (num1, num2) =&gt; num1 + num2;
+// 等同于
+var sum = function(num1, num2) {
+  return num1 + num2;
+};
+</code></pre>
+<p>如果箭头函数的代码块部分多于一条语句，就要使用大括号将它们括起来，并且使用<code>return</code>语句返回。</p>
+<pre><code class="javascript">var sum = (num1, num2) =&gt; { return num1 + num2; }
+</code></pre>
+<p>由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上括号。</p>
+<pre><code class="javascript">var getTempItem = id =&gt; ({ id: id, name: &quot;Temp&quot; });
+</code></pre>
+<p>箭头函数可以与变量解构结合使用。</p>
+<pre><code class="javascript">const full = ({ first, last }) =&gt; first + &#39; &#39; + last;
+
+// 等同于
+function full(person) {
+  return person.first + &#39; &#39; + person.last;
+}
+</code></pre>
+<p>箭头函数使得表达更加简洁。</p>
+<pre><code class="javascript">const isEven = n =&gt; n % 2 == 0;
+const square = n =&gt; n * n;
+</code></pre>
+<p>上面代码只用了两行，就定义了两个简单的工具函数。如果不用箭头函数，可能就要占用多行，而且还不如现在这样写醒目。</p>
+<p>箭头函数的一个用处是简化回调函数。</p>
+<pre><code class="javascript">// 正常函数写法
+[1,2,3].map(function (x) {
+  return x * x;
+});
+
+// 箭头函数写法
+[1,2,3].map(x =&gt; x * x);
+</code></pre>
+<p>另一个例子是</p>
+<pre><code class="javascript">// 正常函数写法
+var result = values.sort(function (a, b) {
+  return a - b;
+});
+
+// 箭头函数写法
+var result = values.sort((a, b) =&gt; a - b);
+</code></pre>
+<p>下面是rest参数与箭头函数结合的例子。</p>
+<pre><code class="javascript">const numbers = (...nums) =&gt; nums;
+
+numbers(1, 2, 3, 4, 5)
+// [1,2,3,4,5]
+
+const headAndTail = (head, ...tail) =&gt; [head, tail];
+
+headAndTail(1, 2, 3, 4, 5)
+// [1,[2,3,4,5]]
+</code></pre>
+<h3 id="使用注意点"><a href="#使用注意点" class="headerlink" title="使用注意点"></a>使用注意点</h3><p>箭头函数有几个使用注意点。</p>
+<p>（1）函数体内的<code>this</code>对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
+<p>（2）不可以当作构造函数，也就是说，不可以使用<code>new</code>命令，否则会抛出一个错误。</p>
+<p>（3）不可以使用<code>arguments</code>对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</p>
+<p>（4）不可以使用<code>yield</code>命令，因此箭头函数不能用作Generator函数。</p>
+<p>上面四点中，第一点尤其值得注意。<code>this</code>对象的指向是可变的，但是在箭头函数中，它是固定的。</p>
+<pre><code class="javascript">function foo() {
+  setTimeout(() =&gt; {
+    console.log(&#39;id:&#39;, this.id);
+  }, 100);
+}
+
+var id = 21;
+
+foo.call({ id: 42 });
+// id: 42
+</code></pre>
+<p>上面代码中，<code>setTimeout</code>的参数是一个箭头函数，这个箭头函数的定义生效是在<code>foo</code>函数生成时，而它的真正执行要等到100毫秒后。如果是普通函数，执行时<code>this</code>应该指向全局对象<code>window</code>，这时应该输出<code>21</code>。但是，箭头函数导致<code>this</code>总是指向函数定义生效时所在的对象（本例是<code>{id: 42}</code>），所以输出的是<code>42</code>。</p>
+<p>箭头函数可以让<code>setTimeout</code>里面的<code>this</code>，绑定定义时所在的作用域，而不是指向运行时所在的作用域。下面是另一个例子。</p>
+<pre><code class="javascript">function Timer() {
+  this.s1 = 0;
+  this.s2 = 0;
+  // 箭头函数
+  setInterval(() =&gt; this.s1++, 1000);
+  // 普通函数
+  setInterval(function () {
+    this.s2++;
+  }, 1000);
+}
+
+var timer = new Timer();
+
+setTimeout(() =&gt; console.log(&#39;s1: &#39;, timer.s1), 3100);
+setTimeout(() =&gt; console.log(&#39;s2: &#39;, timer.s2), 3100);
+// s1: 3
+// s2: 0
+</code></pre>
+<p>上面代码中，<code>Timer</code>函数内部设置了两个定时器，分别使用了箭头函数和普通函数。前者的<code>this</code>绑定定义时所在的作用域（即<code>Timer</code>函数），后者的<code>this</code>指向运行时所在的作用域（即全局对象）。所以，3100毫秒之后，<code>timer.s1</code>被更新了3次，而<code>timer.s2</code>一次都没更新。</p>
+<p>箭头函数可以让<code>this</code>指向固定化，这种特性很有利于封装回调函数。下面是一个例子，DOM事件的回调函数封装在一个对象里面。</p>
+<pre><code class="javascript">var handler = {
+  id: &#39;123456&#39;,
+
+  init: function() {
+    document.addEventListener(&#39;click&#39;,
+      event =&gt; this.doSomething(event.type), false);
+  },
+
+  doSomething: function(type) {
+    console.log(&#39;Handling &#39; + type  + &#39; for &#39; + this.id);
+  }
+};
+</code></pre>
+<p>上面代码的<code>init</code>方法中，使用了箭头函数，这导致这个箭头函数里面的<code>this</code>，总是指向<code>handler</code>对象。否则，回调函数运行时，<code>this.doSomething</code>这一行会报错，因为此时<code>this</code>指向<code>document</code>对象。</p>
+<p><code>this</code>指向的固定化，并不是因为箭头函数内部有绑定<code>this</code>的机制，实际原因是箭头函数根本没有自己的<code>this</code>，导致内部的<code>this</code>就是外层代码块的<code>this</code>。正是因为它没有<code>this</code>，所以也就不能用作构造函数。</p>
+<p>所以，箭头函数转成ES5的代码如下。</p>
+<pre><code class="javascript">// ES6
+function foo() {
+  setTimeout(() =&gt; {
+    console.log(&#39;id:&#39;, this.id);
+  }, 100);
+}
+
+// ES5
+function foo() {
+  var _this = this;
+
+  setTimeout(function () {
+    console.log(&#39;id:&#39;, _this.id);
+  }, 100);
+}
+</code></pre>
+<p>上面代码中，转换后的ES5版本清楚地说明了，箭头函数里面根本没有自己的<code>this</code>，而是引用外层的<code>this</code>。</p>
+<p>请问下面的代码之中有几个<code>this</code>？</p>
+<pre><code class="javascript">function foo() {
+  return () =&gt; {
+    return () =&gt; {
+      return () =&gt; {
+        console.log(&#39;id:&#39;, this.id);
+      };
+    };
+  };
+}
+
+var f = foo.call({id: 1});
+
+var t1 = f.call({id: 2})()(); // id: 1
+var t2 = f().call({id: 3})(); // id: 1
+var t3 = f()().call({id: 4}); // id: 1
+</code></pre>
+<p>上面代码之中，只有一个<code>this</code>，就是函数<code>foo</code>的<code>this</code>，所以<code>t1</code>、<code>t2</code>、<code>t3</code>都输出同样的结果。因为所有的内层函数都是箭头函数，都没有自己的<code>this</code>，它们的<code>this</code>其实都是最外层<code>foo</code>函数的<code>this</code>。</p>
+<p>除了<code>this</code>，以下三个变量在箭头函数之中也是不存在的，指向外层函数的对应变量：<code>arguments</code>、<code>super</code>、<code>new.target</code>。</p>
+<pre><code class="javascript">function foo() {
+  setTimeout(() =&gt; {
+    console.log(&#39;args:&#39;, arguments);
+  }, 100);
+}
+
+foo(2, 4, 6, 8)
+// args: [2, 4, 6, 8]
+</code></pre>
+<p>上面代码中，箭头函数内部的变量<code>arguments</code>，其实是函数<code>foo</code>的<code>arguments</code>变量。</p>
+<p>另外，由于箭头函数没有自己的<code>this</code>，所以当然也就不能用<code>call()</code>、<code>apply()</code>、<code>bind()</code>这些方法去改变<code>this</code>的指向。</p>
+<pre><code class="javascript">(function() {
+  return [
+    (() =&gt; this.x).bind({ x: &#39;inner&#39; })()
+  ];
+}).call({ x: &#39;outer&#39; });
+// [&#39;outer&#39;]
+</code></pre>
+<p>上面代码中，箭头函数没有自己的<code>this</code>，所以<code>bind</code>方法无效，内部的<code>this</code>指向外部的<code>this</code>。</p>
+<p>长期以来，JavaScript语言的<code>this</code>对象一直是一个令人头痛的问题，在对象方法中使用<code>this</code>，必须非常小心。箭头函数”绑定”<code>this</code>，很大程度上解决了这个困扰。</p>
+<h3 id="嵌套的箭头函数"><a href="#嵌套的箭头函数" class="headerlink" title="嵌套的箭头函数"></a>嵌套的箭头函数</h3><p>箭头函数内部，还可以再使用箭头函数。下面是一个ES5语法的多重嵌套函数。</p>
+<pre><code class="javascript">function insert(value) {
+  return {into: function (array) {
+    return {after: function (afterValue) {
+      array.splice(array.indexOf(afterValue) + 1, 0, value);
+      return array;
+    }};
+  }};
+}
+
+insert(2).into([1, 3]).after(1); //[1, 2, 3]
+</code></pre>
+<p>上面这个函数，可以使用箭头函数改写。</p>
+<pre><code class="javascript">let insert = (value) =&gt; ({into: (array) =&gt; ({after: (afterValue) =&gt; {
+  array.splice(array.indexOf(afterValue) + 1, 0, value);
+  return array;
+}})});
+
+insert(2).into([1, 3]).after(1); //[1, 2, 3]
+</code></pre>
+<p>下面是一个部署管道机制（pipeline）的例子，即前一个函数的输出是后一个函数的输入。</p>
+<pre><code class="javascript">const pipeline = (...funcs) =&gt;
+  val =&gt; funcs.reduce((a, b) =&gt; b(a), val);
+
+const plus1 = a =&gt; a + 1;
+const mult2 = a =&gt; a * 2;
+const addThenMult = pipeline(plus1, mult2);
+
+addThenMult(5)
+// 12
+</code></pre>
+<p>如果觉得上面的写法可读性比较差，也可以采用下面的写法。</p>
+<pre><code class="javascript">const plus1 = a =&gt; a + 1;
+const mult2 = a =&gt; a * 2;
+
+mult2(plus1(5))
+// 12
+</code></pre>
+<p>箭头函数还有一个功能，就是可以很方便地改写λ演算。</p>
+<pre><code class="javascript">// λ演算的写法
+fix = λf.(λx.f(λv.x(x)(v)))(λx.f(λv.x(x)(v)))
+
+// ES6的写法
+var fix = f =&gt; (x =&gt; f(v =&gt; x(x)(v)))
+               (x =&gt; f(v =&gt; x(x)(v)));
+</code></pre>
+<p>上面两种写法，几乎是一一对应的。由于λ演算对于计算机科学非常重要，这使得我们可以用ES6作为替代工具，探索计算机科学。</p>
+<h2 id="绑定-this"><a href="#绑定-this" class="headerlink" title="绑定 this"></a>绑定 this</h2><p>箭头函数可以绑定<code>this</code>对象，大大减少了显式绑定<code>this</code>对象的写法（<code>call</code>、<code>apply</code>、<code>bind</code>）。但是，箭头函数并不适用于所有场合，所以ES7提出了“函数绑定”（function bind）运算符，用来取代<code>call</code>、<code>apply</code>、<code>bind</code>调用。虽然该语法还是ES7的一个<a href="https://github.com/zenparsing/es-function-bind" target="_blank" rel="external">提案</a>，但是Babel转码器已经支持。</p>
+<p>函数绑定运算符是并排的两个双冒号（::），双冒号左边是一个对象，右边是一个函数。该运算符会自动将左边的对象，作为上下文环境（即this对象），绑定到右边的函数上面。</p>
+<pre><code class="javascript">foo::bar;
+// 等同于
+bar.bind(foo);
+
+foo::bar(...arguments);
+// 等同于
+bar.apply(foo, arguments);
+
+const hasOwnProperty = Object.prototype.hasOwnProperty;
+function hasOwn(obj, key) {
+  return obj::hasOwnProperty(key);
+}
+</code></pre>
+<p>如果双冒号左边为空，右边是一个对象的方法，则等于将该方法绑定在该对象上面。</p>
+<pre><code class="javascript">var method = obj::obj.foo;
+// 等同于
+var method = ::obj.foo;
+
+let log = ::console.log;
+// 等同于
+var log = console.log.bind(console);
+</code></pre>
+<p>由于双冒号运算符返回的还是原对象，因此可以采用链式写法。</p>
+<pre><code class="javascript">// 例一
+import { map, takeWhile, forEach } from &quot;iterlib&quot;;
+
+getPlayers()
+::map(x =&gt; x.character())
+::takeWhile(x =&gt; x.strength &gt; 100)
+::forEach(x =&gt; console.log(x));
+
+// 例二
+let { find, html } = jake;
+
+document.querySelectorAll(&quot;div.myClass&quot;)
+::find(&quot;p&quot;)
+::html(&quot;hahaha&quot;);
+</code></pre>
+<h2 id="尾调用优化"><a href="#尾调用优化" class="headerlink" title="尾调用优化"></a>尾调用优化</h2><h3 id="什么是尾调用？"><a href="#什么是尾调用？" class="headerlink" title="什么是尾调用？"></a>什么是尾调用？</h3><p>尾调用（Tail Call）是函数式编程的一个重要概念，本身非常简单，一句话就能说清楚，就是指某个函数的最后一步是调用另一个函数。</p>
+<pre><code class="javascript">function f(x){
+  return g(x);
+}
+</code></pre>
+<p>上面代码中，函数f的最后一步是调用函数g，这就叫尾调用。</p>
+<p>以下三种情况，都不属于尾调用。</p>
+<pre><code class="javascript">// 情况一
+function f(x){
+  let y = g(x);
+  return y;
+}
+
+// 情况二
+function f(x){
+  return g(x) + 1;
+}
+
+// 情况三
+function f(x){
+  g(x);
+}
+</code></pre>
+<p>上面代码中，情况一是调用函数g之后，还有赋值操作，所以不属于尾调用，即使语义完全一样。情况二也属于调用后还有操作，即使写在一行内。情况三等同于下面的代码。</p>
+<pre><code class="javascript">function f(x){
+  g(x);
+  return undefined;
+}
+</code></pre>
+<p>尾调用不一定出现在函数尾部，只要是最后一步操作即可。</p>
+<pre><code class="javascript">function f(x) {
+  if (x &gt; 0) {
+    return m(x)
+  }
+  return n(x);
+}
+</code></pre>
+<p>上面代码中，函数m和n都属于尾调用，因为它们都是函数f的最后一步操作。</p>
+<h3 id="尾调用优化-1"><a href="#尾调用优化-1" class="headerlink" title="尾调用优化"></a>尾调用优化</h3><p>尾调用之所以与其他调用不同，就在于它的特殊的调用位置。</p>
+<p>我们知道，函数调用会在内存形成一个“调用记录”，又称“调用帧”（call frame），保存调用位置和内部变量等信息。如果在函数A的内部调用函数B，那么在A的调用帧上方，还会形成一个B的调用帧。等到B运行结束，将结果返回到A，B的调用帧才会消失。如果函数B内部还调用函数C，那就还有一个C的调用帧，以此类推。所有的调用帧，就形成一个“调用栈”（call stack）。</p>
+<p>尾调用由于是函数的最后一步操作，所以不需要保留外层函数的调用帧，因为调用位置、内部变量等信息都不会再用到了，只要直接用内层函数的调用帧，取代外层函数的调用帧就可以了。</p>
+<pre><code class="javascript">function f() {
+  let m = 1;
+  let n = 2;
+  return g(m + n);
+}
+f();
+
+// 等同于
+function f() {
+  return g(3);
+}
+f();
+
+// 等同于
+g(3);
+</code></pre>
+<p>上面代码中，如果函数g不是尾调用，函数f就需要保存内部变量m和n的值、g的调用位置等信息。但由于调用g之后，函数f就结束了，所以执行到最后一步，完全可以删除 f(x) 的调用帧，只保留 g(3) 的调用帧。</p>
+<p>这就叫做“尾调用优化”（Tail call optimization），即只保留内层函数的调用帧。如果所有函数都是尾调用，那么完全可以做到每次执行时，调用帧只有一项，这将大大节省内存。这就是“尾调用优化”的意义。</p>
+<p>注意，只有不再用到外层函数的内部变量，内层函数的调用帧才会取代外层函数的调用帧，否则就无法进行“尾调用优化”。</p>
+<pre><code class="javascript">function addOne(a){
+  var one = 1;
+  function inner(b){
+    return b + one;
+  }
+  return inner(a);
+}
+</code></pre>
+<p>上面的函数不会进行尾调用优化，因为内层函数<code>inner</code>用到了外层函数<code>addOne</code>的内部变量<code>one</code>。</p>
+<h3 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h3><p>函数调用自身，称为递归。如果尾调用自身，就称为尾递归。</p>
+<p>递归非常耗费内存，因为需要同时保存成千上百个调用帧，很容易发生“栈溢出”错误（stack overflow）。但对于尾递归来说，由于只存在一个调用帧，所以永远不会发生“栈溢出”错误。</p>
+<pre><code class="javascript">function factorial(n) {
+  if (n === 1) return 1;
+  return n * factorial(n - 1);
+}
+
+factorial(5) // 120
+</code></pre>
+<p>上面代码是一个阶乘函数，计算n的阶乘，最多需要保存n个调用记录，复杂度 O(n) 。</p>
+<p>如果改写成尾递归，只保留一个调用记录，复杂度 O(1) 。</p>
+<pre><code class="javascript">function factorial(n, total) {
+  if (n === 1) return total;
+  return factorial(n - 1, n * total);
+}
+
+factorial(5, 1) // 120
+</code></pre>
+<p>还有一个比较著名的例子，就是计算fibonacci 数列，也能充分说明尾递归优化的重要性</p>
+<p>如果是非尾递归的fibonacci 递归方法</p>
+<pre><code class="javascript">function Fibonacci (n) {
+  if ( n &lt;= 1 ) {return 1};
+
+  return Fibonacci(n - 1) + Fibonacci(n - 2);
+}
+
+Fibonacci(10); // 89
+// Fibonacci(100)
+// Fibonacci(500)
+// 堆栈溢出了
+</code></pre>
+<p>如果我们使用尾递归优化过的fibonacci 递归算法</p>
+<pre><code class="javascript">function Fibonacci2 (n , ac1 = 1 , ac2 = 1) {
+  if( n &lt;= 1 ) {return ac2};
+
+  return Fibonacci2 (n - 1, ac2, ac1 + ac2);
+}
+
+Fibonacci2(100) // 573147844013817200000
+Fibonacci2(1000) // 7.0330367711422765e+208
+Fibonacci2(10000) // Infinity
+</code></pre>
+<p>由此可见，“尾调用优化”对递归操作意义重大，所以一些函数式编程语言将其写入了语言规格。ES6也是如此，第一次明确规定，所有ECMAScript的实现，都必须部署“尾调用优化”。这就是说，在ES6中，只要使用尾递归，就不会发生栈溢出，相对节省内存。</p>
+<h3 id="递归函数的改写"><a href="#递归函数的改写" class="headerlink" title="递归函数的改写"></a>递归函数的改写</h3><p>尾递归的实现，往往需要改写递归函数，确保最后一步只调用自身。做到这一点的方法，就是把所有用到的内部变量改写成函数的参数。比如上面的例子，阶乘函数 factorial 需要用到一个中间变量 total ，那就把这个中间变量改写成函数的参数。这样做的缺点就是不太直观，第一眼很难看出来，为什么计算5的阶乘，需要传入两个参数5和1？</p>
+<p>两个方法可以解决这个问题。方法一是在尾递归函数之外，再提供一个正常形式的函数。</p>
+<pre><code class="javascript">function tailFactorial(n, total) {
+  if (n === 1) return total;
+  return tailFactorial(n - 1, n * total);
+}
+
+function factorial(n) {
+  return tailFactorial(n, 1);
+}
+
+factorial(5) // 120
+</code></pre>
+<p>上面代码通过一个正常形式的阶乘函数 factorial ，调用尾递归函数 tailFactorial ，看起来就正常多了。</p>
+<p>函数式编程有一个概念，叫做柯里化（currying），意思是将多参数的函数转换成单参数的形式。这里也可以使用柯里化。</p>
+<pre><code class="javascript">function currying(fn, n) {
+  return function (m) {
+    return fn.call(this, m, n);
+  };
+}
+
+function tailFactorial(n, total) {
+  if (n === 1) return total;
+  return tailFactorial(n - 1, n * total);
+}
+
+const factorial = currying(tailFactorial, 1);
+
+factorial(5) // 120
+</code></pre>
+<p>上面代码通过柯里化，将尾递归函数 tailFactorial 变为只接受1个参数的 factorial 。</p>
+<p>第二种方法就简单多了，就是采用ES6的函数默认值。</p>
+<pre><code class="javascript">function factorial(n, total = 1) {
+  if (n === 1) return total;
+  return factorial(n - 1, n * total);
+}
+
+factorial(5) // 120
+</code></pre>
+<p>上面代码中，参数 total 有默认值1，所以调用时不用提供这个值。</p>
+<p>总结一下，递归本质上是一种循环操作。纯粹的函数式编程语言没有循环操作命令，所有的循环都用递归实现，这就是为什么尾递归对这些语言极其重要。对于其他支持“尾调用优化”的语言（比如Lua，ES6），只需要知道循环可以用递归代替，而一旦使用递归，就最好使用尾递归。</p>
+<h3 id="严格模式-1"><a href="#严格模式-1" class="headerlink" title="严格模式"></a>严格模式</h3><p>ES6的尾调用优化只在严格模式下开启，正常模式是无效的。</p>
+<p>这是因为在正常模式下，函数内部有两个变量，可以跟踪函数的调用栈。</p>
+<ul>
+<li><code>func.arguments</code>：返回调用时函数的参数。</li>
+<li><code>func.caller</code>：返回调用当前函数的那个函数。</li>
+</ul>
+<p>尾调用优化发生时，函数的调用栈会改写，因此上面两个变量就会失真。严格模式禁用这两个变量，所以尾调用模式仅在严格模式下生效。</p>
+<pre><code class="javascript">function restricted() {
+  &quot;use strict&quot;;
+  restricted.caller;    // 报错
+  restricted.arguments; // 报错
+}
+restricted();
+</code></pre>
+<h3 id="尾递归优化的实现"><a href="#尾递归优化的实现" class="headerlink" title="尾递归优化的实现"></a>尾递归优化的实现</h3><p>尾递归优化只在严格模式下生效，那么正常模式下，或者那些不支持该功能的环境中，有没有办法也使用尾递归优化呢？回答是可以的，就是自己实现尾递归优化。</p>
+<p>它的原理非常简单。尾递归之所以需要优化，原因是调用栈太多，造成溢出，那么只要减少调用栈，就不会溢出。怎么做可以减少调用栈呢？就是采用“循环”换掉“递归”。</p>
+<p>下面是一个正常的递归函数。</p>
+<pre><code class="javascript">function sum(x, y) {
+  if (y &gt; 0) {
+    return sum(x + 1, y - 1);
+  } else {
+    return x;
+  }
+}
+
+sum(1, 100000)
+// Uncaught RangeError: Maximum call stack size exceeded(…)
+</code></pre>
+<p>上面代码中，<code>sum</code>是一个递归函数，参数<code>x</code>是需要累加的值，参数<code>y</code>控制递归次数。一旦指定<code>sum</code>递归100000次，就会报错，提示超出调用栈的最大次数。</p>
+<p>蹦床函数（trampoline）可以将递归执行转为循环执行。</p>
+<pre><code class="javascript">function trampoline(f) {
+  while (f &amp;&amp; f instanceof Function) {
+    f = f();
+  }
+  return f;
+}
+</code></pre>
+<p>上面就是蹦床函数的一个实现，它接受一个函数<code>f</code>作为参数。只要<code>f</code>执行后返回一个函数，就继续执行。注意，这里是返回一个函数，然后执行该函数，而不是函数里面调用函数，这样就避免了递归执行，从而就消除了调用栈过大的问题。</p>
+<p>然后，要做的就是将原来的递归函数，改写为每一步返回另一个函数。</p>
+<pre><code class="javascript">function sum(x, y) {
+  if (y &gt; 0) {
+    return sum.bind(null, x + 1, y - 1);
+  } else {
+    return x;
+  }
+}
+</code></pre>
+<p>上面代码中，<code>sum</code>函数的每次执行，都会返回自身的另一个版本。</p>
+<p>现在，使用蹦床函数执行<code>sum</code>，就不会发生调用栈溢出。</p>
+<pre><code class="javascript">trampoline(sum(1, 100000))
+// 100001
+</code></pre>
+<p>蹦床函数并不是真正的尾递归优化，下面的实现才是。</p>
+<pre><code class="javascript">function tco(f) {
+  var value;
+  var active = false;
+  var accumulated = [];
+
+  return function accumulator() {
+    accumulated.push(arguments);
+    if (!active) {
+      active = true;
+      while (accumulated.length) {
+        value = f.apply(this, accumulated.shift());
+      }
+      active = false;
+      return value;
+    }
+  };
+}
+
+var sum = tco(function(x, y) {
+  if (y &gt; 0) {
+    return sum(x + 1, y - 1)
+  }
+  else {
+    return x
+  }
+});
+
+sum(1, 100000)
+// 100001
+</code></pre>
+<p>上面代码中，<code>tco</code>函数是尾递归优化的实现，它的奥妙就在于状态变量<code>active</code>。默认情况下，这个变量是不激活的。一旦进入尾递归优化的过程，这个变量就激活了。然后，每一轮递归<code>sum</code>返回的都是<code>undefined</code>，所以就避免了递归执行；而<code>accumulated</code>数组存放每一轮<code>sum</code>执行的参数，总是有值的，这就保证了<code>accumulator</code>函数内部的<code>while</code>循环总是会执行。这样就很巧妙地将“递归”改成了“循环”，而后一轮的参数会取代前一轮的参数，保证了调用栈只有一层。</p>
+<h2 id="函数参数的尾逗号"><a href="#函数参数的尾逗号" class="headerlink" title="函数参数的尾逗号"></a>函数参数的尾逗号</h2><p>ECMAScript 2017将<a href="https://github.com/jeffmo/es-trailing-function-commas" target="_blank" rel="external">允许</a>函数的最后一个参数有尾逗号（trailing comma）。</p>
+<p>此前，函数定义和调用时，都不允许最后一个参数后面出现逗号。</p>
+<pre><code class="javascript">function clownsEverywhere(
+  param1,
+  param2
+) { /* ... */ }
+
+clownsEverywhere(
+  &#39;foo&#39;,
+  &#39;bar&#39;
+);
+</code></pre>
+<p>上面代码中，如果在<code>param2</code>或<code>bar</code>后面加一个逗号，就会报错。</p>
+<p>这样的话，如果以后修改代码，想为函数<code>clownsEverywhere</code>添加第三个参数，就势必要在第二个参数后面添加一个逗号。这对版本管理系统来说，就会显示，添加逗号的那一行也发生了变动。这看上去有点冗余，因此新的语法允许定义和调用时，尾部直接有一个逗号。</p>
+<pre><code class="javascript">function clownsEverywhere(
+  param1,
+  param2,
+) { /* ... */ }
+
+clownsEverywhere(
+  &#39;foo&#39;,
+  &#39;bar&#39;,
+);
+</code></pre>
+<blockquote>
+<p>感谢阮一峰老师的原创，本分享仅供学习交流</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-21T11:34:41.790Z" itemprop="dateUpdated">2017年8月21日 19:34</time>
+</span><br>
+
+
+        转载请注明出处：<a href="https://microzz.com/2016/12/10/function/" target="_blank" rel="external">https://microzz.com/2016/12/10/function/</a>
+    </div>
+    <footer>
+        <a href="https://microzz.com">
+            <img src="https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" alt="Microzz">
+            Microzz
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Function/">Function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2016/12/10/function/&title=《函数的扩展(Function)》 — 涵月天-microzz.com&pic=https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2016/12/10/function/&title=《函数的扩展(Function)》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2016/12/10/function/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《函数的扩展(Function)》 — 涵月天-microzz.com&url=https://microzz.com/2016/12/10/function/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2016/12/10/function/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/12/25/object/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">对象的扩展(Object)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/11/30/array/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">数组的扩展(Array)</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃辣条~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="https://icdn.microzz.com/microzz/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="https://icdn.microzz.com/microzz/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="padding:7px;">
+        
+<p>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+    </div>
+    <div class="bottom" style="padding: 8px;">
+        <p>
+            <!-- <span style="display: none"><a href="https://microzz.com">Zhaohui</a></span> -->
+            <span>
+              <a target="_blank" href="mailto:zhaohui@microzz.com" style="border-bottom:none">
+                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUwOTQ2NDk3IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjUzMjkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTEyIDEwMDcuMjEzMTE1QzIzOC41MDgwNjYgMTAwNy4yMTMxMTUgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDUxMiAxNi43ODY4ODUgMjM4LjUwODA2NiAyMzguNTA4MDY2IDE2Ljc4Njg4NSA1MTIgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDEwMDcuMjEzMTE1IDIzOC41MDgwNjYgMTAwNy4yMTMxMTUgNTEyIDEwMDcuMjEzMTE1IDc4NS40OTE5MzQgNzg1LjQ5MTkzNCAxMDA3LjIxMzExNSA1MTIgMTAwNy4yMTMxMTVaTTUxMiA1MC4zNjA2NTZDMjU3LjA0MDc4NyA1MC4zNjA2NTYgNTAuMzYwNjU2IDI1Ny4wNDA3ODcgNTAuMzYwNjU2IDUxMiA1MC4zNjA2NTYgNzY2Ljk1OTIxMyAyNTcuMDQwNzg3IDk3My42MzkzNDQgNTEyIDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDUxMiA5NzMuNjM5MzQ0IDI1Ny4wNDA3ODcgNzY2Ljk1OTIxMyA1MC4zNjA2NTYgNTEyIDUwLjM2MDY1NlpNNzU1LjQwOTgzNiA3MjEuODM2MDY2IDI4NS4zNzcwNDkgNzIxLjgzNjA2NkMyNjYuODI3NTQxIDcyMS44MzYwNjYgMjUxLjgwMzI3OSA3MDcuOTcwMDk4IDI1MS44MDMyNzkgNjkwLjg0NzQ3NUwyNTEuODAzMjc5IDM0OS45Mzk0MUMyNTEuODAzMjc5IDMzMi44MzM1NzQgMjY2LjgyNzU0MSAzMTguOTUwODIgMjg1LjM3NzA0OSAzMTguOTUwODJMNzU1LjQwOTgzNiAzMTguOTUwODJDNzczLjk1OTM0NCAzMTguOTUwODIgNzg4Ljk4MzYwNyAzMzIuODMzNTc0IDc4OC45ODM2MDcgMzQ5LjkzOTQxTDc4OC45ODM2MDcgNjkwLjg0NzQ3NUM3ODguOTgzNjA3IDcwNy45NzAwOTggNzczLjk1OTM0NCA3MjEuODM2MDY2IDc1NS40MDk4MzYgNzIxLjgzNjA2NlpNNzU1LjQwOTgzNiAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNTAuOTYzNDEgNTIxLjkyMTA0OSA1NjkuMjkzNjM5IDc1NS40MDk4MzYgMzUzLjc2NjgyIDc1NS40MDk4MzYgMzQ5LjkzOTQxWk03NTUuNDA5ODM2IDM5Ny41OTczNzcgNTM4LjQzOTM0NCA1OTcuODY0OTE4IDUwNS4zODU5NjcgNTk3Ljg2NDkxOCAyODUuMzc3MDQ5IDM5NC43NzcxOCAyODUuMzc3MDQ5IDY5MC44NDc0NzUgNzU1LjQwOTgzNiA2OTAuODQ3NDc1IDc1NS40MDk4MzYgMzk3LjU5NzM3N1oiIHAtaWQ9IjUzMzAiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L3N2Zz4=" alt="E-mail联系" title="E-mail" style="width:20px;height:20px;border:none;"/>
+              </a>
+            </span>
+
+	          <span>
+              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=903036377&site=qq&menu=yes" style="border-bottom:none">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUxNTc4MDQ0IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjUgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE1MjE0IiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjIwMC4xOTUzMTI1IiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTE2Ljk3MSAzNC44MTJjLTI2Mi44MzYgMC00NzUuOTExIDIxMy4wNzEtNDc1LjkxMSA0NzUuOTExczIxMy4wNzUgNDc1LjkxIDQ3NS45MTEgNDc1LjkxYzI2Mi44MzggMCA0NzUuOTE1LTIxMy4wNzAgNDc1LjkxNS00NzUuOTEgMC0yNjIuODM5LTIxMy4wNzYtNDc1LjkxMS00NzUuOTE1LTQ3NS45MTF6TTUxNi45NzEgOTYwLjA5OGMtMjQ4LjE4MSAwLTQ0OS4zNzMtMjAxLjE5MS00NDkuMzczLTQ0OS4zNzVzMjAxLjE5Mi00NDkuMzcxIDQ0OS4zNzMtNDQ5LjM3MWMyNDguMTgyIDAgNDQ5LjM3NyAyMDEuMTg4IDQ0OS4zNzcgNDQ5LjM3MSAwIDI0OC4xODMtMjAxLjE5NiA0NDkuMzc1LTQ0OS4zNzcgNDQ5LjM3NXoiIHAtaWQ9IjE1MjE1IiBmaWxsPSIjZmZmZmZmIj48L3BhdGg+PHBhdGggZD0iTTc2Ni45ODYgNTY5LjI2M2wtMS43NDktOS4zMjMtMS4xNjUtNC42NjEtMS4xNjctNC42NjEtMS43NDctNC42NjItMS43NDgtNS4yNDQtMi4zMy01LjI0NC0yLjMzMi01LjI0NC00LjA3OC04LjE1Ny0zLjQ5Ni03LjU3NS0zLjQ5Ni02LjQxLTIuOTEzLTUuODI3LTMuNDk2LTUuODI2LTIuMzMxLTQuNjYyLTUuMjQ0LTguMTU4LTYuOTkyLTkuOTA2LTEuNzQ5LTIuOTEyLTAuNTgyLTAuNTgzIDAtMS4xNjYgMS4xNjYtMy40OTYgMS4xNjUtMi45MTQgMS43NDctNS44MjcgMC41ODMtMy40OTYgMC0yLjkxNCAwLjU4My0yLjMzMSAwLTIuOTEzLTAuNTgzLTIuOTEzLTAuNTgzLTIuOTE0LTAuNTgyLTQuNjYyLTEuMTY1LTQuNjYxLTEuNzQ5LTQuNjYyLTEuNzQ4LTQuMDc5LTEuNzQ4LTMuNDk3LTEuNzQ3LTMuNDk2LTEuNzQ4LTIuOTE0LTMuNDk2LTUuMjQ1LTAuNTgyLTEuNzQ3LTAuNTg0LTEuMTY2LTEuMTY0LTkuMzIzLTEuMTY2LTUuODI2LTAuNTgzLTcuNTc1LTEuNzQ4LTcuNTc1LTIuMzMxLTguNzQxLTEuMTY0LTUuMjQzLTEuMTY1LTQuMDc5LTEuNzQ5LTQuNjYxLTEuNzQ4LTUuMjQ1LTEuNzQ5LTUuMjQzLTEuNzQ3LTUuMjQ1LTQuNjYxLTkuOTA1LTIuMzMtNC42NjItMy40OTgtNS4yNDQtMi45MTItNC42NjItMi45MTQtNS4yNDMtNC4wNzgtNS4yNDUtMy40OTctNC42NjEtNC4wNzktNC42NjItNC42NjEtNC42NjEtNC4wNzktNC4wNzktNS4yNDMtNC4wOC0yLjkxNC0yLjMzMS0yLjMzLTEuNzQ4LTUuODI3LTQuMDc5LTYuNDEtNC4wNzktNi40MDgtNC4wNzktNy41NzUtMy40OTctNi45OTItMi45MTQtNi45OTItMi45MTMtNy41NzYtMi45MTQtNy41NzMtMS43NDgtNy41NzUtMS43NDgtOC4xNTctMS43NDgtNy41NzUtMS43NDgtNy41NzUtMS4xNjUtOC4xNTctMC41ODMtNy41NzYtMS4xNjYtOC4xNTcgMC03LjU3NSAwLTcuNTc0IDAtNy41NzUgMC41ODMtNy41NzQgMS4xNjctNy41NzUgMC41ODItNy41NzUgMS4xNjYtNi45OTIgMS4xNjUtNi45OTEgMS43NDgtNi45OTIgMi4zMzEtNi45OTMgMi4zMzItNi40MDkgMi4zMy02LjQxIDIuOTE0LTUuODI1IDIuMzMxLTUuODI4IDMuNDk3LTUuODI2IDMuNDk2LTUuMjQ1IDMuNDk2LTUuMjQzIDQuMDgtNC42NjIgMy40OTZMNDEwLjM4MyAyODJsLTUuODI3IDUuMjQ1LTUuMjQ0IDUuODI2LTQuNjYxIDUuODI3LTQuNjYxIDUuODI4LTQuMDc4IDUuMjQzLTMuNDk3IDUuODI3LTIuMzMxIDIuOTE0LTEuNzQ4IDIuOTEzLTMuNDk2IDUuMjQ1LTIuOTEzIDUuMjQ0LTIuMzMxIDUuMjQ0LTIuMzMgNS4yNDUtMi4zMzEgNC42NjEtMS43NDggNC42NjEtMS43NDggNS4yNDQtMS43NDggNC4wNzktMS43NDggOC4xNTgtMi4zMzEgOC4xNTgtMC41ODIgNi40MDktMS4xNjYgNS44MjcgMCA0LjA3OSAwIDMuNDk2IDAgMy40OTctMS4xNjUgMS43NDgtMS43NDggMS43NDgtMS4xNjYgMi4zMzEtMC41ODIgMi4zMy0xLjc0OSA0LjY2Mi0xLjE2NSA0LjY2MS0wLjU4MiAzLjQ5NiAwIDMuNDk3IDAgMi45MTMtMy40OTcgNC4wNzktMS43NDcgNC42NjItMi4zMzEgNC4wNzgtMS4xNjUgNC4wNzktMC41ODMgMy40OTctMS4xNjUgMy40OTYgMCAyLjkxNCAwIDMuNDk2IDAgMi4zMzEgMC41ODMgMi4zMzEgMS4xNjUgNC4wNzkgMC41ODMgMi45MTQtMS43NDggMS4xNjUtNC42NjIgMy40OTctNi40MDkgNS44MjctNC4wNzkgMy40OTYtNC4wNzggMy40OTctMi45MTQgMi4zMzEtMS43NDggMi4zMy00LjY2MSA1LjI0NS00LjY2MiA0LjY2Mi0zLjQ5NSA0LjY2Mi00LjA3OSA1LjgyNy00LjA3OSA1LjgyNi00LjA3OCA2LjQxLTMuNDk3IDUuMjQ0LTIuOTEzIDYuNDEtMi45MTMgNS44MjYtMS43NDggNS4yNDQtMi4zMzEgNS44MjctMS43NDggNS44MjYtMS43NDggNS44MjctMS43NDggNS4yNDQtMC41ODIgNS4yNDQtMC41ODMgNS4yNDQtMS4xNjUgNC42NjEtMC41ODMgOS4zMjMgMCA4Ljc0IDAgNC4wNzkgMC41ODMgNC4wNzggMC41ODEgNi40MSAwLjU4NCAzLjQ5NiAxLjE2NSAyLjkxMyAwLjU4MyAyLjkxNCAwLjU4MiAxLjc0OCAyLjMzMSAzLjQ5NiAwLjU4MiAxLjE2NSAxLjE2NiAxLjE2NCAxLjE2NSAwIDEuMTY2IDAuNTg0IDEuMTY1IDAgMS43NDgtMC41ODQgNC42NjEtMS4xNjQgMy40OTctMS4xNjUgMy40OTYtMi4zMyAyLjkxMy0yLjMzMiAzLjQ5NS0yLjMzIDIuOTE0LTIuOTE0IDIuMzMxLTIuOTE0IDIuOTEzLTIuOTEyIDIuMzMxLTIuOTEzIDEuNzQ4LTIuOTE0IDEuMTY1LTIuMzMxIDIuOTEzLTUuMjQ0IDAuNTgzLTEuNzQ3IDAuNTgzLTEuMTY2IDAuNTgyLTEuMTY2IDAuNTgzLTEuMTY0IDAuNTgzIDAgMC41ODMtMC41ODMgMC41ODIgMCAwIDAuNTgzIDAuNTgyIDAgMC41ODQgMCAxLjE2NSA2LjQwOCAxLjc0OCA1LjI0NCAyLjMzIDUuMjQ1IDIuMzMxIDQuNjYgMS43NDggNC42NjIgMi4zMzEgNC42NjIgMi4zMyA0LjA3OSAyLjMzMSA0LjA3OSAyLjMzMSAzLjQ5NSAyLjMzIDMuNDk3IDUuMjQ1IDYuNDA4IDQuNjYxIDUuMjQ1IDQuNjYxIDQuNjYxIDQuMDc5IDQuMDc4IDQuMDc5IDIuOTE0IDUuODI3IDEuNzQ3IDIuMzMgMS4xNjUgMC41ODIgMC41ODQgMCAwLjU4My0wLjU4MiAwLjU4MS0xLjE2NiAwLjU4NC00LjA3OCAwLjU4Mi00LjA3OSAwLTMuNDk2IDAuNTgzLTMuNDk2IDAuNTgzLTMuNDk2IDEuMTY1LTIuOTE0IDEuMTY1LTIuMzMgMS4xNjYtMi4zMzEgMS4xNjUtMi4zMyAwLjU4My0yLjMzMSAxLjc0OC0xLjE2NSAxLjE2Ni0yLjMzMSAxLjE2NC0yLjMzMSAyLjkxNC0xLjE2NSAxLjc0OC0xLjE2NSAxLjE2NS0xLjE2NiAyLjkxNC0wLjU4MiAyLjkxMi0xLjE2NiAyLjMzMi0wLjU4MiAyLjMzIDAgMi45MTMgMCAxLjE2Ni0wLjU4MyAyLjMzIDAgMi4zMyAwIDIuMzMyIDAgMS43NDggMCAyLjMzMSAwLjU4MyAxLjE2NSAxLjc0OCAzLjQ5NiAwLjU4MiAxLjc0NyAwLjU4MyAyLjMzMSAxLjc0OCAxLjc0OCAxLjE2NSAxLjE2NiAxLjc0OCAxLjc0NyAxLjE2NiAxLjE2NyA0LjA3OCAyLjMyOSA0LjA3OSAyLjkxNCA0LjA3OCAyLjMzIDUuMjQ1IDEuNzQ4IDUuMjQ0IDEuNzQ4IDUuMjQ0IDEuNzQ5IDUuODI2IDEuNzQ3IDUuODI3IDEuMTY3IDYuNDA5IDAuNTgxIDUuODI3IDEuMTY2IDYuOTkzIDEuMTY2IDEyLjgxNyAxLjE2NSAxMi44MiAwLjU4MiAxMi4yMzYgMCA1LjgyNiAwIDUuODI4IDAgNS4yNDMtMC41ODIgNC42NjEtMC41ODMgNS4yNDUtMC41ODIgNC4wNzggMCA2Ljk5My0xLjc0OCA1LjI0My0xLjE2NSA1LjI0NC0xLjE2NyA4Ljc0LTMuNDk2IDQuMDc5LTEuNzQ4IDQuMDc4LTEuNzQ4IDYuNDEtMy40OTUgNS44MjYtMi45MTQgNC4wNzgtMi45MTMgMy40OTctMi4zMzEgNC42NjIgMCAzLjQ5NSAwLjU4MyA3LjU3NiAwLjU4MyAzLjQ5NiAwIDIuOTEyIDAgMi4zMzEgMC41ODIgMi4zMyAwLjU4MyA0LjA4IDEuMTY1IDMuNDk2IDEuNzQ4IDguMTU3IDIuMzMxIDcuNTc1IDIuOTEzIDguMTU3IDEuNzQ4IDcuNTc0IDEuNzQ5IDguMTU4IDEuNzQ3IDguMTU4IDEuNzQ5IDguMTU3IDAuNTgyIDcuNTczIDAuNTgyIDcuNTc2IDEuMTY3IDcuNTc0IDAuNTgxIDcuNTc2IDAgNy41NzMgMCA2Ljk5MiAwIDYuOTkzLTEuMTY0IDYuOTkyLTAuNTg0IDYuNDEtMC41ODIgNi40MDgtMS4xNjUgNS44MjctMS43NDkgNS44MjYtMS4xNjQgMi4zMzItMC41ODQgMi45MTQtMS4xNjUgNS4yNDMtMS43NDggNC4wNzktMi4zMyA0LjY2Mi0xLjc0OCA0LjA3OC0yLjMzIDMuNDk1LTIuMzMyIDEuMTY3LTEuNzQ4IDEuNzQ3LTEuNzQ4IDIuMzMxLTIuMzMxIDEuNzQ3LTIuOTEzIDEuMTY2LTIuMzMgMC41ODItMS4xNjUgMC41ODQtMS43NDkgMC41ODItMS43NDggMC0xLjc0NyAwLjU4Mi0xLjc0OC0wLjU4Mi0yLjMzMi0wLjU4Mi0yLjMzLTAuNTg0LTIuMzMtMS4xNjUtMi4zMzItMS4xNjUtMi45MTMtMS43NDgtMS43NDctMS43NDgtMi4zMzItMi4zMy0xLjc0OC00LjY2Mi00LjA3OC01LjI0NC00LjA3OS01LjI0My0yLjkxMy01LjgyOC0yLjkxNC0xMi44MTgtNi40MDktMi41NDktMS41MjkgNC4yOTgtNC4yOTcgMi45MTItMi45MTQgMi4zMzEtMi45MTMgNC4wNzgtNS44MjYgNC4wNzktNi40MSAzLjQ5Ny01LjgyNyAyLjkxMy01LjI0NSA0LjY2MS0xMC40ODcgMy40OTYtOC43NCAxLjc0OC01LjgyNyAxLjc0Ny0yLjMzIDAuNTg0LTEuNzQ4IDEuMTY0LTAuNTgzIDAuNTg0IDAgMC41ODIgMCAyLjkxMyA2LjQwOSAyLjkxMyA1LjgyOCAyLjMzMiAzLjQ5NSAyLjMzIDMuNDk2IDIuMzMxIDMuNDk2IDIuMzMxIDMuNDk2IDIuMzMgMi4zMzEgMS4xNjUgMS4xNjQgMS4xNjYgMS43NDkgMS43NDggMC41ODQgMS4xNjQgMS4xNjQgMi4zMzIgMS4xNjUgMS43NDggMC41ODMgMC41ODIgMCAxLjE2NiAwIDEuNzQ3LTAuNTgzIDEuNzQ5LTEuMTY1IDEuNzQ4LTAuNTgzIDEuNzQ3LTEuMTY1IDEuMTY3LTEuNzQ5IDEuNzQ3LTEuNzQ2IDEuMTY2LTEuNzQ5IDEuMTY1LTIuMzMgMS43NDctMi4zMzIgMS4xNjctMi4zMyAwLjU4MS0yLjkxMyAxLjc0OS01LjgyNyAxLjc0OC02LjQxIDAuNTgyLTYuOTkxIDAuNTgzLTQuMDc4IDAtMy40OTcgMC0zLjQ5NiAwLTQuNjYxLTEuMTY1LTguMTU4TDc2Ni45ODYgNTY5LjI2M3pNNjgwLjc0OCA2NzAuNjQ5bC0wLjU4Mi0wLjU4MiAwLjk3MS0wLjk3MUw2ODAuNzQ4IDY3MC42NDl6IiBwLWlkPSIxNTIxNiIgZmlsbD0iI2ZmZmZmZiI+PC9wYXRoPjwvc3ZnPg==" alt="QQ联系microzz" title="QQ" style="width:22px;height:22px;border:none;"/></a>
+            </span>
+
+	          <span>
+              <a target="_blank" href="https://github.com/microzz" style="border-bottom:none">
+              <img src="data:image/png;base64,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" alt="GitHub microzz" title="GitHub" style="width:19px;height:19px;border:none;"/></a>
+            </span>
+            <!-- <span>&copy; 2015 - 2018</span> -->
+
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2016/12/10/function/&title=《函数的扩展(Function)》 — 涵月天-microzz.com&pic=https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2016/12/10/function/&title=《函数的扩展(Function)》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2016/12/10/function/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《函数的扩展(Function)》 — 涵月天-microzz.com&url=https://microzz.com/2016/12/10/function/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2016/12/10/function/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABzElEQVR42u3azWrrQAwG0Lz/S+dCVy2XTj5JM4MpZ1bBJPZxFkJ/r1d83l8nuf7+dvIrmw8uLu6Y+16e/1nV76yv5AZcXNz73HWQWj9+Hc7yYBcFUFxc3IdxE0qeKuHi4v4N7t7qChcX9/ncpPhJCpjk9ZL7b6jVcHFxB9xdqcnk88H+Li4ubpH7Lp7eECX5fvR0XFzcK9z1jaoj1QRXbci+cgQuLu4mblJmzB+cL3N8UOHi4l7h5slKftO8vZK/TJTi4OLibuL2VqyqjY95CVTIp3BxcTdxeyGmt5LVK5l+BDJcXNyL3DXoxPpF9SVxcXFvcieDz14JlCdPuLi497l5MVMdqU4mIIWxCi4u7mFub7Wi1xypDnRxcXFvcnvj0sngJG+8/jpKwcXFPcztDUWqyU21sPnwl+Hi4h7mVtcs8pSoN4bBxcV9Drc3HM1x1d+WZ8K4uLgHuPlJmqG9IFUYn+Di4h7mVgNK/shqadRrl+Di4p7jJsFo0uisvuqHlAgXF/cit9fI6C1jVQsnXFzcJ3Orw5L5qtYokOHi4l7kVgue9VrGaLcUFxf3MHe+YrVraWNbWwQXF3fArTZMew3WPBmqvhguLu5W7j+yVKlAaNJweAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<script>
+// (function(){
+//     var bp = document.createElement('script');
+//     var curProtocol = window.location.protocol.split(':')[0];
+//     if (curProtocol === 'https') {
+//         bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+//     }
+//     else {
+//         bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+//     }
+//     var s = document.getElementsByTagName("script")[0];
+//     s.parentNode.insertBefore(bp, s);
+// })();
+console.log("%c Powered by Zhaohui - microzz.com","background-image:-webkit-gradient( linear, left top,right top, color-stop(0, #00a419),color-stop(0.15, #f44336), color-stop(0.29, #ff4300),color-stop(0.3, #AA00FF),color-stop(0.4, #8BC34A), color-stop(0.45, #607D8B),color-stop(0.6, #4096EE), color-stop(0.75, #D50000),color-stop(0.9, #4096EE), color-stop(1, #FF1A00));color:transparent;-webkit-background-clip:text;font-size:13px;");
+</script>
+
+    <!-- <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script> -->
+
+<script src="https://icdn.microzz.com/microzz/js/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+</script>
+
+<!-- <script src="/js/main.min.js?v=1.4.5"></script> -->
+<script src="https://icdn.microzz.com/microzz/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<!-- <script src="/js/search.min.js?v=1.4.5" async></script> -->
+<script src="https://icdn.microzz.com/microzz/js/search.min.js" async></script>
+
+
+
+
+
+
+<!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script async src="https://icdn.microzz.com/microzz/js/busuanzi.pure.mini.js"></script>
+
+<script>
+  // if ('serviceWorker' in navigator) {
+  //  navigator.serviceWorker.register('/sw0110.js').then(function (registration) {
+      // console.log('ServiceWorker registration successful with scope: ', registration.scope);
+   // }).catch(function (err) {
+      // console.log('ServiceWorker registration failed: ', err);
+   // });
+ // }
+  // var _hmt = _hmt || [];
+  // (function() {
+  //   var hm = document.createElement("script");
+  //   hm.src = "https://hm.baidu.com/hm.js?ce268e8f61069a1636a4629acbb82b9a";
+  //   var s = document.getElementsByTagName("script")[0];
+  //   s.parentNode.insertBefore(hm, s);
+  // })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>数组的扩展(Array) | 涵月天-microzz.com | IT技术分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript,JS,ES6,ECMAScript6,Array">
+    <meta name="description" content="数组的扩展Array.from()Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。
+下面是一个类似数组的对象，Array.from将它转为真正的数组。
+let arrayLike = {
+    &amp;#39;0&amp;#39;: &amp;#39;a&amp;#39;,
+    &amp;#39">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数组的扩展(Array)">
+<meta property="og:url" content="https://microzz.com/2016/11/30/array/index.html">
+<meta property="og:site_name" content="涵月天-microzz.com">
+<meta property="og:description" content="数组的扩展Array.from()Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。
+下面是一个类似数组的对象，Array.from将它转为真正的数组。
+let arrayLike = {
+    &amp;#39;0&amp;#39;: &amp;#39;a&amp;#39;,
+    &amp;#39">
+<meta property="og:updated_time" content="2017-08-21T11:31:58.232Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="数组的扩展(Array)">
+<meta name="twitter:description" content="数组的扩展Array.from()Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。
+下面是一个类似数组的对象，Array.from将它转为真正的数组。
+let arrayLike = {
+    &amp;#39;0&amp;#39;: &amp;#39;a&amp;#39;,
+    &amp;#39">
+    
+        <link rel="alternative" href="/atom.xml" title="涵月天-microzz.com" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- <link rel="stylesheet" href="/css/style.css?v=1.4.5"> -->
+    <!-- <link rel="stylesheet" href="css.css" media="none" onload="if(media!='all')media='all'"> -->
+    <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/style.css?v=2">
+    <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/atom-one-dark.1.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background:none;">
+      <div class="brand" style="background-color:#4154b2;">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" style="height:100%;">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Microzz</h5>
+          <a href="mailto:zhaohui@microzz.com" title="zhaohui@microzz.com" class="mail">zhaohui@microzz.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/archives/"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/microzz" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                GitHub
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://juejin.im/user/57f0f27a128fe100542d29ad" target="_blank" >
+                <i class="icon icon-lg icon-pencil"></i>
+                掘金专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/microzz/posts" target="_blank" >
+                <i class="icon icon-lg icon-leaf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-music/" target="_blank" >
+                <i class="icon icon-lg icon-music"></i>
+                Vue音乐播放器
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-cnode/" target="_blank" >
+                <i class="icon icon-lg icon-comments"></i>
+                Vue CNode社区
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-chat/" target="_blank" >
+                <i class="icon icon-lg icon-globe"></i>
+                智能聊天室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/github-ranking/" target="_blank" >
+                <i class="icon icon-lg icon-star"></i>
+                GitHub排行榜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/about/friendly.html"  >
+                <i class="icon icon-lg icon-link"></i>
+                友链
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">数组的扩展(Array)</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">数组的扩展(Array)</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-11-30T04:45:19.000Z" itemprop="datePublished" class="page-time">
+  2016-11-30
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    <script src="https://icdn.microzz.com/microzz/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    Array.prototype.slice.call(document.querySelectorAll('pre code')).forEach(function(block) {
+      hljs.highlightBlock(block);
+  } )
+</script>
+
+<article id="post-array"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">数组的扩展(Array)</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016年11月30日 12:45" datetime="2016-11-30T04:45:19.000Z"  itemprop="datePublished">2016-11-30</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="数组的扩展"><a href="#数组的扩展" class="headerlink" title="数组的扩展"></a>数组的扩展</h1><h2 id="Array-from"><a href="#Array-from" class="headerlink" title="Array.from()"></a>Array.from()</h2><p><code>Array.from</code>方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。</p>
+<p>下面是一个类似数组的对象，<code>Array.from</code>将它转为真正的数组。</p>
+<pre><code class="javascript">let arrayLike = {
+    &#39;0&#39;: &#39;a&#39;,
+    &#39;1&#39;: &#39;b&#39;,
+    &#39;2&#39;: &#39;c&#39;,
+    length: 3
+};
+
+// ES5的写法
+var arr1 = [].slice.call(arrayLike); // [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+
+// ES6的写法
+let arr2 = Array.from(arrayLike); // [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+</code></pre>
+<p>实际应用中，常见的类似数组的对象是DOM操作返回的NodeList集合，以及函数内部的<code>arguments</code>对象。<code>Array.from</code>都可以将它们转为真正的数组。</p>
+<pre><code class="javascript">// NodeList对象
+let ps = document.querySelectorAll(&#39;p&#39;);
+Array.from(ps).forEach(function (p) {
+  console.log(p);
+});
+
+// arguments对象
+function foo() {
+  var args = Array.from(arguments);
+  // ...
+}
+</code></pre>
+<p>上面代码中，<code>querySelectorAll</code>方法返回的是一个类似数组的对象，只有将这个对象转为真正的数组，才能使用<code>forEach</code>方法。</p>
+<p>只要是部署了Iterator接口的数据结构，<code>Array.from</code>都能将其转为数组。</p>
+<pre><code class="javascript">Array.from(&#39;hello&#39;)
+// [&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;]
+
+let namesSet = new Set([&#39;a&#39;, &#39;b&#39;])
+Array.from(namesSet) // [&#39;a&#39;, &#39;b&#39;]
+</code></pre>
+<p>上面代码中，字符串和Set结构都具有Iterator接口，因此可以被<code>Array.from</code>转为真正的数组。</p>
+<p>如果参数是一个真正的数组，<code>Array.from</code>会返回一个一模一样的新数组。</p>
+<pre><code class="javascript">Array.from([1, 2, 3])
+// [1, 2, 3]
+</code></pre>
+<p>值得提醒的是，扩展运算符（<code>...</code>）也可以将某些数据结构转为数组。</p>
+<pre><code class="javascript">// arguments对象
+function foo() {
+  var args = [...arguments];
+}
+
+// NodeList对象
+[...document.querySelectorAll(&#39;div&#39;)]
+</code></pre>
+<p>扩展运算符背后调用的是遍历器接口（<code>Symbol.iterator</code>），如果一个对象没有部署这个接口，就无法转换。<code>Array.from</code>方法则是还支持类似数组的对象。所谓类似数组的对象，本质特征只有一点，即必须有<code>length</code>属性。因此，任何有<code>length</code>属性的对象，都可以通过<code>Array.from</code>方法转为数组，而此时扩展运算符就无法转换。</p>
+<pre><code class="javascript">Array.from({ length: 3 });
+// [ undefined, undefined, undefined ]
+</code></pre>
+<p>上面代码中，<code>Array.from</code>返回了一个具有三个成员的数组，每个位置的值都是<code>undefined</code>。扩展运算符转换不了这个对象。</p>
+<p>对于还没有部署该方法的浏览器，可以用<code>Array.prototype.slice</code>方法替代。</p>
+<pre><code class="javascript">const toArray = (() =&gt;
+  Array.from ? Array.from : obj =&gt; [].slice.call(obj)
+)();
+</code></pre>
+<p><code>Array.from</code>还可以接受第二个参数，作用类似于数组的<code>map</code>方法，用来对每个元素进行处理，将处理后的值放入返回的数组。</p>
+<pre><code class="javascript">Array.from(arrayLike, x =&gt; x * x);
+// 等同于
+Array.from(arrayLike).map(x =&gt; x * x);
+
+Array.from([1, 2, 3], (x) =&gt; x * x)
+// [1, 4, 9]
+</code></pre>
+<p>下面的例子是取出一组DOM节点的文本内容。</p>
+<pre><code class="javascript">let spans = document.querySelectorAll(&#39;span.name&#39;);
+
+// map()
+let names1 = Array.prototype.map.call(spans, s =&gt; s.textContent);
+
+// Array.from()
+let names2 = Array.from(spans, s =&gt; s.textContent)
+</code></pre>
+<p>下面的例子将数组中布尔值为<code>false</code>的成员转为<code>0</code>。</p>
+<pre><code class="javascript">Array.from([1, , 2, , 3], (n) =&gt; n || 0)
+// [1, 0, 2, 0, 3]
+</code></pre>
+<p>另一个例子是返回各种数据的类型。</p>
+<pre><code class="javascript">function typesOf () {
+  return Array.from(arguments, value =&gt; typeof value)
+}
+typesOf(null, [], NaN)
+// [&#39;object&#39;, &#39;object&#39;, &#39;number&#39;]
+</code></pre>
+<p>如果<code>map</code>函数里面用到了<code>this</code>关键字，还可以传入<code>Array.from</code>的第三个参数，用来绑定<code>this</code>。</p>
+<p><code>Array.from()</code>可以将各种值转为真正的数组，并且还提供<code>map</code>功能。这实际上意味着，只要有一个原始的数据结构，你就可以先对它的值进行处理，然后转成规范的数组结构，进而就可以使用数量众多的数组方法。</p>
+<pre><code class="javascript">Array.from({ length: 2 }, () =&gt; &#39;jack&#39;)
+// [&#39;jack&#39;, &#39;jack&#39;]
+</code></pre>
+<p>上面代码中，<code>Array.from</code>的第一个参数指定了第二个参数运行的次数。这种特性可以让该方法的用法变得非常灵活。</p>
+<p><code>Array.from()</code>的另一个应用是，将字符串转为数组，然后返回字符串的长度。因为它能正确处理各种Unicode字符，可以避免JavaScript将大于<code>\uFFFF</code>的Unicode字符，算作两个字符的bug。</p>
+<pre><code class="javascript">function countSymbols(string) {
+  return Array.from(string).length;
+}
+</code></pre>
+<h2 id="Array-of"><a href="#Array-of" class="headerlink" title="Array.of()"></a>Array.of()</h2><p><code>Array.of</code>方法用于将一组值，转换为数组。</p>
+<pre><code class="javascript">Array.of(3, 11, 8) // [3,11,8]
+Array.of(3) // [3]
+Array.of(3).length // 1
+</code></pre>
+<p>这个方法的主要目的，是弥补数组构造函数<code>Array()</code>的不足。因为参数个数的不同，会导致<code>Array()</code>的行为有差异。</p>
+<pre><code class="javascript">Array() // []
+Array(3) // [, , ,]
+Array(3, 11, 8) // [3, 11, 8]
+</code></pre>
+<p>上面代码中，<code>Array</code>方法没有参数、一个参数、三个参数时，返回结果都不一样。只有当参数个数不少于2个时，<code>Array()</code>才会返回由参数组成的新数组。参数个数只有一个时，实际上是指定数组的长度。</p>
+<p><code>Array.of</code>基本上可以用来替代<code>Array()</code>或<code>new Array()</code>，并且不存在由于参数不同而导致的重载。它的行为非常统一。</p>
+<pre><code class="javascript">Array.of() // []
+Array.of(undefined) // [undefined]
+Array.of(1) // [1]
+Array.of(1, 2) // [1, 2]
+</code></pre>
+<p><code>Array.of</code>总是返回参数值组成的数组。如果没有参数，就返回一个空数组。</p>
+<p><code>Array.of</code>方法可以用下面的代码模拟实现。</p>
+<pre><code class="javascript">function ArrayOf(){
+  return [].slice.call(arguments);
+}
+</code></pre>
+<h2 id="数组实例的copyWithin"><a href="#数组实例的copyWithin" class="headerlink" title="数组实例的copyWithin()"></a>数组实例的copyWithin()</h2><p>数组实例的<code>copyWithin</code>方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组。</p>
+<pre><code class="javascript">Array.prototype.copyWithin(target, start = 0, end = this.length)
+</code></pre>
+<p>它接受三个参数。</p>
+<ul>
+<li>target（必需）：从该位置开始替换数据。</li>
+<li>start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示倒数。</li>
+<li>end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。</li>
+</ul>
+<p>这三个参数都应该是数值，如果不是，会自动转为数值。</p>
+<pre><code class="javascript">[1, 2, 3, 4, 5].copyWithin(0, 3)
+// [4, 5, 3, 4, 5]
+</code></pre>
+<p>上面代码表示将从3号位直到数组结束的成员（4和5），复制到从0号位开始的位置，结果覆盖了原来的1和2。</p>
+<p>下面是更多例子。</p>
+<pre><code class="javascript">// 将3号位复制到0号位
+[1, 2, 3, 4, 5].copyWithin(0, 3, 4)
+// [4, 2, 3, 4, 5]
+
+// -2相当于3号位，-1相当于4号位
+[1, 2, 3, 4, 5].copyWithin(0, -2, -1)
+// [4, 2, 3, 4, 5]
+
+// 将3号位复制到0号位
+[].copyWithin.call({length: 5, 3: 1}, 0, 3)
+// {0: 1, 3: 1, length: 5}
+
+// 将2号位到数组结束，复制到0号位
+var i32a = new Int32Array([1, 2, 3, 4, 5]);
+i32a.copyWithin(0, 2);
+// Int32Array [3, 4, 5, 4, 5]
+
+// 对于没有部署TypedArray的copyWithin方法的平台
+// 需要采用下面的写法
+[].copyWithin.call(new Int32Array([1, 2, 3, 4, 5]), 0, 3, 4);
+// Int32Array [4, 2, 3, 4, 5]
+</code></pre>
+<h2 id="数组实例的find-和findIndex"><a href="#数组实例的find-和findIndex" class="headerlink" title="数组实例的find()和findIndex()"></a>数组实例的find()和findIndex()</h2><p>数组实例的<code>find</code>方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为<code>true</code>的成员，然后返回该成员。如果没有符合条件的成员，则返回<code>undefined</code>。</p>
+<pre><code class="javascript">[1, 4, -5, 10].find((n) =&gt; n &lt; 0)
+// -5
+</code></pre>
+<p>上面代码找出数组中第一个小于0的成员。</p>
+<pre><code class="javascript">[1, 5, 10, 15].find(function(value, index, arr) {
+  return value &gt; 9;
+}) // 10
+</code></pre>
+<p>上面代码中，<code>find</code>方法的回调函数可以接受三个参数，依次为当前的值、当前的位置和原数组。</p>
+<p>数组实例的<code>findIndex</code>方法的用法与<code>find</code>方法非常类似，返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回<code>-1</code>。</p>
+<pre><code class="javascript">[1, 5, 10, 15].findIndex(function(value, index, arr) {
+  return value &gt; 9;
+}) // 2
+</code></pre>
+<p>这两个方法都可以接受第二个参数，用来绑定回调函数的<code>this</code>对象。</p>
+<p>另外，这两个方法都可以发现<code>NaN</code>，弥补了数组的<code>IndexOf</code>方法的不足。</p>
+<pre><code class="javascript">[NaN].indexOf(NaN)
+// -1
+
+[NaN].findIndex(y =&gt; Object.is(NaN, y))
+// 0
+</code></pre>
+<p>上面代码中，<code>indexOf</code>方法无法识别数组的<code>NaN</code>成员，但是<code>findIndex</code>方法可以借助<code>Object.is</code>方法做到。</p>
+<h2 id="数组实例的fill"><a href="#数组实例的fill" class="headerlink" title="数组实例的fill()"></a>数组实例的fill()</h2><p><code>fill</code>方法使用给定值，填充一个数组。</p>
+<pre><code class="javascript">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;].fill(7)
+// [7, 7, 7]
+
+new Array(3).fill(7)
+// [7, 7, 7]
+</code></pre>
+<p>上面代码表明，<code>fill</code>方法用于空数组的初始化非常方便。数组中已有的元素，会被全部抹去。</p>
+<p><code>fill</code>方法还可以接受第二个和第三个参数，用于指定填充的起始位置和结束位置。</p>
+<pre><code class="javascript">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;].fill(7, 1, 2)
+// [&#39;a&#39;, 7, &#39;c&#39;]
+</code></pre>
+<p>上面代码表示，<code>fill</code>方法从1号位开始，向原数组填充7，到2号位之前结束。</p>
+<h2 id="数组实例的entries-，keys-和values"><a href="#数组实例的entries-，keys-和values" class="headerlink" title="数组实例的entries()，keys()和values()"></a>数组实例的entries()，keys()和values()</h2><p>ES6提供三个新的方法——<code>entries()</code>，<code>keys()</code>和<code>values()</code>——用于遍历数组。它们都返回一个遍历器对象（详见《Iterator》一章），可以用<code>for...of</code>循环进行遍历，唯一的区别是<code>keys()</code>是对键名的遍历、<code>values()</code>是对键值的遍历，<code>entries()</code>是对键值对的遍历。</p>
+<pre><code class="javascript">for (let index of [&#39;a&#39;, &#39;b&#39;].keys()) {
+  console.log(index);
+}
+// 0
+// 1
+
+for (let elem of [&#39;a&#39;, &#39;b&#39;].values()) {
+  console.log(elem);
+}
+// &#39;a&#39;
+// &#39;b&#39;
+
+for (let [index, elem] of [&#39;a&#39;, &#39;b&#39;].entries()) {
+  console.log(index, elem);
+}
+// 0 &quot;a&quot;
+// 1 &quot;b&quot;
+</code></pre>
+<p>如果不使用<code>for...of</code>循环，可以手动调用遍历器对象的<code>next</code>方法，进行遍历。</p>
+<pre><code class="javascript">let letter = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+let entries = letter.entries();
+console.log(entries.next().value); // [0, &#39;a&#39;]
+console.log(entries.next().value); // [1, &#39;b&#39;]
+console.log(entries.next().value); // [2, &#39;c&#39;]
+</code></pre>
+<h2 id="数组实例的includes"><a href="#数组实例的includes" class="headerlink" title="数组实例的includes()"></a>数组实例的includes()</h2><p><code>Array.prototype.includes</code>方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的<code>includes</code>方法类似。该方法属于ES7，但Babel转码器已经支持。</p>
+<pre><code class="javascript">[1, 2, 3].includes(2);     // true
+[1, 2, 3].includes(4);     // false
+[1, 2, NaN].includes(NaN); // true
+</code></pre>
+<p>该方法的第二个参数表示搜索的起始位置，默认为0。如果第二个参数为负数，则表示倒数的位置，如果这时它大于数组长度（比如第二个参数为-4，但数组长度为3），则会重置为从0开始。</p>
+<pre><code class="javascript">[1, 2, 3].includes(3, 3);  // false
+[1, 2, 3].includes(3, -1); // true
+</code></pre>
+<p>没有该方法之前，我们通常使用数组的<code>indexOf</code>方法，检查是否包含某个值。</p>
+<pre><code class="javascript">if (arr.indexOf(el) !== -1) {
+  // ...
+}
+</code></pre>
+<p><code>indexOf</code>方法有两个缺点，一是不够语义化，它的含义是找到参数值的第一个出现位置，所以要去比较是否不等于-1，表达起来不够直观。二是，它内部使用严格相当运算符（===）进行判断，这会导致对<code>NaN</code>的误判。</p>
+<pre><code class="javascript">[NaN].indexOf(NaN)
+// -1
+</code></pre>
+<p><code>includes</code>使用的是不一样的判断算法，就没有这个问题。</p>
+<pre><code class="javascript">[NaN].includes(NaN)
+// true
+</code></pre>
+<p>下面代码用来检查当前环境是否支持该方法，如果不支持，部署一个简易的替代版本。</p>
+<pre><code class="javascript">const contains = (() =&gt;
+  Array.prototype.includes
+    ? (arr, value) =&gt; arr.includes(value)
+    : (arr, value) =&gt; arr.some(el =&gt; el === value)
+)();
+contains([&quot;foo&quot;, &quot;bar&quot;], &quot;baz&quot;); // =&gt; false
+</code></pre>
+<p>另外，Map和Set数据结构有一个<code>has</code>方法，需要注意与<code>includes</code>区分。</p>
+<ul>
+<li>Map结构的<code>has</code>方法，是用来查找键名的，比如<code>Map.prototype.has(key)</code>、<code>WeakMap.prototype.has(key)</code>、<code>Reflect.has(target, propertyKey)</code>。</li>
+<li>Set结构的<code>has</code>方法，是用来查找值的，比如<code>Set.prototype.has(value)</code>、<code>WeakSet.prototype.has(value)</code>。</li>
+</ul>
+<h2 id="数组的空位"><a href="#数组的空位" class="headerlink" title="数组的空位"></a>数组的空位</h2><p>数组的空位指，数组的某一个位置没有任何值。比如，<code>Array</code>构造函数返回的数组都是空位。</p>
+<pre><code class="javascript">Array(3) // [, , ,]
+</code></pre>
+<p>上面代码中，<code>Array(3)</code>返回一个具有3个空位的数组。</p>
+<p>注意，空位不是<code>undefined</code>，一个位置的值等于<code>undefined</code>，依然是有值的。空位是没有任何值，<code>in</code>运算符可以说明这一点。</p>
+<pre><code class="javascript">0 in [undefined, undefined, undefined] // true
+0 in [, , ,] // false
+</code></pre>
+<p>上面代码说明，第一个数组的0号位置是有值的，第二个数组的0号位置没有值。</p>
+<p>ES5对空位的处理，已经很不一致了，大多数情况下会忽略空位。</p>
+<ul>
+<li><code>forEach()</code>, <code>filter()</code>, <code>every()</code> 和<code>some()</code>都会跳过空位。</li>
+<li><code>map()</code>会跳过空位，但会保留这个值</li>
+<li><code>join()</code>和<code>toString()</code>会将空位视为<code>undefined</code>，而<code>undefined</code>和<code>null</code>会被处理成空字符串。</li>
+</ul>
+<pre><code class="javascript">// forEach方法
+[,&#39;a&#39;].forEach((x,i) =&gt; console.log(i)); // 1
+
+// filter方法
+[&#39;a&#39;,,&#39;b&#39;].filter(x =&gt; true) // [&#39;a&#39;,&#39;b&#39;]
+
+// every方法
+[,&#39;a&#39;].every(x =&gt; x===&#39;a&#39;) // true
+
+// some方法
+[,&#39;a&#39;].some(x =&gt; x !== &#39;a&#39;) // false
+
+// map方法
+[,&#39;a&#39;].map(x =&gt; 1) // [,1]
+
+// join方法
+[,&#39;a&#39;,undefined,null].join(&#39;#&#39;) // &quot;#a##&quot;
+
+// toString方法
+[,&#39;a&#39;,undefined,null].toString() // &quot;,a,,&quot;
+</code></pre>
+<p>ES6则是明确将空位转为<code>undefined</code>。</p>
+<p><code>Array.from</code>方法会将数组的空位，转为<code>undefined</code>，也就是说，这个方法不会忽略空位。</p>
+<pre><code class="javascript">Array.from([&#39;a&#39;,,&#39;b&#39;])
+// [ &quot;a&quot;, undefined, &quot;b&quot; ]
+</code></pre>
+<p>扩展运算符（<code>...</code>）也会将空位转为<code>undefined</code>。</p>
+<pre><code class="javascript">[...[&#39;a&#39;,,&#39;b&#39;]]
+// [ &quot;a&quot;, undefined, &quot;b&quot; ]
+</code></pre>
+<p><code>copyWithin()</code>会连空位一起拷贝。</p>
+<pre><code class="javascript">[,&#39;a&#39;,&#39;b&#39;,,].copyWithin(2,0) // [,&quot;a&quot;,,&quot;a&quot;]
+</code></pre>
+<p><code>fill()</code>会将空位视为正常的数组位置。</p>
+<pre><code class="javascript">new Array(3).fill(&#39;a&#39;) // [&quot;a&quot;,&quot;a&quot;,&quot;a&quot;]
+</code></pre>
+<p><code>for...of</code>循环也会遍历空位。</p>
+<pre><code class="javascript">let arr = [, ,];
+for (let i of arr) {
+  console.log(1);
+}
+// 1
+// 1
+</code></pre>
+<p>上面代码中，数组<code>arr</code>有两个空位，<code>for...of</code>并没有忽略它们。如果改成<code>map</code>方法遍历，空位是会跳过的。</p>
+<p><code>entries()</code>、<code>keys()</code>、<code>values()</code>、<code>find()</code>和<code>findIndex()</code>会将空位处理成<code>undefined</code>。</p>
+<pre><code class="javascript">// entries()
+[...[,&#39;a&#39;].entries()] // [[0,undefined], [1,&quot;a&quot;]]
+
+// keys()
+[...[,&#39;a&#39;].keys()] // [0,1]
+
+// values()
+[...[,&#39;a&#39;].values()] // [undefined,&quot;a&quot;]
+
+// find()
+[,&#39;a&#39;].find(x =&gt; true) // undefined
+
+// findIndex()
+[,&#39;a&#39;].findIndex(x =&gt; true) // 0
+</code></pre>
+<p>由于空位的处理规则非常不统一，所以建议避免出现空位。</p>
+<blockquote>
+<p>感谢阮一峰老师的原创，本分享仅供学习交流</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-21T11:31:58.232Z" itemprop="dateUpdated">2017年8月21日 19:31</time>
+</span><br>
+
+
+        转载请注明出处：<a href="https://microzz.com/2016/11/30/array/" target="_blank" rel="external">https://microzz.com/2016/11/30/array/</a>
+    </div>
+    <footer>
+        <a href="https://microzz.com">
+            <img src="https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" alt="Microzz">
+            Microzz
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Array/">Array</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2016/11/30/array/&title=《数组的扩展(Array)》 — 涵月天-microzz.com&pic=https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2016/11/30/array/&title=《数组的扩展(Array)》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2016/11/30/array/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数组的扩展(Array)》 — 涵月天-microzz.com&url=https://microzz.com/2016/11/30/array/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2016/11/30/array/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/12/10/function/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">函数的扩展(Function)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2016/11/25/number/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">数值的扩展</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃辣条~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="https://icdn.microzz.com/microzz/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="https://icdn.microzz.com/microzz/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="padding:7px;">
+        
+<p>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+    </div>
+    <div class="bottom" style="padding: 8px;">
+        <p>
+            <!-- <span style="display: none"><a href="https://microzz.com">Zhaohui</a></span> -->
+            <span>
+              <a target="_blank" href="mailto:zhaohui@microzz.com" style="border-bottom:none">
+                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUwOTQ2NDk3IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjUzMjkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTEyIDEwMDcuMjEzMTE1QzIzOC41MDgwNjYgMTAwNy4yMTMxMTUgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDUxMiAxNi43ODY4ODUgMjM4LjUwODA2NiAyMzguNTA4MDY2IDE2Ljc4Njg4NSA1MTIgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDEwMDcuMjEzMTE1IDIzOC41MDgwNjYgMTAwNy4yMTMxMTUgNTEyIDEwMDcuMjEzMTE1IDc4NS40OTE5MzQgNzg1LjQ5MTkzNCAxMDA3LjIxMzExNSA1MTIgMTAwNy4yMTMxMTVaTTUxMiA1MC4zNjA2NTZDMjU3LjA0MDc4NyA1MC4zNjA2NTYgNTAuMzYwNjU2IDI1Ny4wNDA3ODcgNTAuMzYwNjU2IDUxMiA1MC4zNjA2NTYgNzY2Ljk1OTIxMyAyNTcuMDQwNzg3IDk3My42MzkzNDQgNTEyIDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDUxMiA5NzMuNjM5MzQ0IDI1Ny4wNDA3ODcgNzY2Ljk1OTIxMyA1MC4zNjA2NTYgNTEyIDUwLjM2MDY1NlpNNzU1LjQwOTgzNiA3MjEuODM2MDY2IDI4NS4zNzcwNDkgNzIxLjgzNjA2NkMyNjYuODI3NTQxIDcyMS44MzYwNjYgMjUxLjgwMzI3OSA3MDcuOTcwMDk4IDI1MS44MDMyNzkgNjkwLjg0NzQ3NUwyNTEuODAzMjc5IDM0OS45Mzk0MUMyNTEuODAzMjc5IDMzMi44MzM1NzQgMjY2LjgyNzU0MSAzMTguOTUwODIgMjg1LjM3NzA0OSAzMTguOTUwODJMNzU1LjQwOTgzNiAzMTguOTUwODJDNzczLjk1OTM0NCAzMTguOTUwODIgNzg4Ljk4MzYwNyAzMzIuODMzNTc0IDc4OC45ODM2MDcgMzQ5LjkzOTQxTDc4OC45ODM2MDcgNjkwLjg0NzQ3NUM3ODguOTgzNjA3IDcwNy45NzAwOTggNzczLjk1OTM0NCA3MjEuODM2MDY2IDc1NS40MDk4MzYgNzIxLjgzNjA2NlpNNzU1LjQwOTgzNiAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNTAuOTYzNDEgNTIxLjkyMTA0OSA1NjkuMjkzNjM5IDc1NS40MDk4MzYgMzUzLjc2NjgyIDc1NS40MDk4MzYgMzQ5LjkzOTQxWk03NTUuNDA5ODM2IDM5Ny41OTczNzcgNTM4LjQzOTM0NCA1OTcuODY0OTE4IDUwNS4zODU5NjcgNTk3Ljg2NDkxOCAyODUuMzc3MDQ5IDM5NC43NzcxOCAyODUuMzc3MDQ5IDY5MC44NDc0NzUgNzU1LjQwOTgzNiA2OTAuODQ3NDc1IDc1NS40MDk4MzYgMzk3LjU5NzM3N1oiIHAtaWQ9IjUzMzAiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L3N2Zz4=" alt="E-mail联系" title="E-mail" style="width:20px;height:20px;border:none;"/>
+              </a>
+            </span>
+
+	          <span>
+              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=903036377&site=qq&menu=yes" style="border-bottom:none">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUxNTc4MDQ0IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjUgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE1MjE0IiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjIwMC4xOTUzMTI1IiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTE2Ljk3MSAzNC44MTJjLTI2Mi44MzYgMC00NzUuOTExIDIxMy4wNzEtNDc1LjkxMSA0NzUuOTExczIxMy4wNzUgNDc1LjkxIDQ3NS45MTEgNDc1LjkxYzI2Mi44MzggMCA0NzUuOTE1LTIxMy4wNzAgNDc1LjkxNS00NzUuOTEgMC0yNjIuODM5LTIxMy4wNzYtNDc1LjkxMS00NzUuOTE1LTQ3NS45MTF6TTUxNi45NzEgOTYwLjA5OGMtMjQ4LjE4MSAwLTQ0OS4zNzMtMjAxLjE5MS00NDkuMzczLTQ0OS4zNzVzMjAxLjE5Mi00NDkuMzcxIDQ0OS4zNzMtNDQ5LjM3MWMyNDguMTgyIDAgNDQ5LjM3NyAyMDEuMTg4IDQ0OS4zNzcgNDQ5LjM3MSAwIDI0OC4xODMtMjAxLjE5NiA0NDkuMzc1LTQ0OS4zNzcgNDQ5LjM3NXoiIHAtaWQ9IjE1MjE1IiBmaWxsPSIjZmZmZmZmIj48L3BhdGg+PHBhdGggZD0iTTc2Ni45ODYgNTY5LjI2M2wtMS43NDktOS4zMjMtMS4xNjUtNC42NjEtMS4xNjctNC42NjEtMS43NDctNC42NjItMS43NDgtNS4yNDQtMi4zMy01LjI0NC0yLjMzMi01LjI0NC00LjA3OC04LjE1Ny0zLjQ5Ni03LjU3NS0zLjQ5Ni02LjQxLTIuOTEzLTUuODI3LTMuNDk2LTUuODI2LTIuMzMxLTQuNjYyLTUuMjQ0LTguMTU4LTYuOTkyLTkuOTA2LTEuNzQ5LTIuOTEyLTAuNTgyLTAuNTgzIDAtMS4xNjYgMS4xNjYtMy40OTYgMS4xNjUtMi45MTQgMS43NDctNS44MjcgMC41ODMtMy40OTYgMC0yLjkxNCAwLjU4My0yLjMzMSAwLTIuOTEzLTAuNTgzLTIuOTEzLTAuNTgzLTIuOTE0LTAuNTgyLTQuNjYyLTEuMTY1LTQuNjYxLTEuNzQ5LTQuNjYyLTEuNzQ4LTQuMDc5LTEuNzQ4LTMuNDk3LTEuNzQ3LTMuNDk2LTEuNzQ4LTIuOTE0LTMuNDk2LTUuMjQ1LTAuNTgyLTEuNzQ3LTAuNTg0LTEuMTY2LTEuMTY0LTkuMzIzLTEuMTY2LTUuODI2LTAuNTgzLTcuNTc1LTEuNzQ4LTcuNTc1LTIuMzMxLTguNzQxLTEuMTY0LTUuMjQzLTEuMTY1LTQuMDc5LTEuNzQ5LTQuNjYxLTEuNzQ4LTUuMjQ1LTEuNzQ5LTUuMjQzLTEuNzQ3LTUuMjQ1LTQuNjYxLTkuOTA1LTIuMzMtNC42NjItMy40OTgtNS4yNDQtMi45MTItNC42NjItMi45MTQtNS4yNDMtNC4wNzgtNS4yNDUtMy40OTctNC42NjEtNC4wNzktNC42NjItNC42NjEtNC42NjEtNC4wNzktNC4wNzktNS4yNDMtNC4wOC0yLjkxNC0yLjMzMS0yLjMzLTEuNzQ4LTUuODI3LTQuMDc5LTYuNDEtNC4wNzktNi40MDgtNC4wNzktNy41NzUtMy40OTctNi45OTItMi45MTQtNi45OTItMi45MTMtNy41NzYtMi45MTQtNy41NzMtMS43NDgtNy41NzUtMS43NDgtOC4xNTctMS43NDgtNy41NzUtMS43NDgtNy41NzUtMS4xNjUtOC4xNTctMC41ODMtNy41NzYtMS4xNjYtOC4xNTcgMC03LjU3NSAwLTcuNTc0IDAtNy41NzUgMC41ODMtNy41NzQgMS4xNjctNy41NzUgMC41ODItNy41NzUgMS4xNjYtNi45OTIgMS4xNjUtNi45OTEgMS43NDgtNi45OTIgMi4zMzEtNi45OTMgMi4zMzItNi40MDkgMi4zMy02LjQxIDIuOTE0LTUuODI1IDIuMzMxLTUuODI4IDMuNDk3LTUuODI2IDMuNDk2LTUuMjQ1IDMuNDk2LTUuMjQzIDQuMDgtNC42NjIgMy40OTZMNDEwLjM4MyAyODJsLTUuODI3IDUuMjQ1LTUuMjQ0IDUuODI2LTQuNjYxIDUuODI3LTQuNjYxIDUuODI4LTQuMDc4IDUuMjQzLTMuNDk3IDUuODI3LTIuMzMxIDIuOTE0LTEuNzQ4IDIuOTEzLTMuNDk2IDUuMjQ1LTIuOTEzIDUuMjQ0LTIuMzMxIDUuMjQ0LTIuMzMgNS4yNDUtMi4zMzEgNC42NjEtMS43NDggNC42NjEtMS43NDggNS4yNDQtMS43NDggNC4wNzktMS43NDggOC4xNTgtMi4zMzEgOC4xNTgtMC41ODIgNi40MDktMS4xNjYgNS44MjcgMCA0LjA3OSAwIDMuNDk2IDAgMy40OTctMS4xNjUgMS43NDgtMS43NDggMS43NDgtMS4xNjYgMi4zMzEtMC41ODIgMi4zMy0xLjc0OSA0LjY2Mi0xLjE2NSA0LjY2MS0wLjU4MiAzLjQ5NiAwIDMuNDk3IDAgMi45MTMtMy40OTcgNC4wNzktMS43NDcgNC42NjItMi4zMzEgNC4wNzgtMS4xNjUgNC4wNzktMC41ODMgMy40OTctMS4xNjUgMy40OTYgMCAyLjkxNCAwIDMuNDk2IDAgMi4zMzEgMC41ODMgMi4zMzEgMS4xNjUgNC4wNzkgMC41ODMgMi45MTQtMS43NDggMS4xNjUtNC42NjIgMy40OTctNi40MDkgNS44MjctNC4wNzkgMy40OTYtNC4wNzggMy40OTctMi45MTQgMi4zMzEtMS43NDggMi4zMy00LjY2MSA1LjI0NS00LjY2MiA0LjY2Mi0zLjQ5NSA0LjY2Mi00LjA3OSA1LjgyNy00LjA3OSA1LjgyNi00LjA3OCA2LjQxLTMuNDk3IDUuMjQ0LTIuOTEzIDYuNDEtMi45MTMgNS44MjYtMS43NDggNS4yNDQtMi4zMzEgNS44MjctMS43NDggNS44MjYtMS43NDggNS44MjctMS43NDggNS4yNDQtMC41ODIgNS4yNDQtMC41ODMgNS4yNDQtMS4xNjUgNC42NjEtMC41ODMgOS4zMjMgMCA4Ljc0IDAgNC4wNzkgMC41ODMgNC4wNzggMC41ODEgNi40MSAwLjU4NCAzLjQ5NiAxLjE2NSAyLjkxMyAwLjU4MyAyLjkxNCAwLjU4MiAxLjc0OCAyLjMzMSAzLjQ5NiAwLjU4MiAxLjE2NSAxLjE2NiAxLjE2NCAxLjE2NSAwIDEuMTY2IDAuNTg0IDEuMTY1IDAgMS43NDgtMC41ODQgNC42NjEtMS4xNjQgMy40OTctMS4xNjUgMy40OTYtMi4zMyAyLjkxMy0yLjMzMiAzLjQ5NS0yLjMzIDIuOTE0LTIuOTE0IDIuMzMxLTIuOTE0IDIuOTEzLTIuOTEyIDIuMzMxLTIuOTEzIDEuNzQ4LTIuOTE0IDEuMTY1LTIuMzMxIDIuOTEzLTUuMjQ0IDAuNTgzLTEuNzQ3IDAuNTgzLTEuMTY2IDAuNTgyLTEuMTY2IDAuNTgzLTEuMTY0IDAuNTgzIDAgMC41ODMtMC41ODMgMC41ODIgMCAwIDAuNTgzIDAuNTgyIDAgMC41ODQgMCAxLjE2NSA2LjQwOCAxLjc0OCA1LjI0NCAyLjMzIDUuMjQ1IDIuMzMxIDQuNjYgMS43NDggNC42NjIgMi4zMzEgNC42NjIgMi4zMyA0LjA3OSAyLjMzMSA0LjA3OSAyLjMzMSAzLjQ5NSAyLjMzIDMuNDk3IDUuMjQ1IDYuNDA4IDQuNjYxIDUuMjQ1IDQuNjYxIDQuNjYxIDQuMDc5IDQuMDc4IDQuMDc5IDIuOTE0IDUuODI3IDEuNzQ3IDIuMzMgMS4xNjUgMC41ODIgMC41ODQgMCAwLjU4My0wLjU4MiAwLjU4MS0xLjE2NiAwLjU4NC00LjA3OCAwLjU4Mi00LjA3OSAwLTMuNDk2IDAuNTgzLTMuNDk2IDAuNTgzLTMuNDk2IDEuMTY1LTIuOTE0IDEuMTY1LTIuMzMgMS4xNjYtMi4zMzEgMS4xNjUtMi4zMyAwLjU4My0yLjMzMSAxLjc0OC0xLjE2NSAxLjE2Ni0yLjMzMSAxLjE2NC0yLjMzMSAyLjkxNC0xLjE2NSAxLjc0OC0xLjE2NSAxLjE2NS0xLjE2NiAyLjkxNC0wLjU4MiAyLjkxMi0xLjE2NiAyLjMzMi0wLjU4MiAyLjMzIDAgMi45MTMgMCAxLjE2Ni0wLjU4MyAyLjMzIDAgMi4zMyAwIDIuMzMyIDAgMS43NDggMCAyLjMzMSAwLjU4MyAxLjE2NSAxLjc0OCAzLjQ5NiAwLjU4MiAxLjc0NyAwLjU4MyAyLjMzMSAxLjc0OCAxLjc0OCAxLjE2NSAxLjE2NiAxLjc0OCAxLjc0NyAxLjE2NiAxLjE2NyA0LjA3OCAyLjMyOSA0LjA3OSAyLjkxNCA0LjA3OCAyLjMzIDUuMjQ1IDEuNzQ4IDUuMjQ0IDEuNzQ4IDUuMjQ0IDEuNzQ5IDUuODI2IDEuNzQ3IDUuODI3IDEuMTY3IDYuNDA5IDAuNTgxIDUuODI3IDEuMTY2IDYuOTkzIDEuMTY2IDEyLjgxNyAxLjE2NSAxMi44MiAwLjU4MiAxMi4yMzYgMCA1LjgyNiAwIDUuODI4IDAgNS4yNDMtMC41ODIgNC42NjEtMC41ODMgNS4yNDUtMC41ODIgNC4wNzggMCA2Ljk5My0xLjc0OCA1LjI0My0xLjE2NSA1LjI0NC0xLjE2NyA4Ljc0LTMuNDk2IDQuMDc5LTEuNzQ4IDQuMDc4LTEuNzQ4IDYuNDEtMy40OTUgNS44MjYtMi45MTQgNC4wNzgtMi45MTMgMy40OTctMi4zMzEgNC42NjIgMCAzLjQ5NSAwLjU4MyA3LjU3NiAwLjU4MyAzLjQ5NiAwIDIuOTEyIDAgMi4zMzEgMC41ODIgMi4zMyAwLjU4MyA0LjA4IDEuMTY1IDMuNDk2IDEuNzQ4IDguMTU3IDIuMzMxIDcuNTc1IDIuOTEzIDguMTU3IDEuNzQ4IDcuNTc0IDEuNzQ5IDguMTU4IDEuNzQ3IDguMTU4IDEuNzQ5IDguMTU3IDAuNTgyIDcuNTczIDAuNTgyIDcuNTc2IDEuMTY3IDcuNTc0IDAuNTgxIDcuNTc2IDAgNy41NzMgMCA2Ljk5MiAwIDYuOTkzLTEuMTY0IDYuOTkyLTAuNTg0IDYuNDEtMC41ODIgNi40MDgtMS4xNjUgNS44MjctMS43NDkgNS44MjYtMS4xNjQgMi4zMzItMC41ODQgMi45MTQtMS4xNjUgNS4yNDMtMS43NDggNC4wNzktMi4zMyA0LjY2Mi0xLjc0OCA0LjA3OC0yLjMzIDMuNDk1LTIuMzMyIDEuMTY3LTEuNzQ4IDEuNzQ3LTEuNzQ4IDIuMzMxLTIuMzMxIDEuNzQ3LTIuOTEzIDEuMTY2LTIuMzMgMC41ODItMS4xNjUgMC41ODQtMS43NDkgMC41ODItMS43NDggMC0xLjc0NyAwLjU4Mi0xLjc0OC0wLjU4Mi0yLjMzMi0wLjU4Mi0yLjMzLTAuNTg0LTIuMzMtMS4xNjUtMi4zMzItMS4xNjUtMi45MTMtMS43NDgtMS43NDctMS43NDgtMi4zMzItMi4zMy0xLjc0OC00LjY2Mi00LjA3OC01LjI0NC00LjA3OS01LjI0My0yLjkxMy01LjgyOC0yLjkxNC0xMi44MTgtNi40MDktMi41NDktMS41MjkgNC4yOTgtNC4yOTcgMi45MTItMi45MTQgMi4zMzEtMi45MTMgNC4wNzgtNS44MjYgNC4wNzktNi40MSAzLjQ5Ny01LjgyNyAyLjkxMy01LjI0NSA0LjY2MS0xMC40ODcgMy40OTYtOC43NCAxLjc0OC01LjgyNyAxLjc0Ny0yLjMzIDAuNTg0LTEuNzQ4IDEuMTY0LTAuNTgzIDAuNTg0IDAgMC41ODIgMCAyLjkxMyA2LjQwOSAyLjkxMyA1LjgyOCAyLjMzMiAzLjQ5NSAyLjMzIDMuNDk2IDIuMzMxIDMuNDk2IDIuMzMxIDMuNDk2IDIuMzMgMi4zMzEgMS4xNjUgMS4xNjQgMS4xNjYgMS43NDkgMS43NDggMC41ODQgMS4xNjQgMS4xNjQgMi4zMzIgMS4xNjUgMS43NDggMC41ODMgMC41ODIgMCAxLjE2NiAwIDEuNzQ3LTAuNTgzIDEuNzQ5LTEuMTY1IDEuNzQ4LTAuNTgzIDEuNzQ3LTEuMTY1IDEuMTY3LTEuNzQ5IDEuNzQ3LTEuNzQ2IDEuMTY2LTEuNzQ5IDEuMTY1LTIuMzMgMS43NDctMi4zMzIgMS4xNjctMi4zMyAwLjU4MS0yLjkxMyAxLjc0OS01LjgyNyAxLjc0OC02LjQxIDAuNTgyLTYuOTkxIDAuNTgzLTQuMDc4IDAtMy40OTcgMC0zLjQ5NiAwLTQuNjYxLTEuMTY1LTguMTU4TDc2Ni45ODYgNTY5LjI2M3pNNjgwLjc0OCA2NzAuNjQ5bC0wLjU4Mi0wLjU4MiAwLjk3MS0wLjk3MUw2ODAuNzQ4IDY3MC42NDl6IiBwLWlkPSIxNTIxNiIgZmlsbD0iI2ZmZmZmZiI+PC9wYXRoPjwvc3ZnPg==" alt="QQ联系microzz" title="QQ" style="width:22px;height:22px;border:none;"/></a>
+            </span>
+
+	          <span>
+              <a target="_blank" href="https://github.com/microzz" style="border-bottom:none">
+              <img src="data:image/png;base64,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" alt="GitHub microzz" title="GitHub" style="width:19px;height:19px;border:none;"/></a>
+            </span>
+            <!-- <span>&copy; 2015 - 2018</span> -->
+
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2016/11/30/array/&title=《数组的扩展(Array)》 — 涵月天-microzz.com&pic=https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2016/11/30/array/&title=《数组的扩展(Array)》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2016/11/30/array/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《数组的扩展(Array)》 — 涵月天-microzz.com&url=https://microzz.com/2016/11/30/array/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2016/11/30/array/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxklEQVR42u3ay47CMBAEQP7/p7PXlVCg2y8FqXxCEdgVDiP32K9XPK5/4/353Tffx+fZlg1cXNxp7u4F7ub5/Px2RVxc3IPcZJl26isYuQEXF/dXuJ9x7Zy4uLi/zs1jUv4EFxf3adx2C9LGoTxcLctquLi4E9yx1sbaz1v6u7i4uEPcqxz5hqaNSdHquLi4R7h5Qcm3JskR7Ni6uLi4Z7jzDZGcnjRivsyDi4t7kJtftmi3I3mTdHBHhouLu4E79rOkeZr/qt4M4eLibua2m5K8DM1EqS/hBxcX9wg3CT9tmGmvXyzOari4uBPcvAwlQagtf+0quLi457k5Kw9C7WFt9JK4uLibue1xadv4GLthFYUfXFzcbdz2gmYSmdqDmXZ1XFzcM9z2bfJj1FXzFzsyXFzcDdy8JCWFaeyopshquLi4m7lJuWlfI49DydYHFxf3DPcqx9gha7J9KTIZLi7uZm5bXGaK1FgoGnwZXFzcaW5SvMbapkm7pD6kwcXFPcgda4zONE+XNUxxcXEfwM3DTH4lq05suLi4D+a2DdOx7LWskOHi4pbcJPy0cagNVNGfhYuLe4Q7f07blqf5lgouLu427h8Wj1LBsg2GlQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<script>
+// (function(){
+//     var bp = document.createElement('script');
+//     var curProtocol = window.location.protocol.split(':')[0];
+//     if (curProtocol === 'https') {
+//         bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+//     }
+//     else {
+//         bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+//     }
+//     var s = document.getElementsByTagName("script")[0];
+//     s.parentNode.insertBefore(bp, s);
+// })();
+console.log("%c Powered by Zhaohui - microzz.com","background-image:-webkit-gradient( linear, left top,right top, color-stop(0, #00a419),color-stop(0.15, #f44336), color-stop(0.29, #ff4300),color-stop(0.3, #AA00FF),color-stop(0.4, #8BC34A), color-stop(0.45, #607D8B),color-stop(0.6, #4096EE), color-stop(0.75, #D50000),color-stop(0.9, #4096EE), color-stop(1, #FF1A00));color:transparent;-webkit-background-clip:text;font-size:13px;");
+</script>
+
+    <!-- <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script> -->
+
+<script src="https://icdn.microzz.com/microzz/js/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+</script>
+
+<!-- <script src="/js/main.min.js?v=1.4.5"></script> -->
+<script src="https://icdn.microzz.com/microzz/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<!-- <script src="/js/search.min.js?v=1.4.5" async></script> -->
+<script src="https://icdn.microzz.com/microzz/js/search.min.js" async></script>
+
+
+
+
+
+
+<!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script async src="https://icdn.microzz.com/microzz/js/busuanzi.pure.mini.js"></script>
+
+<script>
+  // if ('serviceWorker' in navigator) {
+  //  navigator.serviceWorker.register('/sw0110.js').then(function (registration) {
+      // console.log('ServiceWorker registration successful with scope: ', registration.scope);
+   // }).catch(function (err) {
+      // console.log('ServiceWorker registration failed: ', err);
+   // });
+ // }
+  // var _hmt = _hmt || [];
+  // (function() {
+  //   var hm = document.createElement("script");
+  //   hm.src = "https://hm.baidu.com/hm.js?ce268e8f61069a1636a4629acbb82b9a";
+  //   var s = document.getElementsByTagName("script")[0];
+  //   s.parentNode.insertBefore(hm, s);
+  // })();
+</script>
+
+</body>
+</html>

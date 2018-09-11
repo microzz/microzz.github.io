@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Proxy | 涵月天-microzz.com | IT技术分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript,JS,ES6,ECMAScript6,Proxy">
+    <meta name="description" content="Proxy概述Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。
+Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Proxy">
+<meta property="og:url" content="https://microzz.com/2017/01/09/proxy/index.html">
+<meta property="og:site_name" content="涵月天-microzz.com">
+<meta property="og:description" content="Proxy概述Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。
+Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”">
+<meta property="og:updated_time" content="2017-01-12T08:18:16.020Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Proxy">
+<meta name="twitter:description" content="Proxy概述Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。
+Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”">
+    
+        <link rel="alternative" href="/atom.xml" title="涵月天-microzz.com" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- <link rel="stylesheet" href="/css/style.css?v=1.4.5"> -->
+    <!-- <link rel="stylesheet" href="css.css" media="none" onload="if(media!='all')media='all'"> -->
+    <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/style.css?v=2">
+    <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/atom-one-dark.1.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background:none;">
+      <div class="brand" style="background-color:#4154b2;">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" style="height:100%;">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Microzz</h5>
+          <a href="mailto:zhaohui@microzz.com" title="zhaohui@microzz.com" class="mail">zhaohui@microzz.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/archives/"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/microzz" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                GitHub
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://juejin.im/user/57f0f27a128fe100542d29ad" target="_blank" >
+                <i class="icon icon-lg icon-pencil"></i>
+                掘金专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/microzz/posts" target="_blank" >
+                <i class="icon icon-lg icon-leaf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-music/" target="_blank" >
+                <i class="icon icon-lg icon-music"></i>
+                Vue音乐播放器
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-cnode/" target="_blank" >
+                <i class="icon icon-lg icon-comments"></i>
+                Vue CNode社区
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-chat/" target="_blank" >
+                <i class="icon icon-lg icon-globe"></i>
+                智能聊天室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/github-ranking/" target="_blank" >
+                <i class="icon icon-lg icon-star"></i>
+                GitHub排行榜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/about/friendly.html"  >
+                <i class="icon icon-lg icon-link"></i>
+                友链
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Proxy</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Proxy</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-09T02:40:19.000Z" itemprop="datePublished" class="page-time">
+  2017-01-09
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    <script src="https://icdn.microzz.com/microzz/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    Array.prototype.slice.call(document.querySelectorAll('pre code')).forEach(function(block) {
+      hljs.highlightBlock(block);
+  } )
+</script>
+
+<article id="post-proxy"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Proxy</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年01月09日 10:40" datetime="2017-01-09T02:40:19.000Z"  itemprop="datePublished">2017-01-09</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Proxy 用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。</p>
+<p>Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy 这个词的原意是代理，用在这里表示由它来“代理”某些操作，可以译为“代理器”。</p>
+<pre><code class="javascript">var obj = new Proxy({}, {
+  get: function (target, key, receiver) {
+    console.log(`getting ${key}!`);
+    return Reflect.get(target, key, receiver);
+  },
+  set: function (target, key, value, receiver) {
+    console.log(`setting ${key}!`);
+    return Reflect.set(target, key, value, receiver);
+  }
+});
+</code></pre>
+<p>上面代码对一个空对象架设了一层拦截，重定义了属性的读取（<code>get</code>）和设置（<code>set</code>）行为。这里暂时先不解释具体的语法，只看运行结果。对设置了拦截行为的对象<code>obj</code>，去读写它的属性，就会得到下面的结果。</p>
+<pre><code class="javascript">obj.count = 1
+//  setting count!
+++obj.count
+//  getting count!
+//  setting count!
+//  2
+</code></pre>
+<p>上面代码说明，Proxy 实际上重载（overload）了点运算符，即用自己的定义覆盖了语言的原始定义。</p>
+<p>ES6 原生提供 Proxy 构造函数，用来生成 Proxy 实例。</p>
+<pre><code class="javascript">var proxy = new Proxy(target, handler);
+</code></pre>
+<p>Proxy 对象的所有用法，都是上面这种形式，不同的只是<code>handler</code>参数的写法。其中，<code>new Proxy()</code>表示生成一个<code>Proxy</code>实例，<code>target</code>参数表示所要拦截的目标对象，<code>handler</code>参数也是一个对象，用来定制拦截行为。</p>
+<p>下面是另一个拦截读取属性行为的例子。</p>
+<pre><code class="javascript">var proxy = new Proxy({}, {
+  get: function(target, property) {
+    return 35;
+  }
+});
+
+proxy.time // 35
+proxy.name // 35
+proxy.title // 35
+</code></pre>
+<p>上面代码中，作为构造函数，<code>Proxy</code>接受两个参数。第一个参数是所要代理的目标对象（上例是一个空对象），即如果没有<code>Proxy</code>的介入，操作原来要访问的就是这个对象；第二个参数是一个配置对象，对于每一个被代理的操作，需要提供一个对应的处理函数，该函数将拦截对应的操作。比如，上面代码中，配置对象有一个<code>get</code>方法，用来拦截对目标对象属性的访问请求。<code>get</code>方法的两个参数分别是目标对象和所要访问的属性。可以看到，由于拦截函数总是返回<code>35</code>，所以访问任何属性都得到<code>35</code>。</p>
+<p>注意，要使得<code>Proxy</code>起作用，必须针对<code>Proxy</code>实例（上例是<code>proxy</code>对象）进行操作，而不是针对目标对象（上例是空对象）进行操作。</p>
+<p>如果<code>handler</code>没有设置任何拦截，那就等同于直接通向原对象。</p>
+<pre><code class="javascript">var target = {};
+var handler = {};
+var proxy = new Proxy(target, handler);
+proxy.a = &#39;b&#39;;
+target.a // &quot;b&quot;
+</code></pre>
+<p>上面代码中，<code>handler</code>是一个空对象，没有任何拦截效果，访问<code>handler</code>就等同于访问<code>target</code>。</p>
+<p>一个技巧是将 Proxy 对象，设置到<code>object.proxy</code>属性，从而可以在<code>object</code>对象上调用。</p>
+<pre><code class="javascript">var object = { proxy: new Proxy(target, handler) };
+</code></pre>
+<p>Proxy 实例也可以作为其他对象的原型对象。</p>
+<pre><code class="javascript">var proxy = new Proxy({}, {
+  get: function(target, property) {
+    return 35;
+  }
+});
+
+let obj = Object.create(proxy);
+obj.time // 35
+</code></pre>
+<p>上面代码中，<code>proxy</code>对象是<code>obj</code>对象的原型，<code>obj</code>对象本身并没有<code>time</code>属性，所以根据原型链，会在<code>proxy</code>对象上读取该属性，导致被拦截。</p>
+<p>同一个拦截器函数，可以设置拦截多个操作。</p>
+<pre><code class="javascript">var handler = {
+  get: function(target, name) {
+    if (name === &#39;prototype&#39;) {
+      return Object.prototype;
+    }
+    return &#39;Hello, &#39; + name;
+  },
+
+  apply: function(target, thisBinding, args) {
+    return args[0];
+  },
+
+  construct: function(target, args) {
+    return {value: args[1]};
+  }
+};
+
+var fproxy = new Proxy(function(x, y) {
+  return x + y;
+}, handler);
+
+fproxy(1, 2) // 1
+new fproxy(1,2) // {value: 2}
+fproxy.prototype === Object.prototype // true
+fproxy.foo // &quot;Hello, foo&quot;
+</code></pre>
+<p>下面是 Proxy 支持的拦截操作一览。</p>
+<p>对于可以设置、但没有设置拦截的操作，则直接落在目标对象上，按照原先的方式产生结果。</p>
+<p><strong>（1）get(target, propKey, receiver)</strong></p>
+<p>拦截对象属性的读取，比如<code>proxy.foo</code>和<code>proxy[&#39;foo&#39;]</code>。</p>
+<p>最后一个参数<code>receiver</code>是一个对象，可选，参见下面<code>Reflect.get</code>的部分。</p>
+<p><strong>（2）set(target, propKey, value, receiver)</strong></p>
+<p>拦截对象属性的设置，比如<code>proxy.foo = v</code>或<code>proxy[&#39;foo&#39;] = v</code>，返回一个布尔值。</p>
+<p><strong>（3）has(target, propKey)</strong></p>
+<p>拦截<code>propKey in proxy</code>的操作，返回一个布尔值。</p>
+<p><strong>（4）deleteProperty(target, propKey)</strong></p>
+<p>拦截<code>delete proxy[propKey]</code>的操作，返回一个布尔值。</p>
+<p><strong>（5）ownKeys(target)</strong></p>
+<p>拦截<code>Object.getOwnPropertyNames(proxy)</code>、<code>Object.getOwnPropertySymbols(proxy)</code>、<code>Object.keys(proxy)</code>，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而<code>Object.keys()</code>的返回结果仅包括目标对象自身的可遍历属性。</p>
+<p><strong>（6）getOwnPropertyDescriptor(target, propKey)</strong></p>
+<p>拦截<code>Object.getOwnPropertyDescriptor(proxy, propKey)</code>，返回属性的描述对象。</p>
+<p><strong>（7）defineProperty(target, propKey, propDesc)</strong></p>
+<p>拦截<code>Object.defineProperty(proxy, propKey, propDesc）</code>、<code>Object.defineProperties(proxy, propDescs)</code>，返回一个布尔值。</p>
+<p><strong>（8）preventExtensions(target)</strong></p>
+<p>拦截<code>Object.preventExtensions(proxy)</code>，返回一个布尔值。</p>
+<p><strong>（9）getPrototypeOf(target)</strong></p>
+<p>拦截<code>Object.getPrototypeOf(proxy)</code>，返回一个对象。</p>
+<p><strong>（10）isExtensible(target)</strong></p>
+<p>拦截<code>Object.isExtensible(proxy)</code>，返回一个布尔值。</p>
+<p><strong>（11）setPrototypeOf(target, proto)</strong></p>
+<p>拦截<code>Object.setPrototypeOf(proxy, proto)</code>，返回一个布尔值。</p>
+<p>如果目标对象是函数，那么还有两种额外操作可以拦截。</p>
+<p><strong>（12）apply(target, object, args)</strong></p>
+<p>拦截 Proxy 实例作为函数调用的操作，比如<code>proxy(...args)</code>、<code>proxy.call(object, ...args)</code>、<code>proxy.apply(...)</code>。</p>
+<p><strong>（13）construct(target, args)</strong></p>
+<p>拦截 Proxy 实例作为构造函数调用的操作，比如<code>new proxy(...args)</code>。</p>
+<h2 id="Proxy-实例的方法"><a href="#Proxy-实例的方法" class="headerlink" title="Proxy 实例的方法"></a>Proxy 实例的方法</h2><p>下面是上面这些拦截方法的详细介绍。</p>
+<h3 id="get"><a href="#get" class="headerlink" title="get()"></a>get()</h3><p><code>get</code>方法用于拦截某个属性的读取操作。上文已经有一个例子，下面是另一个拦截读取操作的例子。</p>
+<pre><code class="javascript">var person = {
+  name: &quot;张三&quot;
+};
+
+var proxy = new Proxy(person, {
+  get: function(target, property) {
+    if (property in target) {
+      return target[property];
+    } else {
+      throw new ReferenceError(&quot;Property \&quot;&quot; + property + &quot;\&quot; does not exist.&quot;);
+    }
+  }
+});
+
+proxy.name // &quot;张三&quot;
+proxy.age // 抛出一个错误
+</code></pre>
+<p>上面代码表示，如果访问目标对象不存在的属性，会抛出一个错误。如果没有这个拦截函数，访问不存在的属性，只会返回<code>undefined</code>。</p>
+<p><code>get</code>方法可以继承。</p>
+<pre><code class="javascript">let proto = new Proxy({}, {
+  get(target, propertyKey, receiver) {
+    console.log(&#39;GET &#39;+propertyKey);
+    return target[propertyKey];
+  }
+});
+
+let obj = Object.create(proto);
+obj.xxx // &quot;GET xxx&quot;
+</code></pre>
+<p>上面代码中，拦截操作定义在<code>Prototype</code>对象上面，所以如果读取<code>obj</code>对象继承的属性时，拦截会生效。</p>
+<p>下面的例子使用<code>get</code>拦截，实现数组读取负数的索引。</p>
+<pre><code class="javascript">function createArray(...elements) {
+  let handler = {
+    get(target, propKey, receiver) {
+      let index = Number(propKey);
+      if (index &lt; 0) {
+        propKey = String(target.length + index);
+      }
+      return Reflect.get(target, propKey, receiver);
+    }
+  };
+
+  let target = [];
+  target.push(...elements);
+  return new Proxy(target, handler);
+}
+
+let arr = createArray(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;);
+arr[-1] // c
+</code></pre>
+<p>上面代码中，数组的位置参数是<code>-1</code>，就会输出数组的倒数最后一个成员。</p>
+<p>利用 Proxy，可以将读取属性的操作（<code>get</code>），转变为执行某个函数，从而实现属性的链式操作。</p>
+<pre><code class="javascript">var pipe = (function () {
+  return function (value) {
+    var funcStack = [];
+    var oproxy = new Proxy({} , {
+      get : function (pipeObject, fnName) {
+        if (fnName === &#39;get&#39;) {
+          return funcStack.reduce(function (val, fn) {
+            return fn(val);
+          },value);
+        }
+        funcStack.push(window[fnName]);
+        return oproxy;
+      }
+    });
+
+    return oproxy;
+  }
+}());
+
+var double = n =&gt; n * 2;
+var pow    = n =&gt; n * n;
+var reverseInt = n =&gt; n.toString().split(&quot;&quot;).reverse().join(&quot;&quot;) | 0;
+
+pipe(3).double.pow.reverseInt.get; // 63
+</code></pre>
+<p>上面代码设置 Proxy 以后，达到了将函数名链式使用的效果。</p>
+<p>下面的例子则是利用<code>get</code>拦截，实现一个生成各种DOM节点的通用函数<code>dom</code>。</p>
+<pre><code class="javascript">const dom = new Proxy({}, {
+  get(target, property) {
+    return function(attrs = {}, ...children) {
+      const el = document.createElement(property);
+      for (let prop of Object.keys(attrs)) {
+        el.setAttribute(prop, attrs[prop]);
+      }
+      for (let child of children) {
+        if (typeof child === &#39;string&#39;) {
+          child = document.createTextNode(child);
+        }
+        el.appendChild(child);
+      }
+      return el;
+    }
+  }
+});
+
+const el = dom.div({},
+  &#39;Hello, my name is &#39;,
+  dom.a({href: &#39;//example.com&#39;}, &#39;Mark&#39;),
+  &#39;. I like:&#39;,
+  dom.ul({},
+    dom.li({}, &#39;The web&#39;),
+    dom.li({}, &#39;Food&#39;),
+    dom.li({}, &#39;…actually that\&#39;s it&#39;)
+  )
+);
+
+document.body.appendChild(el);
+</code></pre>
+<p>如果一个属性不可配置（configurable）和不可写（writable），则该属性不能被代理，通过 Proxy 对象访问该属性会报错。</p>
+<pre><code class="javascript">const target = Object.defineProperties({}, {
+  foo: {
+    value: 123,
+    writable: false,
+    configurable: false
+  },
+});
+
+const handler = {
+  get(target, propKey) {
+    return &#39;abc&#39;;
+  }
+};
+
+const proxy = new Proxy(target, handler);
+
+proxy.foo
+// TypeError: Invariant check failed
+</code></pre>
+<h3 id="set"><a href="#set" class="headerlink" title="set()"></a>set()</h3><p><code>set</code>方法用来拦截某个属性的赋值操作。</p>
+<p>假定<code>Person</code>对象有一个<code>age</code>属性，该属性应该是一个不大于200的整数，那么可以使用<code>Proxy</code>保证<code>age</code>的属性值符合要求。</p>
+<pre><code class="javascript">let validator = {
+  set: function(obj, prop, value) {
+    if (prop === &#39;age&#39;) {
+      if (!Number.isInteger(value)) {
+        throw new TypeError(&#39;The age is not an integer&#39;);
+      }
+      if (value &gt; 200) {
+        throw new RangeError(&#39;The age seems invalid&#39;);
+      }
+    }
+
+    // 对于age以外的属性，直接保存
+    obj[prop] = value;
+  }
+};
+
+let person = new Proxy({}, validator);
+
+person.age = 100;
+
+person.age // 100
+person.age = &#39;young&#39; // 报错
+person.age = 300 // 报错
+</code></pre>
+<p>上面代码中，由于设置了存值函数<code>set</code>，任何不符合要求的<code>age</code>属性赋值，都会抛出一个错误，这是数据验证的一种实现方法。利用<code>set</code>方法，还可以数据绑定，即每当对象发生变化时，会自动更新 DOM。</p>
+<p>有时，我们会在对象上面设置内部属性，属性名的第一个字符使用下划线开头，表示这些属性不应该被外部使用。结合<code>get</code>和<code>set</code>方法，就可以做到防止这些内部属性被外部读写。</p>
+<pre><code class="javascript">var handler = {
+  get (target, key) {
+    invariant(key, &#39;get&#39;);
+    return target[key];
+  },
+  set (target, key, value) {
+    invariant(key, &#39;set&#39;);
+    target[key] = value;
+    return true;
+  }
+};
+function invariant (key, action) {
+  if (key[0] === &#39;_&#39;) {
+    throw new Error(`Invalid attempt to ${action} private &quot;${key}&quot; property`);
+  }
+}
+var target = {};
+var proxy = new Proxy(target, handler);
+proxy._prop
+// Error: Invalid attempt to get private &quot;_prop&quot; property
+proxy._prop = &#39;c&#39;
+// Error: Invalid attempt to set private &quot;_prop&quot; property
+</code></pre>
+<p>上面代码中，只要读写的属性名的第一个字符是下划线，一律抛错，从而达到禁止读写内部属性的目的。</p>
+<p>注意，如果目标对象自身的某个属性，不可写也不可配置，那么<code>set</code>不得改变这个属性的值，只能返回同样的值，否则报错。</p>
+<h3 id="apply"><a href="#apply" class="headerlink" title="apply()"></a>apply()</h3><p><code>apply</code>方法拦截函数的调用、<code>call</code>和<code>apply</code>操作。</p>
+<p><code>apply</code>方法可以接受三个参数，分别是目标对象、目标对象的上下文对象（<code>this</code>）和目标对象的参数数组。</p>
+<pre><code class="javascript">var handler = {
+  apply (target, ctx, args) {
+    return Reflect.apply(...arguments);
+  }
+};
+</code></pre>
+<p>下面是一个例子。</p>
+<pre><code class="javascript">var target = function () { return &#39;I am the target&#39;; };
+var handler = {
+  apply: function () {
+    return &#39;I am the proxy&#39;;
+  }
+};
+
+var p = new Proxy(target, handler);
+
+p()
+// &quot;I am the proxy&quot;
+</code></pre>
+<p>上面代码中，变量<code>p</code>是 Proxy 的实例，当它作为函数调用时（<code>p()</code>），就会被<code>apply</code>方法拦截，返回一个字符串。</p>
+<p>下面是另外一个例子。</p>
+<pre><code class="javascript">var twice = {
+  apply (target, ctx, args) {
+    return Reflect.apply(...arguments) * 2;
+  }
+};
+function sum (left, right) {
+  return left + right;
+};
+var proxy = new Proxy(sum, twice);
+proxy(1, 2) // 6
+proxy.call(null, 5, 6) // 22
+proxy.apply(null, [7, 8]) // 30
+</code></pre>
+<p>上面代码中，每当执行<code>proxy</code>函数（直接调用或<code>call</code>和<code>apply</code>调用），就会被<code>apply</code>方法拦截。</p>
+<p>另外，直接调用<code>Reflect.apply</code>方法，也会被拦截。</p>
+<pre><code class="javascript">Reflect.apply(proxy, null, [9, 10]) // 38
+</code></pre>
+<h3 id="has"><a href="#has" class="headerlink" title="has()"></a>has()</h3><p><code>has</code>方法用来拦截<code>HasProperty</code>操作，即判断对象是否具有某个属性时，这个方法会生效。典型的操作就是<code>in</code>运算符。</p>
+<p>下面的例子使用<code>has</code>方法隐藏某些属性，不被<code>in</code>运算符发现。</p>
+<pre><code class="javascript">var handler = {
+  has (target, key) {
+    if (key[0] === &#39;_&#39;) {
+      return false;
+    }
+    return key in target;
+  }
+};
+var target = { _prop: &#39;foo&#39;, prop: &#39;foo&#39; };
+var proxy = new Proxy(target, handler);
+&#39;_prop&#39; in proxy // false
+</code></pre>
+<p>上面代码中，如果原对象的属性名的第一个字符是下划线，<code>proxy.has</code>就会返回<code>false</code>，从而不会被<code>in</code>运算符发现。</p>
+<p>如果原对象不可配置或者禁止扩展，这时<code>has</code>拦截会报错。</p>
+<pre><code class="javascript">var obj = { a: 10 };
+Object.preventExtensions(obj);
+
+var p = new Proxy(obj, {
+  has: function(target, prop) {
+    return false;
+  }
+});
+
+&#39;a&#39; in p // TypeError is thrown
+</code></pre>
+<p>上面代码中，<code>obj</code>对象禁止扩展，结果使用<code>has</code>拦截就会报错。也就是说，如果某个属性不可配置（或者目标对象不可扩展），则<code>has</code>方法就不得“隐藏”（即返回<code>false</code>）目标对象的该属性。</p>
+<p>值得注意的是，<code>has</code>方法拦截的是<code>HasProperty</code>操作，而不是<code>HasOwnProperty</code>操作，即<code>has</code>方法不判断一个属性是对象自身的属性，还是继承的属性。</p>
+<p>另外，虽然<code>for...in</code>循环也用到了<code>in</code>运算符，但是<code>has</code>拦截对<code>for...in</code>循环不生效。</p>
+<pre><code class="javascript">let stu1 = {name: &#39;张三&#39;, score: 59};
+let stu2 = {name: &#39;李四&#39;, score: 99};
+
+let handler = {
+  has(target, prop) {
+    if (prop === &#39;score&#39; &amp;&amp; target[prop] &lt; 60) {
+      console.log(`${target.name} 不及格`);
+      return false;
+    }
+    return prop in target;
+  }
+}
+
+let oproxy1 = new Proxy(stu1, handler);
+let oproxy2 = new Proxy(stu2, handler);
+
+&#39;score&#39; in oproxy1
+// 张三 不及格
+// false
+
+&#39;score&#39; in oproxy2
+// true
+
+for (let a in oproxy1) {
+  console.log(oproxy1[a]);
+}
+// 张三
+// 59
+
+for (let b in oproxy2) {
+  console.log(oproxy2[b]);
+}
+// 李四
+// 99
+</code></pre>
+<p>上面代码中，<code>has</code>拦截只对<code>in</code>循环生效，对<code>for...in</code>循环不生效，导致不符合要求的属性没有被排除在<code>for...in</code>循环之外。</p>
+<h3 id="construct"><a href="#construct" class="headerlink" title="construct()"></a>construct()</h3><p><code>construct</code>方法用于拦截<code>new</code>命令，下面是拦截对象的写法。</p>
+<pre><code class="javascript">var handler = {
+  construct (target, args, newTarget) {
+    return new target(...args);
+  }
+};
+</code></pre>
+<p><code>construct</code>方法可以接受两个参数。</p>
+<ul>
+<li><code>target</code>: 目标对象</li>
+<li><code>args</code>：构建函数的参数对象</li>
+</ul>
+<p>下面是一个例子。</p>
+<pre><code class="javascript">var p = new Proxy(function () {}, {
+  construct: function(target, args) {
+    console.log(&#39;called: &#39; + args.join(&#39;, &#39;));
+    return { value: args[0] * 10 };
+  }
+});
+
+(new p(1)).value
+// &quot;called: 1&quot;
+// 10
+</code></pre>
+<p><code>construct</code>方法返回的必须是一个对象，否则会报错。</p>
+<pre><code class="javascript">var p = new Proxy(function() {}, {
+  construct: function(target, argumentsList) {
+    return 1;
+  }
+});
+
+new p() // 报错
+</code></pre>
+<h3 id="deleteProperty"><a href="#deleteProperty" class="headerlink" title="deleteProperty()"></a>deleteProperty()</h3><p><code>deleteProperty</code>方法用于拦截<code>delete</code>操作，如果这个方法抛出错误或者返回<code>false</code>，当前属性就无法被<code>delete</code>命令删除。</p>
+<pre><code class="javascript">var handler = {
+  deleteProperty (target, key) {
+    invariant(key, &#39;delete&#39;);
+    return true;
+  }
+};
+function invariant (key, action) {
+  if (key[0] === &#39;_&#39;) {
+    throw new Error(`Invalid attempt to ${action} private &quot;${key}&quot; property`);
+  }
+}
+
+var target = { _prop: &#39;foo&#39; };
+var proxy = new Proxy(target, handler);
+delete proxy._prop
+// Error: Invalid attempt to delete private &quot;_prop&quot; property
+</code></pre>
+<p>上面代码中，<code>deleteProperty</code>方法拦截了<code>delete</code>操作符，删除第一个字符为下划线的属性会报错。</p>
+<p>注意，目标对象自身的不可配置（configurable）的属性，不能被<code>deleteProperty</code>方法删除，否则报错。</p>
+<h3 id="defineProperty"><a href="#defineProperty" class="headerlink" title="defineProperty()"></a>defineProperty()</h3><p><code>defineProperty</code>方法拦截了<code>Object.defineProperty</code>操作。</p>
+<pre><code class="javascript">var handler = {
+  defineProperty (target, key, descriptor) {
+    return false;
+  }
+};
+var target = {};
+var proxy = new Proxy(target, handler);
+proxy.foo = &#39;bar&#39;
+// TypeError: proxy defineProperty handler returned false for property &#39;&quot;foo&quot;&#39;
+</code></pre>
+<p>上面代码中，<code>defineProperty</code>方法返回<code>false</code>，导致添加新属性会抛出错误。</p>
+<p>注意，如果目标对象不可扩展（extensible），则<code>defineProperty</code>不能增加目标对象上不存在的属性，否则会报错。另外，如果目标对象的某个属性不可写（writable）或不可配置（configurable），则<code>defineProperty</code>方法不得改变这两个设置。</p>
+<h3 id="getOwnPropertyDescriptor"><a href="#getOwnPropertyDescriptor" class="headerlink" title="getOwnPropertyDescriptor()"></a>getOwnPropertyDescriptor()</h3><p><code>getOwnPropertyDescriptor</code>方法拦截<code>Object.getOwnPropertyDescriptor</code>，返回一个属性描述对象或者<code>undefined</code>。</p>
+<pre><code class="javascript">var handler = {
+  getOwnPropertyDescriptor (target, key) {
+    if (key[0] === &#39;_&#39;) {
+      return;
+    }
+    return Object.getOwnPropertyDescriptor(target, key);
+  }
+};
+var target = { _foo: &#39;bar&#39;, baz: &#39;tar&#39; };
+var proxy = new Proxy(target, handler);
+Object.getOwnPropertyDescriptor(proxy, &#39;wat&#39;)
+// undefined
+Object.getOwnPropertyDescriptor(proxy, &#39;_foo&#39;)
+// undefined
+Object.getOwnPropertyDescriptor(proxy, &#39;baz&#39;)
+// { value: &#39;tar&#39;, writable: true, enumerable: true, configurable: true }
+</code></pre>
+<p>上面代码中，<code>handler.getOwnPropertyDescriptor</code>方法对于第一个字符为下划线的属性名会返回<code>undefined</code>。</p>
+<h3 id="getPrototypeOf"><a href="#getPrototypeOf" class="headerlink" title="getPrototypeOf()"></a>getPrototypeOf()</h3><p><code>getPrototypeOf</code>方法主要用来拦截<code>Object.getPrototypeOf()</code>运算符，以及其他一些操作。</p>
+<ul>
+<li><code>Object.prototype.__proto__</code></li>
+<li><code>Object.prototype.isPrototypeOf()</code></li>
+<li><code>Object.getPrototypeOf()</code></li>
+<li><code>Reflect.getPrototypeOf()</code></li>
+<li><code>instanceof</code>运算符</li>
+</ul>
+<p>下面是一个例子。</p>
+<pre><code class="javascript">var proto = {};
+var p = new Proxy({}, {
+  getPrototypeOf(target) {
+    return proto;
+  }
+});
+Object.getPrototypeOf(p) === proto // true
+</code></pre>
+<p>上面代码中，<code>getPrototypeOf</code>方法拦截<code>Object.getPrototypeOf()</code>，返回<code>proto</code>对象。</p>
+<p>注意，<code>getPrototypeOf</code>方法的返回值必须是对象或者<code>null</code>，否则报错。另外，如果目标对象不可扩展（extensible）， <code>getPrototypeOf</code>方法必须返回目标对象的原型对象。</p>
+<h3 id="isExtensible"><a href="#isExtensible" class="headerlink" title="isExtensible()"></a>isExtensible()</h3><p><code>isExtensible</code>方法拦截<code>Object.isExtensible</code>操作。</p>
+<pre><code class="javascript">var p = new Proxy({}, {
+  isExtensible: function(target) {
+    console.log(&quot;called&quot;);
+    return true;
+  }
+});
+
+Object.isExtensible(p)
+// &quot;called&quot;
+// true
+</code></pre>
+<p>上面代码设置了<code>isExtensible</code>方法，在调用<code>Object.isExtensible</code>时会输出<code>called</code>。</p>
+<p>注意，该方法只能返回布尔值，否则返回值会被自动转为布尔值。</p>
+<p>这个方法有一个强限制，它的返回值必须与目标对象的<code>isExtensible</code>属性保持一致，否则就会抛出错误。</p>
+<pre><code class="javascript">Object.isExtensible(proxy) === Object.isExtensible(target)
+</code></pre>
+<p>下面是一个例子。</p>
+<pre><code class="javascript">var p = new Proxy({}, {
+  isExtensible: function(target) {
+    return false;
+  }
+});
+
+Object.isExtensible(p) // 报错
+</code></pre>
+<h3 id="ownKeys"><a href="#ownKeys" class="headerlink" title="ownKeys()"></a>ownKeys()</h3><p><code>ownKeys</code>方法用来拦截以下操作。</p>
+<ul>
+<li><code>Object.getOwnPropertyNames()</code></li>
+<li><code>Object.getOwnPropertySymbols()</code></li>
+<li><code>Object.keys()</code></li>
+</ul>
+<p>下面是拦截<code>Object.keys()</code>的例子。</p>
+<pre><code class="javascript">let target = {
+  a: 1,
+  b: 2,
+  c: 3
+};
+
+let handler = {
+  ownKeys(target) {
+    return [&#39;a&#39;];
+  }
+};
+
+let proxy = new Proxy(target, handler);
+
+Object.keys(proxy)
+// [ &#39;a&#39; ]
+</code></pre>
+<p>上面代码拦截了对于<code>target</code>对象的<code>Object.keys()</code>操作，只返回<code>a</code>、<code>b</code>、<code>c</code>三个属性之中的<code>a</code>属性。</p>
+<p>下面的例子是拦截第一个字符为下划线的属性名。</p>
+<pre><code class="javascript">let target = {
+  _bar: &#39;foo&#39;,
+  _prop: &#39;bar&#39;,
+  prop: &#39;baz&#39;
+};
+
+let handler = {
+  ownKeys (target) {
+    return Reflect.ownKeys(target).filter(key =&gt; key[0] !== &#39;_&#39;);
+  }
+};
+
+let proxy = new Proxy(target, handler);
+for (let key of Object.keys(proxy)) {
+  console.log(target[key]);
+}
+// &quot;baz&quot;
+</code></pre>
+<p>注意，使用<code>Object.keys</code>方法时，有三类属性会被<code>ownKeys</code>方法自动过滤，不会返回。</p>
+<ul>
+<li>目标对象上不存在的属性</li>
+<li>属性名为 Symbol 值</li>
+<li>不可遍历（<code>enumerable</code>）的属性</li>
+</ul>
+<pre><code class="javascript">let target = {
+  a: 1,
+  b: 2,
+  c: 3,
+  [Symbol.for(&#39;secret&#39;)]: &#39;4&#39;,
+};
+
+Object.defineProperty(target, &#39;key&#39;, {
+  enumerable: false,
+  configurable: true,
+  writable: true,
+  value: &#39;static&#39;
+});
+
+let handler = {
+  ownKeys(target) {
+    return [&#39;a&#39;, &#39;d&#39;, Symbol.for(&#39;secret&#39;), &#39;key&#39;];
+  }
+};
+
+let proxy = new Proxy(target, handler);
+
+Object.keys(proxy)
+// [&#39;a&#39;]
+</code></pre>
+<p>上面代码中，<code>ownKeys</code>方法之中，显式返回不存在的属性（<code>d</code>）、Symbol 值（<code>Symbol.for(&#39;secret&#39;)</code>）、不可遍历的属性（<code>key</code>），结果都被自动过滤掉。</p>
+<p><code>ownKeys</code>方法还可以拦截<code>Object.getOwnPropertyNames()</code>。</p>
+<pre><code class="javascript">var p = new Proxy({}, {
+  ownKeys: function(target) {
+    return [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+  }
+});
+
+Object.getOwnPropertyNames(p)
+// [ &#39;a&#39;, &#39;b&#39;, &#39;c&#39; ]
+</code></pre>
+<p><code>ownKeys</code>方法返回的数组成员，只能是字符串或 Symbol 值。如果有其他类型的值，或者返回的根本不是数组，就会报错。</p>
+<pre><code class="javascript">var obj = {};
+
+var p = new Proxy(obj, {
+  ownKeys: function(target) {
+    return [123, true, undefined, null, {}, []];
+  }
+});
+
+Object.getOwnPropertyNames(p)
+// Uncaught TypeError: 123 is not a valid property name
+</code></pre>
+<p>上面代码中，<code>ownKeys</code>方法虽然返回一个数组，但是每一个数组成员都不是字符串或 Symbol 值，因此就报错了。</p>
+<p>如果目标对象自身包含不可配置的属性，则该属性必须被<code>ownKeys</code>方法返回，否则报错。</p>
+<pre><code class="javascript">var obj = {};
+Object.defineProperty(obj, &#39;a&#39;, {
+  configurable: false,
+  enumerable: true,
+  value: 10 }
+);
+
+var p = new Proxy(obj, {
+  ownKeys: function(target) {
+    return [&#39;b&#39;];
+  }
+});
+
+Object.getOwnPropertyNames(p)
+// Uncaught TypeError: &#39;ownKeys&#39; on proxy: trap result did not include &#39;a&#39;
+</code></pre>
+<p>上面代码中，<code>obj</code>对象的<code>a</code>属性是不可配置的，这时<code>ownKeys</code>方法返回的数组之中，必须包含<code>a</code>，否则会报错。</p>
+<p>另外，如果目标对象是不可扩展的（non-extensition），这时<code>ownKeys</code>方法返回的数组之中，必须包含原对象的所有属性，且不能包含多余的属性，否则报错。</p>
+<pre><code class="javascript">var obj = {
+  a: 1
+};
+
+Object.preventExtensions(obj);
+
+var p = new Proxy(obj, {
+  ownKeys: function(target) {
+    return [&#39;a&#39;, &#39;b&#39;];
+  }
+});
+
+Object.getOwnPropertyNames(p)
+// Uncaught TypeError: &#39;ownKeys&#39; on proxy: trap returned extra keys but proxy target is non-extensible
+</code></pre>
+<p>上面代码中，<code>Obj</code>对象是不可扩展的，这时<code>ownKeys</code>方法返回的数组之中，包含了<code>obj</code>对象的多余属性<code>b</code>，所以导致了报错。</p>
+<h3 id="preventExtensions"><a href="#preventExtensions" class="headerlink" title="preventExtensions()"></a>preventExtensions()</h3><p><code>preventExtensions</code>方法拦截<code>Object.preventExtensions()</code>。该方法必须返回一个布尔值，否则会被自动转为布尔值。</p>
+<p>这个方法有一个限制，只有目标对象不可扩展时（即<code>Object.isExtensible(proxy)</code>为<code>false</code>），<code>proxy.preventExtensions</code>才能返回<code>true</code>，否则会报错。</p>
+<pre><code class="javascript">var p = new Proxy({}, {
+  preventExtensions: function(target) {
+    return true;
+  }
+});
+
+Object.preventExtensions(p) // 报错
+</code></pre>
+<p>上面代码中，<code>proxy.preventExtensions</code>方法返回<code>true</code>，但这时<code>Object.isExtensible(proxy)</code>会返回<code>true</code>，因此报错。</p>
+<p>为了防止出现这个问题，通常要在<code>proxy.preventExtensions</code>方法里面，调用一次<code>Object.preventExtensions</code>。</p>
+<pre><code class="javascript">var p = new Proxy({}, {
+  preventExtensions: function(target) {
+    console.log(&#39;called&#39;);
+    Object.preventExtensions(target);
+    return true;
+  }
+});
+
+Object.preventExtensions(p)
+// &quot;called&quot;
+// true
+</code></pre>
+<h3 id="setPrototypeOf"><a href="#setPrototypeOf" class="headerlink" title="setPrototypeOf()"></a>setPrototypeOf()</h3><p><code>setPrototypeOf</code>方法主要用来拦截<code>Object.setPrototypeOf</code>方法。</p>
+<p>下面是一个例子。</p>
+<pre><code class="javascript">var handler = {
+  setPrototypeOf (target, proto) {
+    throw new Error(&#39;Changing the prototype is forbidden&#39;);
+  }
+};
+var proto = {};
+var target = function () {};
+var proxy = new Proxy(target, handler);
+proxy.setPrototypeOf(proxy, proto);
+// Error: Changing the prototype is forbidden
+</code></pre>
+<p>上面代码中，只要修改<code>target</code>的原型对象，就会报错。</p>
+<p>注意，该方法只能返回布尔值，否则会被自动转为布尔值。另外，如果目标对象不可扩展（extensible），<code>setPrototypeOf</code>方法不得改变目标对象的原型。</p>
+<h2 id="Proxy-revocable"><a href="#Proxy-revocable" class="headerlink" title="Proxy.revocable()"></a>Proxy.revocable()</h2><p><code>Proxy.revocable</code>方法返回一个可取消的 Proxy 实例。</p>
+<pre><code class="javascript">let target = {};
+let handler = {};
+
+let {proxy, revoke} = Proxy.revocable(target, handler);
+
+proxy.foo = 123;
+proxy.foo // 123
+
+revoke();
+proxy.foo // TypeError: Revoked
+</code></pre>
+<p><code>Proxy.revocable</code>方法返回一个对象，该对象的<code>proxy</code>属性是<code>Proxy</code>实例，<code>revoke</code>属性是一个函数，可以取消<code>Proxy</code>实例。上面代码中，当执行<code>revoke</code>函数之后，再访问<code>Proxy</code>实例，就会抛出一个错误。</p>
+<p><code>Proxy.revocable</code>的一个使用场景是，目标对象不允许直接访问，必须通过代理访问，一旦访问结束，就收回代理权，不允许再次访问。</p>
+<h2 id="this-问题"><a href="#this-问题" class="headerlink" title="this 问题"></a>this 问题</h2><p>虽然 Proxy 可以代理针对目标对象的访问，但它不是目标对象的透明代理，即不做任何拦截的情况下，也无法保证与目标对象的行为一致。主要原因就是在 Proxy 代理的情况下，目标对象内部的<code>this</code>关键字会指向 Proxy 代理。</p>
+<pre><code class="javascript">const target = {
+  m: function () {
+    console.log(this === proxy);
+  }
+};
+const handler = {};
+
+const proxy = new Proxy(target, handler);
+
+target.m() // false
+proxy.m()  // true
+</code></pre>
+<p>上面代码中，一旦<code>proxy</code>代理<code>target.m</code>，后者内部的<code>this</code>就是指向<code>proxy</code>，而不是<code>target</code>。</p>
+<p>下面是一个例子，由于<code>this</code>指向的变化，导致 Proxy 无法代理目标对象。</p>
+<pre><code class="javascript">const _name = new WeakMap();
+
+class Person {
+  constructor(name) {
+    _name.set(this, name);
+  }
+  get name() {
+    return _name.get(this);
+  }
+}
+
+const jane = new Person(&#39;Jane&#39;);
+jane.name // &#39;Jane&#39;
+
+const proxy = new Proxy(jane, {});
+proxy.name // undefined
+</code></pre>
+<p>上面代码中，目标对象<code>jane</code>的<code>name</code>属性，实际保存在外部<code>WeakMap</code>对象<code>_name</code>上面，通过<code>this</code>键区分。由于通过<code>proxy.name</code>访问时，<code>this</code>指向<code>proxy</code>，导致无法取到值，所以返回<code>undefined</code>。</p>
+<p>此外，有些原生对象的内部属性，只有通过正确的<code>this</code>才能拿到，所以 Proxy 也无法代理这些原生对象的属性。</p>
+<pre><code class="javascript">const target = new Date();
+const handler = {};
+const proxy = new Proxy(target, handler);
+
+proxy.getDate();
+// TypeError: this is not a Date object.
+</code></pre>
+<p>上面代码中，<code>getDate</code>方法只能在<code>Date</code>对象实例上面拿到，如果<code>this</code>不是<code>Date</code>对象实例就会报错。这时，<code>this</code>绑定原始对象，就可以解决这个问题。</p>
+<pre><code class="javascript">const target = new Date(&#39;2015-01-01&#39;);
+const handler = {
+  get(target, prop) {
+    if (prop === &#39;getDate&#39;) {
+      return target.getDate.bind(target);
+    }
+    return Reflect.get(target, prop);
+  }
+};
+const proxy = new Proxy(target, handler);
+
+proxy.getDate() // 1
+</code></pre>
+<h2 id="实例：Web-服务的客户端"><a href="#实例：Web-服务的客户端" class="headerlink" title="实例：Web 服务的客户端"></a>实例：Web 服务的客户端</h2><p>Proxy 对象可以拦截目标对象的任意属性，这使得它很合适用来写 Web 服务的客户端。</p>
+<pre><code class="javascript">const service = createWebService(&#39;http://example.com/data&#39;);
+
+service.employees().then(json =&gt; {
+  const employees = JSON.parse(json);
+  // ···
+});
+</code></pre>
+<p>上面代码新建了一个 Web 服务的接口，这个接口返回各种数据。Proxy 可以拦截这个对象的任意属性，所以不用为每一种数据写一个适配方法，只要写一个 Proxy 拦截就可以了。</p>
+<pre><code class="javascript">function createWebService(baseUrl) {
+  return new Proxy({}, {
+    get(target, propKey, receiver) {
+      return () =&gt; httpGet(baseUrl+&#39;/&#39; + propKey);
+    }
+  });
+}
+</code></pre>
+<p>同理，Proxy 也可以用来实现数据库的 ORM 层。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-12T08:18:16.020Z" itemprop="dateUpdated">2017年1月12日 16:18</time>
+</span><br>
+
+
+        转载请注明出处：<a href="https://microzz.com/2017/01/09/proxy/" target="_blank" rel="external">https://microzz.com/2017/01/09/proxy/</a>
+    </div>
+    <footer>
+        <a href="https://microzz.com">
+            <img src="https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" alt="Microzz">
+            Microzz
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Proxy/">Proxy</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2017/01/09/proxy/&title=《Proxy》 — 涵月天-microzz.com&pic=https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2017/01/09/proxy/&title=《Proxy》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2017/01/09/proxy/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Proxy》 — 涵月天-microzz.com&url=https://microzz.com/2017/01/09/proxy/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2017/01/09/proxy/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/11/reflect/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Reflect</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/05/set-map/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Set和Map数据结构</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃辣条~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="https://icdn.microzz.com/microzz/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="https://icdn.microzz.com/microzz/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="padding:7px;">
+        
+<p>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+    </div>
+    <div class="bottom" style="padding: 8px;">
+        <p>
+            <!-- <span style="display: none"><a href="https://microzz.com">Zhaohui</a></span> -->
+            <span>
+              <a target="_blank" href="mailto:zhaohui@microzz.com" style="border-bottom:none">
+                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUwOTQ2NDk3IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjUzMjkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTEyIDEwMDcuMjEzMTE1QzIzOC41MDgwNjYgMTAwNy4yMTMxMTUgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDUxMiAxNi43ODY4ODUgMjM4LjUwODA2NiAyMzguNTA4MDY2IDE2Ljc4Njg4NSA1MTIgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDEwMDcuMjEzMTE1IDIzOC41MDgwNjYgMTAwNy4yMTMxMTUgNTEyIDEwMDcuMjEzMTE1IDc4NS40OTE5MzQgNzg1LjQ5MTkzNCAxMDA3LjIxMzExNSA1MTIgMTAwNy4yMTMxMTVaTTUxMiA1MC4zNjA2NTZDMjU3LjA0MDc4NyA1MC4zNjA2NTYgNTAuMzYwNjU2IDI1Ny4wNDA3ODcgNTAuMzYwNjU2IDUxMiA1MC4zNjA2NTYgNzY2Ljk1OTIxMyAyNTcuMDQwNzg3IDk3My42MzkzNDQgNTEyIDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDUxMiA5NzMuNjM5MzQ0IDI1Ny4wNDA3ODcgNzY2Ljk1OTIxMyA1MC4zNjA2NTYgNTEyIDUwLjM2MDY1NlpNNzU1LjQwOTgzNiA3MjEuODM2MDY2IDI4NS4zNzcwNDkgNzIxLjgzNjA2NkMyNjYuODI3NTQxIDcyMS44MzYwNjYgMjUxLjgwMzI3OSA3MDcuOTcwMDk4IDI1MS44MDMyNzkgNjkwLjg0NzQ3NUwyNTEuODAzMjc5IDM0OS45Mzk0MUMyNTEuODAzMjc5IDMzMi44MzM1NzQgMjY2LjgyNzU0MSAzMTguOTUwODIgMjg1LjM3NzA0OSAzMTguOTUwODJMNzU1LjQwOTgzNiAzMTguOTUwODJDNzczLjk1OTM0NCAzMTguOTUwODIgNzg4Ljk4MzYwNyAzMzIuODMzNTc0IDc4OC45ODM2MDcgMzQ5LjkzOTQxTDc4OC45ODM2MDcgNjkwLjg0NzQ3NUM3ODguOTgzNjA3IDcwNy45NzAwOTggNzczLjk1OTM0NCA3MjEuODM2MDY2IDc1NS40MDk4MzYgNzIxLjgzNjA2NlpNNzU1LjQwOTgzNiAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNTAuOTYzNDEgNTIxLjkyMTA0OSA1NjkuMjkzNjM5IDc1NS40MDk4MzYgMzUzLjc2NjgyIDc1NS40MDk4MzYgMzQ5LjkzOTQxWk03NTUuNDA5ODM2IDM5Ny41OTczNzcgNTM4LjQzOTM0NCA1OTcuODY0OTE4IDUwNS4zODU5NjcgNTk3Ljg2NDkxOCAyODUuMzc3MDQ5IDM5NC43NzcxOCAyODUuMzc3MDQ5IDY5MC44NDc0NzUgNzU1LjQwOTgzNiA2OTAuODQ3NDc1IDc1NS40MDk4MzYgMzk3LjU5NzM3N1oiIHAtaWQ9IjUzMzAiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L3N2Zz4=" alt="E-mail联系" title="E-mail" style="width:20px;height:20px;border:none;"/>
+              </a>
+            </span>
+
+	          <span>
+              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=903036377&site=qq&menu=yes" style="border-bottom:none">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUxNTc4MDQ0IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjUgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE1MjE0IiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjIwMC4xOTUzMTI1IiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTE2Ljk3MSAzNC44MTJjLTI2Mi44MzYgMC00NzUuOTExIDIxMy4wNzEtNDc1LjkxMSA0NzUuOTExczIxMy4wNzUgNDc1LjkxIDQ3NS45MTEgNDc1LjkxYzI2Mi44MzggMCA0NzUuOTE1LTIxMy4wNzAgNDc1LjkxNS00NzUuOTEgMC0yNjIuODM5LTIxMy4wNzYtNDc1LjkxMS00NzUuOTE1LTQ3NS45MTF6TTUxNi45NzEgOTYwLjA5OGMtMjQ4LjE4MSAwLTQ0OS4zNzMtMjAxLjE5MS00NDkuMzczLTQ0OS4zNzVzMjAxLjE5Mi00NDkuMzcxIDQ0OS4zNzMtNDQ5LjM3MWMyNDguMTgyIDAgNDQ5LjM3NyAyMDEuMTg4IDQ0OS4zNzcgNDQ5LjM3MSAwIDI0OC4xODMtMjAxLjE5NiA0NDkuMzc1LTQ0OS4zNzcgNDQ5LjM3NXoiIHAtaWQ9IjE1MjE1IiBmaWxsPSIjZmZmZmZmIj48L3BhdGg+PHBhdGggZD0iTTc2Ni45ODYgNTY5LjI2M2wtMS43NDktOS4zMjMtMS4xNjUtNC42NjEtMS4xNjctNC42NjEtMS43NDctNC42NjItMS43NDgtNS4yNDQtMi4zMy01LjI0NC0yLjMzMi01LjI0NC00LjA3OC04LjE1Ny0zLjQ5Ni03LjU3NS0zLjQ5Ni02LjQxLTIuOTEzLTUuODI3LTMuNDk2LTUuODI2LTIuMzMxLTQuNjYyLTUuMjQ0LTguMTU4LTYuOTkyLTkuOTA2LTEuNzQ5LTIuOTEyLTAuNTgyLTAuNTgzIDAtMS4xNjYgMS4xNjYtMy40OTYgMS4xNjUtMi45MTQgMS43NDctNS44MjcgMC41ODMtMy40OTYgMC0yLjkxNCAwLjU4My0yLjMzMSAwLTIuOTEzLTAuNTgzLTIuOTEzLTAuNTgzLTIuOTE0LTAuNTgyLTQuNjYyLTEuMTY1LTQuNjYxLTEuNzQ5LTQuNjYyLTEuNzQ4LTQuMDc5LTEuNzQ4LTMuNDk3LTEuNzQ3LTMuNDk2LTEuNzQ4LTIuOTE0LTMuNDk2LTUuMjQ1LTAuNTgyLTEuNzQ3LTAuNTg0LTEuMTY2LTEuMTY0LTkuMzIzLTEuMTY2LTUuODI2LTAuNTgzLTcuNTc1LTEuNzQ4LTcuNTc1LTIuMzMxLTguNzQxLTEuMTY0LTUuMjQzLTEuMTY1LTQuMDc5LTEuNzQ5LTQuNjYxLTEuNzQ4LTUuMjQ1LTEuNzQ5LTUuMjQzLTEuNzQ3LTUuMjQ1LTQuNjYxLTkuOTA1LTIuMzMtNC42NjItMy40OTgtNS4yNDQtMi45MTItNC42NjItMi45MTQtNS4yNDMtNC4wNzgtNS4yNDUtMy40OTctNC42NjEtNC4wNzktNC42NjItNC42NjEtNC42NjEtNC4wNzktNC4wNzktNS4yNDMtNC4wOC0yLjkxNC0yLjMzMS0yLjMzLTEuNzQ4LTUuODI3LTQuMDc5LTYuNDEtNC4wNzktNi40MDgtNC4wNzktNy41NzUtMy40OTctNi45OTItMi45MTQtNi45OTItMi45MTMtNy41NzYtMi45MTQtNy41NzMtMS43NDgtNy41NzUtMS43NDgtOC4xNTctMS43NDgtNy41NzUtMS43NDgtNy41NzUtMS4xNjUtOC4xNTctMC41ODMtNy41NzYtMS4xNjYtOC4xNTcgMC03LjU3NSAwLTcuNTc0IDAtNy41NzUgMC41ODMtNy41NzQgMS4xNjctNy41NzUgMC41ODItNy41NzUgMS4xNjYtNi45OTIgMS4xNjUtNi45OTEgMS43NDgtNi45OTIgMi4zMzEtNi45OTMgMi4zMzItNi40MDkgMi4zMy02LjQxIDIuOTE0LTUuODI1IDIuMzMxLTUuODI4IDMuNDk3LTUuODI2IDMuNDk2LTUuMjQ1IDMuNDk2LTUuMjQzIDQuMDgtNC42NjIgMy40OTZMNDEwLjM4MyAyODJsLTUuODI3IDUuMjQ1LTUuMjQ0IDUuODI2LTQuNjYxIDUuODI3LTQuNjYxIDUuODI4LTQuMDc4IDUuMjQzLTMuNDk3IDUuODI3LTIuMzMxIDIuOTE0LTEuNzQ4IDIuOTEzLTMuNDk2IDUuMjQ1LTIuOTEzIDUuMjQ0LTIuMzMxIDUuMjQ0LTIuMzMgNS4yNDUtMi4zMzEgNC42NjEtMS43NDggNC42NjEtMS43NDggNS4yNDQtMS43NDggNC4wNzktMS43NDggOC4xNTgtMi4zMzEgOC4xNTgtMC41ODIgNi40MDktMS4xNjYgNS44MjcgMCA0LjA3OSAwIDMuNDk2IDAgMy40OTctMS4xNjUgMS43NDgtMS43NDggMS43NDgtMS4xNjYgMi4zMzEtMC41ODIgMi4zMy0xLjc0OSA0LjY2Mi0xLjE2NSA0LjY2MS0wLjU4MiAzLjQ5NiAwIDMuNDk3IDAgMi45MTMtMy40OTcgNC4wNzktMS43NDcgNC42NjItMi4zMzEgNC4wNzgtMS4xNjUgNC4wNzktMC41ODMgMy40OTctMS4xNjUgMy40OTYgMCAyLjkxNCAwIDMuNDk2IDAgMi4zMzEgMC41ODMgMi4zMzEgMS4xNjUgNC4wNzkgMC41ODMgMi45MTQtMS43NDggMS4xNjUtNC42NjIgMy40OTctNi40MDkgNS44MjctNC4wNzkgMy40OTYtNC4wNzggMy40OTctMi45MTQgMi4zMzEtMS43NDggMi4zMy00LjY2MSA1LjI0NS00LjY2MiA0LjY2Mi0zLjQ5NSA0LjY2Mi00LjA3OSA1LjgyNy00LjA3OSA1LjgyNi00LjA3OCA2LjQxLTMuNDk3IDUuMjQ0LTIuOTEzIDYuNDEtMi45MTMgNS44MjYtMS43NDggNS4yNDQtMi4zMzEgNS44MjctMS43NDggNS44MjYtMS43NDggNS44MjctMS43NDggNS4yNDQtMC41ODIgNS4yNDQtMC41ODMgNS4yNDQtMS4xNjUgNC42NjEtMC41ODMgOS4zMjMgMCA4Ljc0IDAgNC4wNzkgMC41ODMgNC4wNzggMC41ODEgNi40MSAwLjU4NCAzLjQ5NiAxLjE2NSAyLjkxMyAwLjU4MyAyLjkxNCAwLjU4MiAxLjc0OCAyLjMzMSAzLjQ5NiAwLjU4MiAxLjE2NSAxLjE2NiAxLjE2NCAxLjE2NSAwIDEuMTY2IDAuNTg0IDEuMTY1IDAgMS43NDgtMC41ODQgNC42NjEtMS4xNjQgMy40OTctMS4xNjUgMy40OTYtMi4zMyAyLjkxMy0yLjMzMiAzLjQ5NS0yLjMzIDIuOTE0LTIuOTE0IDIuMzMxLTIuOTE0IDIuOTEzLTIuOTEyIDIuMzMxLTIuOTEzIDEuNzQ4LTIuOTE0IDEuMTY1LTIuMzMxIDIuOTEzLTUuMjQ0IDAuNTgzLTEuNzQ3IDAuNTgzLTEuMTY2IDAuNTgyLTEuMTY2IDAuNTgzLTEuMTY0IDAuNTgzIDAgMC41ODMtMC41ODMgMC41ODIgMCAwIDAuNTgzIDAuNTgyIDAgMC41ODQgMCAxLjE2NSA2LjQwOCAxLjc0OCA1LjI0NCAyLjMzIDUuMjQ1IDIuMzMxIDQuNjYgMS43NDggNC42NjIgMi4zMzEgNC42NjIgMi4zMyA0LjA3OSAyLjMzMSA0LjA3OSAyLjMzMSAzLjQ5NSAyLjMzIDMuNDk3IDUuMjQ1IDYuNDA4IDQuNjYxIDUuMjQ1IDQuNjYxIDQuNjYxIDQuMDc5IDQuMDc4IDQuMDc5IDIuOTE0IDUuODI3IDEuNzQ3IDIuMzMgMS4xNjUgMC41ODIgMC41ODQgMCAwLjU4My0wLjU4MiAwLjU4MS0xLjE2NiAwLjU4NC00LjA3OCAwLjU4Mi00LjA3OSAwLTMuNDk2IDAuNTgzLTMuNDk2IDAuNTgzLTMuNDk2IDEuMTY1LTIuOTE0IDEuMTY1LTIuMzMgMS4xNjYtMi4zMzEgMS4xNjUtMi4zMyAwLjU4My0yLjMzMSAxLjc0OC0xLjE2NSAxLjE2Ni0yLjMzMSAxLjE2NC0yLjMzMSAyLjkxNC0xLjE2NSAxLjc0OC0xLjE2NSAxLjE2NS0xLjE2NiAyLjkxNC0wLjU4MiAyLjkxMi0xLjE2NiAyLjMzMi0wLjU4MiAyLjMzIDAgMi45MTMgMCAxLjE2Ni0wLjU4MyAyLjMzIDAgMi4zMyAwIDIuMzMyIDAgMS43NDggMCAyLjMzMSAwLjU4MyAxLjE2NSAxLjc0OCAzLjQ5NiAwLjU4MiAxLjc0NyAwLjU4MyAyLjMzMSAxLjc0OCAxLjc0OCAxLjE2NSAxLjE2NiAxLjc0OCAxLjc0NyAxLjE2NiAxLjE2NyA0LjA3OCAyLjMyOSA0LjA3OSAyLjkxNCA0LjA3OCAyLjMzIDUuMjQ1IDEuNzQ4IDUuMjQ0IDEuNzQ4IDUuMjQ0IDEuNzQ5IDUuODI2IDEuNzQ3IDUuODI3IDEuMTY3IDYuNDA5IDAuNTgxIDUuODI3IDEuMTY2IDYuOTkzIDEuMTY2IDEyLjgxNyAxLjE2NSAxMi44MiAwLjU4MiAxMi4yMzYgMCA1LjgyNiAwIDUuODI4IDAgNS4yNDMtMC41ODIgNC42NjEtMC41ODMgNS4yNDUtMC41ODIgNC4wNzggMCA2Ljk5My0xLjc0OCA1LjI0My0xLjE2NSA1LjI0NC0xLjE2NyA4Ljc0LTMuNDk2IDQuMDc5LTEuNzQ4IDQuMDc4LTEuNzQ4IDYuNDEtMy40OTUgNS44MjYtMi45MTQgNC4wNzgtMi45MTMgMy40OTctMi4zMzEgNC42NjIgMCAzLjQ5NSAwLjU4MyA3LjU3NiAwLjU4MyAzLjQ5NiAwIDIuOTEyIDAgMi4zMzEgMC41ODIgMi4zMyAwLjU4MyA0LjA4IDEuMTY1IDMuNDk2IDEuNzQ4IDguMTU3IDIuMzMxIDcuNTc1IDIuOTEzIDguMTU3IDEuNzQ4IDcuNTc0IDEuNzQ5IDguMTU4IDEuNzQ3IDguMTU4IDEuNzQ5IDguMTU3IDAuNTgyIDcuNTczIDAuNTgyIDcuNTc2IDEuMTY3IDcuNTc0IDAuNTgxIDcuNTc2IDAgNy41NzMgMCA2Ljk5MiAwIDYuOTkzLTEuMTY0IDYuOTkyLTAuNTg0IDYuNDEtMC41ODIgNi40MDgtMS4xNjUgNS44MjctMS43NDkgNS44MjYtMS4xNjQgMi4zMzItMC41ODQgMi45MTQtMS4xNjUgNS4yNDMtMS43NDggNC4wNzktMi4zMyA0LjY2Mi0xLjc0OCA0LjA3OC0yLjMzIDMuNDk1LTIuMzMyIDEuMTY3LTEuNzQ4IDEuNzQ3LTEuNzQ4IDIuMzMxLTIuMzMxIDEuNzQ3LTIuOTEzIDEuMTY2LTIuMzMgMC41ODItMS4xNjUgMC41ODQtMS43NDkgMC41ODItMS43NDggMC0xLjc0NyAwLjU4Mi0xLjc0OC0wLjU4Mi0yLjMzMi0wLjU4Mi0yLjMzLTAuNTg0LTIuMzMtMS4xNjUtMi4zMzItMS4xNjUtMi45MTMtMS43NDgtMS43NDctMS43NDgtMi4zMzItMi4zMy0xLjc0OC00LjY2Mi00LjA3OC01LjI0NC00LjA3OS01LjI0My0yLjkxMy01LjgyOC0yLjkxNC0xMi44MTgtNi40MDktMi41NDktMS41MjkgNC4yOTgtNC4yOTcgMi45MTItMi45MTQgMi4zMzEtMi45MTMgNC4wNzgtNS44MjYgNC4wNzktNi40MSAzLjQ5Ny01LjgyNyAyLjkxMy01LjI0NSA0LjY2MS0xMC40ODcgMy40OTYtOC43NCAxLjc0OC01LjgyNyAxLjc0Ny0yLjMzIDAuNTg0LTEuNzQ4IDEuMTY0LTAuNTgzIDAuNTg0IDAgMC41ODIgMCAyLjkxMyA2LjQwOSAyLjkxMyA1LjgyOCAyLjMzMiAzLjQ5NSAyLjMzIDMuNDk2IDIuMzMxIDMuNDk2IDIuMzMxIDMuNDk2IDIuMzMgMi4zMzEgMS4xNjUgMS4xNjQgMS4xNjYgMS43NDkgMS43NDggMC41ODQgMS4xNjQgMS4xNjQgMi4zMzIgMS4xNjUgMS43NDggMC41ODMgMC41ODIgMCAxLjE2NiAwIDEuNzQ3LTAuNTgzIDEuNzQ5LTEuMTY1IDEuNzQ4LTAuNTgzIDEuNzQ3LTEuMTY1IDEuMTY3LTEuNzQ5IDEuNzQ3LTEuNzQ2IDEuMTY2LTEuNzQ5IDEuMTY1LTIuMzMgMS43NDctMi4zMzIgMS4xNjctMi4zMyAwLjU4MS0yLjkxMyAxLjc0OS01LjgyNyAxLjc0OC02LjQxIDAuNTgyLTYuOTkxIDAuNTgzLTQuMDc4IDAtMy40OTcgMC0zLjQ5NiAwLTQuNjYxLTEuMTY1LTguMTU4TDc2Ni45ODYgNTY5LjI2M3pNNjgwLjc0OCA2NzAuNjQ5bC0wLjU4Mi0wLjU4MiAwLjk3MS0wLjk3MUw2ODAuNzQ4IDY3MC42NDl6IiBwLWlkPSIxNTIxNiIgZmlsbD0iI2ZmZmZmZiI+PC9wYXRoPjwvc3ZnPg==" alt="QQ联系microzz" title="QQ" style="width:22px;height:22px;border:none;"/></a>
+            </span>
+
+	          <span>
+              <a target="_blank" href="https://github.com/microzz" style="border-bottom:none">
+              <img src="data:image/png;base64,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" alt="GitHub microzz" title="GitHub" style="width:19px;height:19px;border:none;"/></a>
+            </span>
+            <!-- <span>&copy; 2015 - 2018</span> -->
+
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2017/01/09/proxy/&title=《Proxy》 — 涵月天-microzz.com&pic=https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2017/01/09/proxy/&title=《Proxy》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2017/01/09/proxy/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Proxy》 — 涵月天-microzz.com&url=https://microzz.com/2017/01/09/proxy/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2017/01/09/proxy/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxklEQVR42u3aQY6DMAwFUO5/aWY70gj6bZO0Hb2sKqDJg4UV2zmOeJy/xt8r99fvnzlWDFxc3DG3ukB1madeEhcXdz83Web+X1dX8s9xb8DFxf1kbs6azImLi/s/uEmadH8FFxf307j5FiQvcCTpzcJcDRcXd8DtlTae/b2kvouLi9vinsXR2xhVw9bl6ri4uFu4eUBJ0NVkprkuLi7udu7k2ESetCR3oyYrLi7uYm7CypdJ7lY3Pbi4uDu58+Jmr6habc/g4uLu4d5PVN2IVA9hJK3WyyoOLi7uMm6+EclbsL0DGb0kChcXdzU3b5xUyx95kbQQyHBxcRdzq5uM5MXykJcHPlxc3D3cXqm0SqkmToVcDRcXdwF3Pt2kNfvUEQ1cXNwV3Dx89Nqo1a/14lVxcXE3cvOmSG+D0mvMXOZquLi4W7hHPHqN1er83du4uLhT7lkceS5VLYw+kJPh4uI+xJ0Er2ooTIqwSUKFi4u7hzs5epWXQnoz4OLivpebtzSqRzQmIQ8XF/e7uNWDWXmDtlk1wcXFfSu3mkUlAa4gxMXF3cjtHa5KCh/VYuuLJ3Fxcbdwe43PZAPU26XMAx8uLu6A+wMqTSn4480uHAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+<script>
+// (function(){
+//     var bp = document.createElement('script');
+//     var curProtocol = window.location.protocol.split(':')[0];
+//     if (curProtocol === 'https') {
+//         bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+//     }
+//     else {
+//         bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+//     }
+//     var s = document.getElementsByTagName("script")[0];
+//     s.parentNode.insertBefore(bp, s);
+// })();
+console.log("%c Powered by Zhaohui - microzz.com","background-image:-webkit-gradient( linear, left top,right top, color-stop(0, #00a419),color-stop(0.15, #f44336), color-stop(0.29, #ff4300),color-stop(0.3, #AA00FF),color-stop(0.4, #8BC34A), color-stop(0.45, #607D8B),color-stop(0.6, #4096EE), color-stop(0.75, #D50000),color-stop(0.9, #4096EE), color-stop(1, #FF1A00));color:transparent;-webkit-background-clip:text;font-size:13px;");
+</script>
+
+    <!-- <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script> -->
+
+<script src="https://icdn.microzz.com/microzz/js/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+</script>
+
+<!-- <script src="/js/main.min.js?v=1.4.5"></script> -->
+<script src="https://icdn.microzz.com/microzz/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<!-- <script src="/js/search.min.js?v=1.4.5" async></script> -->
+<script src="https://icdn.microzz.com/microzz/js/search.min.js" async></script>
+
+
+
+
+
+
+<!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script async src="https://icdn.microzz.com/microzz/js/busuanzi.pure.mini.js"></script>
+
+<script>
+  // if ('serviceWorker' in navigator) {
+  //  navigator.serviceWorker.register('/sw0110.js').then(function (registration) {
+      // console.log('ServiceWorker registration successful with scope: ', registration.scope);
+   // }).catch(function (err) {
+      // console.log('ServiceWorker registration failed: ', err);
+   // });
+ // }
+  // var _hmt = _hmt || [];
+  // (function() {
+  //   var hm = document.createElement("script");
+  //   hm.src = "https://hm.baidu.com/hm.js?ce268e8f61069a1636a4629acbb82b9a";
+  //   var s = document.getElementsByTagName("script")[0];
+  //   s.parentNode.insertBefore(hm, s);
+  // })();
+</script>
+
+</body>
+</html>

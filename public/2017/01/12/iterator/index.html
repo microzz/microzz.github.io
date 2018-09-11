@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Iterator和for...of循环 | 涵月天-microzz.com | IT技术分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript,JS,ES6,ECMAScript6,Iterator,for">
+    <meta name="description" content="Iterator和for…of循环Iterator（遍历器）的概念JavaScript原有的表示“集合”的数据结构，主要是数组（Array）和对象（Object），ES6又添加了Map和Set。这样就有了四种数据集合，用户还可以组合使用它们，定义自己的数据结构，比如数组的成员是Map，Map的成员是对象。这样就需要一种统一的接口机制，来处理所有不同的数据结构。
+遍历器（Iterator）就是这样一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Iterator和for...of循环">
+<meta property="og:url" content="https://microzz.com/2017/01/12/iterator/index.html">
+<meta property="og:site_name" content="涵月天-microzz.com">
+<meta property="og:description" content="Iterator和for…of循环Iterator（遍历器）的概念JavaScript原有的表示“集合”的数据结构，主要是数组（Array）和对象（Object），ES6又添加了Map和Set。这样就有了四种数据集合，用户还可以组合使用它们，定义自己的数据结构，比如数组的成员是Map，Map的成员是对象。这样就需要一种统一的接口机制，来处理所有不同的数据结构。
+遍历器（Iterator）就是这样一">
+<meta property="og:updated_time" content="2017-08-21T11:35:18.015Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Iterator和for...of循环">
+<meta name="twitter:description" content="Iterator和for…of循环Iterator（遍历器）的概念JavaScript原有的表示“集合”的数据结构，主要是数组（Array）和对象（Object），ES6又添加了Map和Set。这样就有了四种数据集合，用户还可以组合使用它们，定义自己的数据结构，比如数组的成员是Map，Map的成员是对象。这样就需要一种统一的接口机制，来处理所有不同的数据结构。
+遍历器（Iterator）就是这样一">
+    
+        <link rel="alternative" href="/atom.xml" title="涵月天-microzz.com" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- <link rel="stylesheet" href="/css/style.css?v=1.4.5"> -->
+    <!-- <link rel="stylesheet" href="css.css" media="none" onload="if(media!='all')media='all'"> -->
+    <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/style.css?v=2">
+    <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/atom-one-dark.1.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background:none;">
+      <div class="brand" style="background-color:#4154b2;">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" style="height:100%;">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Microzz</h5>
+          <a href="mailto:zhaohui@microzz.com" title="zhaohui@microzz.com" class="mail">zhaohui@microzz.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/archives/"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/microzz" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                GitHub
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://juejin.im/user/57f0f27a128fe100542d29ad" target="_blank" >
+                <i class="icon icon-lg icon-pencil"></i>
+                掘金专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/microzz/posts" target="_blank" >
+                <i class="icon icon-lg icon-leaf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-music/" target="_blank" >
+                <i class="icon icon-lg icon-music"></i>
+                Vue音乐播放器
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-cnode/" target="_blank" >
+                <i class="icon icon-lg icon-comments"></i>
+                Vue CNode社区
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-chat/" target="_blank" >
+                <i class="icon icon-lg icon-globe"></i>
+                智能聊天室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/github-ranking/" target="_blank" >
+                <i class="icon icon-lg icon-star"></i>
+                GitHub排行榜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/about/friendly.html"  >
+                <i class="icon icon-lg icon-link"></i>
+                友链
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Iterator和for...of循环</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Iterator和for...of循环</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-12T07:45:19.000Z" itemprop="datePublished" class="page-time">
+  2017-01-12
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    <script src="https://icdn.microzz.com/microzz/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    Array.prototype.slice.call(document.querySelectorAll('pre code')).forEach(function(block) {
+      hljs.highlightBlock(block);
+  } )
+</script>
+
+<article id="post-iterator"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Iterator和for...of循环</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年01月12日 15:45" datetime="2017-01-12T07:45:19.000Z"  itemprop="datePublished">2017-01-12</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Iterator和for…of循环"><a href="#Iterator和for…of循环" class="headerlink" title="Iterator和for…of循环"></a>Iterator和for…of循环</h1><h2 id="Iterator（遍历器）的概念"><a href="#Iterator（遍历器）的概念" class="headerlink" title="Iterator（遍历器）的概念"></a>Iterator（遍历器）的概念</h2><p>JavaScript原有的表示“集合”的数据结构，主要是数组（Array）和对象（Object），ES6又添加了Map和Set。这样就有了四种数据集合，用户还可以组合使用它们，定义自己的数据结构，比如数组的成员是Map，Map的成员是对象。这样就需要一种统一的接口机制，来处理所有不同的数据结构。</p>
+<p>遍历器（Iterator）就是这样一种机制。它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。</p>
+<p>Iterator的作用有三个：一是为各种数据结构，提供一个统一的、简便的访问接口；二是使得数据结构的成员能够按某种次序排列；三是ES6创造了一种新的遍历命令<code>for...of</code>循环，Iterator接口主要供<code>for...of</code>消费。</p>
+<p>Iterator的遍历过程是这样的。</p>
+<p>（1）创建一个指针对象，指向当前数据结构的起始位置。也就是说，遍历器对象本质上，就是一个指针对象。</p>
+<p>（2）第一次调用指针对象的<code>next</code>方法，可以将指针指向数据结构的第一个成员。</p>
+<p>（3）第二次调用指针对象的<code>next</code>方法，指针就指向数据结构的第二个成员。</p>
+<p>（4）不断调用指针对象的<code>next</code>方法，直到它指向数据结构的结束位置。</p>
+<p>每一次调用<code>next</code>方法，都会返回数据结构的当前成员的信息。具体来说，就是返回一个包含<code>value</code>和<code>done</code>两个属性的对象。其中，<code>value</code>属性是当前成员的值，<code>done</code>属性是一个布尔值，表示遍历是否结束。</p>
+<p>下面是一个模拟<code>next</code>方法返回值的例子。</p>
+<pre><code class="javascript">var it = makeIterator([&#39;a&#39;, &#39;b&#39;]);
+
+it.next() // { value: &quot;a&quot;, done: false }
+it.next() // { value: &quot;b&quot;, done: false }
+it.next() // { value: undefined, done: true }
+
+function makeIterator(array) {
+  var nextIndex = 0;
+  return {
+    next: function() {
+      return nextIndex &lt; array.length ?
+        {value: array[nextIndex++], done: false} :
+        {value: undefined, done: true};
+    }
+  };
+}
+</code></pre>
+<p>上面代码定义了一个<code>makeIterator</code>函数，它是一个遍历器生成函数，作用就是返回一个遍历器对象。对数组<code>[&#39;a&#39;, &#39;b&#39;]</code>执行这个函数，就会返回该数组的遍历器对象（即指针对象）<code>it</code>。</p>
+<p>指针对象的<code>next</code>方法，用来移动指针。开始时，指针指向数组的开始位置。然后，每次调用<code>next</code>方法，指针就会指向数组的下一个成员。第一次调用，指向<code>a</code>；第二次调用，指向<code>b</code>。</p>
+<p><code>next</code>方法返回一个对象，表示当前数据成员的信息。这个对象具有<code>value</code>和<code>done</code>两个属性，<code>value</code>属性返回当前位置的成员，<code>done</code>属性是一个布尔值，表示遍历是否结束，即是否还有必要再一次调用<code>next</code>方法。</p>
+<p>总之，调用指针对象的<code>next</code>方法，就可以遍历事先给定的数据结构。</p>
+<p>对于遍历器对象来说，<code>done: false</code>和<code>value: undefined</code>属性都是可以省略的，因此上面的<code>makeIterator</code>函数可以简写成下面的形式。</p>
+<pre><code class="javascript">function makeIterator(array) {
+  var nextIndex = 0;
+  return {
+    next: function() {
+      return nextIndex &lt; array.length ?
+        {value: array[nextIndex++]} :
+        {done: true};
+    }
+  };
+}
+</code></pre>
+<p>由于Iterator只是把接口规格加到数据结构之上，所以，遍历器与它所遍历的那个数据结构，实际上是分开的，完全可以写出没有对应数据结构的遍历器对象，或者说用遍历器对象模拟出数据结构。下面是一个无限运行的遍历器对象的例子。</p>
+<pre><code class="javascript">var it = idMaker();
+
+it.next().value // &#39;0&#39;
+it.next().value // &#39;1&#39;
+it.next().value // &#39;2&#39;
+// ...
+
+function idMaker() {
+  var index = 0;
+
+  return {
+    next: function() {
+      return {value: index++, done: false};
+    }
+  };
+}
+</code></pre>
+<p>上面的例子中，遍历器生成函数<code>idMaker</code>，返回一个遍历器对象（即指针对象）。但是并没有对应的数据结构，或者说，遍历器对象自己描述了一个数据结构出来。</p>
+<p>在ES6中，有些数据结构原生具备Iterator接口（比如数组），即不用任何处理，就可以被<code>for...of</code>循环遍历，有些就不行（比如对象）。原因在于，这些数据结构原生部署了<code>Symbol.iterator</code>属性（详见下文），另外一些数据结构没有。凡是部署了<code>Symbol.iterator</code>属性的数据结构，就称为部署了遍历器接口。调用这个接口，就会返回一个遍历器对象。</p>
+<p>如果使用TypeScript的写法，遍历器接口（Iterable）、指针对象（Iterator）和next方法返回值的规格可以描述如下。</p>
+<pre><code class="javascript">interface Iterable {
+  [Symbol.iterator]() : Iterator,
+}
+
+interface Iterator {
+  next(value?: any) : IterationResult,
+}
+
+interface IterationResult {
+  value: any,
+  done: boolean,
+}
+</code></pre>
+<h2 id="数据结构的默认Iterator接口"><a href="#数据结构的默认Iterator接口" class="headerlink" title="数据结构的默认Iterator接口"></a>数据结构的默认Iterator接口</h2><p>Iterator接口的目的，就是为所有数据结构，提供了一种统一的访问机制，即<code>for...of</code>循环（详见下文）。当使用<code>for...of</code>循环遍历某种数据结构时，该循环会自动去寻找Iterator接口。</p>
+<p>一种数据结构只要部署了Iterator接口，我们就称这种数据结构是”可遍历的“（iterable）。</p>
+<p>ES6规定，默认的Iterator接口部署在数据结构的<code>Symbol.iterator</code>属性，或者说，一个数据结构只要具有<code>Symbol.iterator</code>属性，就可以认为是“可遍历的”（iterable）。<code>Symbol.iterator</code>属性本身是一个函数，就是当前数据结构默认的遍历器生成函数。执行这个函数，就会返回一个遍历器。至于属性名<code>Symbol.iterator</code>，它是一个表达式，返回<code>Symbol</code>对象的<code>iterator</code>属性，这是一个预定义好的、类型为Symbol的特殊值，所以要放在方括号内。（参见Symbol一章）。</p>
+<pre><code class="javascript">const obj = {
+  [Symbol.iterator] : function () {
+    return {
+      next: function () {
+        return {
+          value: 1,
+          done: true
+        };
+      }
+    };
+  }
+};
+</code></pre>
+<p>上面代码中，对象<code>obj</code>是可遍历的（iterable），因为具有<code>Symbol.iterator</code>属性。执行这个属性，会返回一个遍历器对象。该对象的根本特征就是具有<code>next</code>方法。每次调用<code>next</code>方法，都会返回一个代表当前成员的信息对象，具有<code>value</code>和<code>done</code>两个属性。</p>
+<p>在ES6中，有三类数据结构原生具备Iterator接口：数组、某些类似数组的对象、Set和Map结构。</p>
+<pre><code class="javascript">let arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+let iter = arr[Symbol.iterator]();
+
+iter.next() // { value: &#39;a&#39;, done: false }
+iter.next() // { value: &#39;b&#39;, done: false }
+iter.next() // { value: &#39;c&#39;, done: false }
+iter.next() // { value: undefined, done: true }
+</code></pre>
+<p>上面代码中，变量<code>arr</code>是一个数组，原生就具有遍历器接口，部署在<code>arr</code>的<code>Symbol.iterator</code>属性上面。所以，调用这个属性，就得到遍历器对象。</p>
+<p>上面提到，原生就部署Iterator接口的数据结构有三类，对于这三类数据结构，不用自己写遍历器生成函数，<code>for...of</code>循环会自动遍历它们。除此之外，其他数据结构（主要是对象）的Iterator接口，都需要自己在<code>Symbol.iterator</code>属性上面部署，这样才会被<code>for...of</code>循环遍历。</p>
+<p>对象（Object）之所以没有默认部署Iterator接口，是因为对象的哪个属性先遍历，哪个属性后遍历是不确定的，需要开发者手动指定。本质上，遍历器是一种线性处理，对于任何非线性的数据结构，部署遍历器接口，就等于部署一种线性转换。不过，严格地说，对象部署遍历器接口并不是很必要，因为这时对象实际上被当作Map结构使用，ES5没有Map结构，而ES6原生提供了。</p>
+<p>一个对象如果要有可被<code>for...of</code>循环调用的Iterator接口，就必须在<code>Symbol.iterator</code>的属性上部署遍历器生成方法（原型链上的对象具有该方法也可）。</p>
+<pre><code class="javascript">class RangeIterator {
+  constructor(start, stop) {
+    this.value = start;
+    this.stop = stop;
+  }
+
+  [Symbol.iterator]() { return this; }
+
+  next() {
+    var value = this.value;
+    if (value &lt; this.stop) {
+      this.value++;
+      return {done: false, value: value};
+    } else {
+      return {done: true, value: undefined};
+    }
+  }
+}
+
+function range(start, stop) {
+  return new RangeIterator(start, stop);
+}
+
+for (var value of range(0, 3)) {
+  console.log(value);
+}
+</code></pre>
+<p>上面代码是一个类部署Iterator接口的写法。<code>Symbol.iterator</code>属性对应一个函数，执行后返回当前对象的遍历器对象。</p>
+<p>下面是通过遍历器实现指针结构的例子。</p>
+<pre><code class="javascript">function Obj(value) {
+  this.value = value;
+  this.next = null;
+}
+
+Obj.prototype[Symbol.iterator] = function() {
+  var iterator = {
+    next: next
+  };
+
+  var current = this;
+
+  function next() {
+    if (current) {
+      var value = current.value;
+      current = current.next;
+      return {
+        done: false,
+        value: value
+      };
+    } else {
+      return {
+        done: true
+      };
+    }
+  }
+  return iterator;
+}
+
+var one = new Obj(1);
+var two = new Obj(2);
+var three = new Obj(3);
+
+one.next = two;
+two.next = three;
+
+for (var i of one){
+  console.log(i);
+}
+// 1
+// 2
+// 3
+</code></pre>
+<p>上面代码首先在构造函数的原型链上部署<code>Symbol.iterator</code>方法，调用该方法会返回遍历器对象<code>iterator</code>，调用该对象的<code>next</code>方法，在返回一个值的同时，自动将内部指针移到下一个实例。</p>
+<p>下面是另一个为对象添加Iterator接口的例子。</p>
+<pre><code class="javascript">let obj = {
+  data: [ &#39;hello&#39;, &#39;world&#39; ],
+  [Symbol.iterator]() {
+    const self = this;
+    let index = 0;
+    return {
+      next() {
+        if (index &lt; self.data.length) {
+          return {
+            value: self.data[index++],
+            done: false
+          };
+        } else {
+          return { value: undefined, done: true };
+        }
+      }
+    };
+  }
+};
+</code></pre>
+<p>对于类似数组的对象（存在数值键名和length属性），部署Iterator接口，有一个简便方法，就是<code>Symbol.iterator</code>方法直接引用数组的Iterator接口。</p>
+<pre><code class="javascript">NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
+// 或者
+NodeList.prototype[Symbol.iterator] = [][Symbol.iterator];
+
+[...document.querySelectorAll(&#39;div&#39;)] // 可以执行了
+</code></pre>
+<p>下面是类似数组的对象调用数组的<code>Symbol.iterator</code>方法的例子。</p>
+<pre><code class="javascript">let iterable = {
+  0: &#39;a&#39;,
+  1: &#39;b&#39;,
+  2: &#39;c&#39;,
+  length: 3,
+  [Symbol.iterator]: Array.prototype[Symbol.iterator]
+};
+for (let item of iterable) {
+  console.log(item); // &#39;a&#39;, &#39;b&#39;, &#39;c&#39;
+}
+</code></pre>
+<p>注意，普通对象部署数组的<code>Symbol.iterator</code>方法，并无效果。</p>
+<pre><code class="javascript">let iterable = {
+  a: &#39;a&#39;,
+  b: &#39;b&#39;,
+  c: &#39;c&#39;,
+  length: 3,
+  [Symbol.iterator]: Array.prototype[Symbol.iterator]
+};
+for (let item of iterable) {
+  console.log(item); // undefined, undefined, undefined
+}
+</code></pre>
+<p>如果<code>Symbol.iterator</code>方法对应的不是遍历器生成函数（即会返回一个遍历器对象），解释引擎将会报错。</p>
+<pre><code class="javascript">var obj = {};
+
+obj[Symbol.iterator] = () =&gt; 1;
+
+[...obj] // TypeError: [] is not a function
+</code></pre>
+<p>上面代码中，变量obj的Symbol.iterator方法对应的不是遍历器生成函数，因此报错。</p>
+<p>有了遍历器接口，数据结构就可以用<code>for...of</code>循环遍历（详见下文），也可以使用<code>while</code>循环遍历。</p>
+<pre><code class="javascript">var $iterator = ITERABLE[Symbol.iterator]();
+var $result = $iterator.next();
+while (!$result.done) {
+  var x = $result.value;
+  // ...
+  $result = $iterator.next();
+}
+</code></pre>
+<p>上面代码中，<code>ITERABLE</code>代表某种可遍历的数据结构，<code>$iterator</code>是它的遍历器对象。遍历器对象每次移动指针（<code>next</code>方法），都检查一下返回值的<code>done</code>属性，如果遍历还没结束，就移动遍历器对象的指针到下一步（<code>next</code>方法），不断循环。</p>
+<h2 id="调用Iterator接口的场合"><a href="#调用Iterator接口的场合" class="headerlink" title="调用Iterator接口的场合"></a>调用Iterator接口的场合</h2><p>有一些场合会默认调用Iterator接口（即<code>Symbol.iterator</code>方法），除了下文会介绍的<code>for...of</code>循环，还有几个别的场合。</p>
+<p><strong>（1）解构赋值</strong></p>
+<p>对数组和Set结构进行解构赋值时，会默认调用<code>Symbol.iterator</code>方法。</p>
+<pre><code class="javascript">let set = new Set().add(&#39;a&#39;).add(&#39;b&#39;).add(&#39;c&#39;);
+
+let [x,y] = set;
+// x=&#39;a&#39;; y=&#39;b&#39;
+
+let [first, ...rest] = set;
+// first=&#39;a&#39;; rest=[&#39;b&#39;,&#39;c&#39;];
+</code></pre>
+<p><strong>（2）扩展运算符</strong></p>
+<p>扩展运算符（…）也会调用默认的iterator接口。</p>
+<pre><code class="javascript">// 例一
+var str = &#39;hello&#39;;
+[...str] //  [&#39;h&#39;,&#39;e&#39;,&#39;l&#39;,&#39;l&#39;,&#39;o&#39;]
+
+// 例二
+let arr = [&#39;b&#39;, &#39;c&#39;];
+[&#39;a&#39;, ...arr, &#39;d&#39;]
+// [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
+</code></pre>
+<p>上面代码的扩展运算符内部就调用Iterator接口。</p>
+<p>实际上，这提供了一种简便机制，可以将任何部署了Iterator接口的数据结构，转为数组。也就是说，只要某个数据结构部署了Iterator接口，就可以对它使用扩展运算符，将其转为数组。</p>
+<pre><code class="javascript">let arr = [...iterable];
+</code></pre>
+<p><strong>（3）yield* </strong></p>
+<p>yield*后面跟的是一个可遍历的结构，它会调用该结构的遍历器接口。</p>
+<pre><code class="javascript">let generator = function* () {
+  yield 1;
+  yield* [2,3,4];
+  yield 5;
+};
+
+var iterator = generator();
+
+iterator.next() // { value: 1, done: false }
+iterator.next() // { value: 2, done: false }
+iterator.next() // { value: 3, done: false }
+iterator.next() // { value: 4, done: false }
+iterator.next() // { value: 5, done: false }
+iterator.next() // { value: undefined, done: true }
+</code></pre>
+<p><strong>（4）其他场合</strong></p>
+<p>由于数组的遍历会调用遍历器接口，所以任何接受数组作为参数的场合，其实都调用了遍历器接口。下面是一些例子。</p>
+<ul>
+<li>for…of</li>
+<li>Array.from()</li>
+<li>Map(), Set(), WeakMap(), WeakSet()（比如<code>new Map([[&#39;a&#39;,1],[&#39;b&#39;,2]])</code>）</li>
+<li>Promise.all()</li>
+<li>Promise.race()</li>
+</ul>
+<h2 id="字符串的Iterator接口"><a href="#字符串的Iterator接口" class="headerlink" title="字符串的Iterator接口"></a>字符串的Iterator接口</h2><p>字符串是一个类似数组的对象，也原生具有Iterator接口。</p>
+<pre><code class="javascript">var someString = &quot;hi&quot;;
+typeof someString[Symbol.iterator]
+// &quot;function&quot;
+
+var iterator = someString[Symbol.iterator]();
+
+iterator.next()  // { value: &quot;h&quot;, done: false }
+iterator.next()  // { value: &quot;i&quot;, done: false }
+iterator.next()  // { value: undefined, done: true }
+</code></pre>
+<p>上面代码中，调用<code>Symbol.iterator</code>方法返回一个遍历器对象，在这个遍历器上可以调用next方法，实现对于字符串的遍历。</p>
+<p>可以覆盖原生的<code>Symbol.iterator</code>方法，达到修改遍历器行为的目的。</p>
+<pre><code class="javascript">var str = new String(&quot;hi&quot;);
+
+[...str] // [&quot;h&quot;, &quot;i&quot;]
+
+str[Symbol.iterator] = function() {
+  return {
+    next: function() {
+      if (this._first) {
+        this._first = false;
+        return { value: &quot;bye&quot;, done: false };
+      } else {
+        return { done: true };
+      }
+    },
+    _first: true
+  };
+};
+
+[...str] // [&quot;bye&quot;]
+str // &quot;hi&quot;
+</code></pre>
+<p>上面代码中，字符串str的<code>Symbol.iterator</code>方法被修改了，所以扩展运算符（<code>...</code>）返回的值变成了<code>bye</code>，而字符串本身还是<code>hi</code>。</p>
+<h2 id="Iterator接口与Generator函数"><a href="#Iterator接口与Generator函数" class="headerlink" title="Iterator接口与Generator函数"></a>Iterator接口与Generator函数</h2><p><code>Symbol.iterator</code>方法的最简单实现，还是使用下一章要介绍的Generator函数。</p>
+<pre><code class="javascript">var myIterable = {};
+
+myIterable[Symbol.iterator] = function* () {
+  yield 1;
+  yield 2;
+  yield 3;
+};
+[...myIterable] // [1, 2, 3]
+
+// 或者采用下面的简洁写法
+
+let obj = {
+  * [Symbol.iterator]() {
+    yield &#39;hello&#39;;
+    yield &#39;world&#39;;
+  }
+};
+
+for (let x of obj) {
+  console.log(x);
+}
+// hello
+// world
+</code></pre>
+<p>上面代码中，<code>Symbol.iterator</code>方法几乎不用部署任何代码，只要用yield命令给出每一步的返回值即可。</p>
+<h2 id="遍历器对象的return-，throw"><a href="#遍历器对象的return-，throw" class="headerlink" title="遍历器对象的return()，throw()"></a>遍历器对象的return()，throw()</h2><p>遍历器对象除了具有<code>next</code>方法，还可以具有<code>return</code>方法和<code>throw</code>方法。如果你自己写遍历器对象生成函数，那么<code>next</code>方法是必须部署的，<code>return</code>方法和<code>throw</code>方法是否部署是可选的。</p>
+<p><code>return</code>方法的使用场合是，如果<code>for...of</code>循环提前退出（通常是因为出错，或者有<code>break</code>语句或<code>continue</code>语句），就会调用<code>return</code>方法。如果一个对象在完成遍历前，需要清理或释放资源，就可以部署<code>return</code>方法。</p>
+<pre><code class="javascript">function readLinesSync(file) {
+  return {
+    next() {
+      if (file.isAtEndOfFile()) {
+        file.close();
+        return { done: true };
+      }
+    },
+    return() {
+      file.close();
+      return { done: true };
+    },
+  };
+}
+</code></pre>
+<p>上面代码中，函数<code>readLinesSync</code>接受一个文件对象作为参数，返回一个遍历器对象，其中除了<code>next</code>方法，还部署了<code>return</code>方法。下面，我们让文件的遍历提前返回，这样就会触发执行<code>return</code>方法。</p>
+<pre><code class="javascript">for (let line of readLinesSync(fileName)) {
+  console.log(line);
+  break;
+}
+</code></pre>
+<p>注意，<code>return</code>方法必须返回一个对象，这是Generator规格决定的。</p>
+<p><code>throw</code>方法主要是配合Generator函数使用，一般的遍历器对象用不到这个方法。请参阅《Generator函数》一章。</p>
+<h2 id="for…of循环"><a href="#for…of循环" class="headerlink" title="for…of循环"></a>for…of循环</h2><p>ES6 借鉴 C++、Java、C# 和 Python 语言，引入了<code>for...of</code>循环，作为遍历所有数据结构的统一的方法。</p>
+<p>一个数据结构只要部署了<code>Symbol.iterator</code>属性，就被视为具有iterator接口，就可以用<code>for...of</code>循环遍历它的成员。也就是说，<code>for...of</code>循环内部调用的是数据结构的<code>Symbol.iterator</code>方法。</p>
+<p><code>for...of</code>循环可以使用的范围包括数组、Set 和 Map 结构、某些类似数组的对象（比如<code>arguments</code>对象、DOM NodeList 对象）、后文的 Generator 对象，以及字符串。</p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p>数组原生具备<code>iterator</code>接口（即默认部署了<code>Symbol.iterator</code>属性），<code>for...of</code>循环本质上就是调用这个接口产生的遍历器，可以用下面的代码证明。</p>
+<pre><code class="javascript">const arr = [&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;];
+
+for(let v of arr) {
+  console.log(v); // red green blue
+}
+
+const obj = {};
+obj[Symbol.iterator] = arr[Symbol.iterator].bind(arr);
+
+for(let v of obj) {
+  console.log(v); // red green blue
+}
+</code></pre>
+<p>上面代码中，空对象<code>obj</code>部署了数组<code>arr</code>的<code>Symbol.iterator</code>属性，结果<code>obj</code>的<code>for...of</code>循环，产生了与<code>arr</code>完全一样的结果。</p>
+<p><code>for...of</code>循环可以代替数组实例的<code>forEach</code>方法。</p>
+<pre><code class="javascript">const arr = [&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;];
+
+arr.forEach(function (element, index) {
+  console.log(element); // red green blue
+  console.log(index);   // 0 1 2
+});
+</code></pre>
+<p>JavaScript原有的<code>for...in</code>循环，只能获得对象的键名，不能直接获取键值。ES6提供<code>for...of</code>循环，允许遍历获得键值。</p>
+<pre><code class="javascript">var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;];
+
+for (let a in arr) {
+  console.log(a); // 0 1 2 3
+}
+
+for (let a of arr) {
+  console.log(a); // a b c d
+}
+</code></pre>
+<p>上面代码表明，<code>for...in</code>循环读取键名，<code>for...of</code>循环读取键值。如果要通过<code>for...of</code>循环，获取数组的索引，可以借助数组实例的<code>entries</code>方法和<code>keys</code>方法，参见《数组的扩展》章节。</p>
+<p><code>for...of</code>循环调用遍历器接口，数组的遍历器接口只返回具有数字索引的属性。这一点跟<code>for...in</code>循环也不一样。</p>
+<pre><code class="javascript">let arr = [3, 5, 7];
+arr.foo = &#39;hello&#39;;
+
+for (let i in arr) {
+  console.log(i); // &quot;0&quot;, &quot;1&quot;, &quot;2&quot;, &quot;foo&quot;
+}
+
+for (let i of arr) {
+  console.log(i); //  &quot;3&quot;, &quot;5&quot;, &quot;7&quot;
+}
+</code></pre>
+<p>上面代码中，<code>for...of</code>循环不会返回数组<code>arr</code>的<code>foo</code>属性。</p>
+<h3 id="Set和Map结构"><a href="#Set和Map结构" class="headerlink" title="Set和Map结构"></a>Set和Map结构</h3><p>Set和Map结构也原生具有Iterator接口，可以直接使用<code>for...of</code>循环。</p>
+<pre><code class="javascript">var engines = new Set([&quot;Gecko&quot;, &quot;Trident&quot;, &quot;Webkit&quot;, &quot;Webkit&quot;]);
+for (var e of engines) {
+  console.log(e);
+}
+// Gecko
+// Trident
+// Webkit
+
+var es6 = new Map();
+es6.set(&quot;edition&quot;, 6);
+es6.set(&quot;committee&quot;, &quot;TC39&quot;);
+es6.set(&quot;standard&quot;, &quot;ECMA-262&quot;);
+for (var [name, value] of es6) {
+  console.log(name + &quot;: &quot; + value);
+}
+// edition: 6
+// committee: TC39
+// standard: ECMA-262
+</code></pre>
+<p>上面代码演示了如何遍历Set结构和Map结构。值得注意的地方有两个，首先，遍历的顺序是按照各个成员被添加进数据结构的顺序。其次，Set结构遍历时，返回的是一个值，而Map结构遍历时，返回的是一个数组，该数组的两个成员分别为当前Map成员的键名和键值。</p>
+<pre><code class="javascript">let map = new Map().set(&#39;a&#39;, 1).set(&#39;b&#39;, 2);
+for (let pair of map) {
+  console.log(pair);
+}
+// [&#39;a&#39;, 1]
+// [&#39;b&#39;, 2]
+
+for (let [key, value] of map) {
+  console.log(key + &#39; : &#39; + value);
+}
+// a : 1
+// b : 2
+</code></pre>
+<h3 id="计算生成的数据结构"><a href="#计算生成的数据结构" class="headerlink" title="计算生成的数据结构"></a>计算生成的数据结构</h3><p>有些数据结构是在现有数据结构的基础上，计算生成的。比如，ES6的数组、Set、Map都部署了以下三个方法，调用后都返回遍历器对象。</p>
+<ul>
+<li><code>entries()</code> 返回一个遍历器对象，用来遍历<code>[键名, 键值]</code>组成的数组。对于数组，键名就是索引值；对于Set，键名与键值相同。Map结构的iterator接口，默认就是调用entries方法。</li>
+<li><code>keys()</code> 返回一个遍历器对象，用来遍历所有的键名。</li>
+<li><code>values()</code> 返回一个遍历器对象，用来遍历所有的键值。</li>
+</ul>
+<p>这三个方法调用后生成的遍历器对象，所遍历的都是计算生成的数据结构。</p>
+<pre><code class="javascript">let arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+for (let pair of arr.entries()) {
+  console.log(pair);
+}
+// [0, &#39;a&#39;]
+// [1, &#39;b&#39;]
+// [2, &#39;c&#39;]
+</code></pre>
+<h3 id="类似数组的对象"><a href="#类似数组的对象" class="headerlink" title="类似数组的对象"></a>类似数组的对象</h3><p>类似数组的对象包括好几类。下面是<code>for...of</code>循环用于字符串、DOM NodeList对象、arguments对象的例子。</p>
+<pre><code class="javascript">// 字符串
+let str = &quot;hello&quot;;
+
+for (let s of str) {
+  console.log(s); // h e l l o
+}
+
+// DOM NodeList对象
+let paras = document.querySelectorAll(&quot;p&quot;);
+
+for (let p of paras) {
+  p.classList.add(&quot;test&quot;);
+}
+
+// arguments对象
+function printArgs() {
+  for (let x of arguments) {
+    console.log(x);
+  }
+}
+printArgs(&#39;a&#39;, &#39;b&#39;);
+// &#39;a&#39;
+// &#39;b&#39;
+</code></pre>
+<p>对于字符串来说，<code>for...of</code>循环还有一个特点，就是会正确识别32位UTF-16字符。</p>
+<pre><code class="javascript">for (let x of &#39;a\uD83D\uDC0A&#39;) {
+  console.log(x);
+}
+// &#39;a&#39;
+// &#39;\uD83D\uDC0A&#39;
+</code></pre>
+<p>并不是所有类似数组的对象都具有iterator接口，一个简便的解决方法，就是使用Array.from方法将其转为数组。</p>
+<pre><code class="javascript">let arrayLike = { length: 2, 0: &#39;a&#39;, 1: &#39;b&#39; };
+
+// 报错
+for (let x of arrayLike) {
+  console.log(x);
+}
+
+// 正确
+for (let x of Array.from(arrayLike)) {
+  console.log(x);
+}
+</code></pre>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>对于普通的对象，<code>for...of</code>结构不能直接使用，会报错，必须部署了iterator接口后才能使用。但是，这样情况下，<code>for...in</code>循环依然可以用来遍历键名。</p>
+<pre><code class="javascript">var es6 = {
+  edition: 6,
+  committee: &quot;TC39&quot;,
+  standard: &quot;ECMA-262&quot;
+};
+
+for (let e in es6) {
+  console.log(e);
+}
+// edition
+// committee
+// standard
+
+for (let e of es6) {
+  console.log(e);
+}
+// TypeError: es6 is not iterable
+</code></pre>
+<p>上面代码表示，对于普通的对象，<code>for...in</code>循环可以遍历键名，<code>for...of</code>循环会报错。</p>
+<p>一种解决方法是，使用<code>Object.keys</code>方法将对象的键名生成一个数组，然后遍历这个数组。</p>
+<pre><code class="javascript">for (var key of Object.keys(someObject)) {
+  console.log(key + &quot;: &quot; + someObject[key]);
+}
+</code></pre>
+<p>在对象上部署iterator接口的代码，参见本章前面部分。一个方便的方法是将数组的<code>Symbol.iterator</code>属性，直接赋值给其他对象的<code>Symbol.iterator</code>属性。比如，想要让<code>for...of</code>环遍历jQuery对象，只要加上下面这一行就可以了。</p>
+<pre><code class="javascript">jQuery.prototype[Symbol.iterator] =
+  Array.prototype[Symbol.iterator];
+</code></pre>
+<p>另一个方法是使用Generator函数将对象重新包装一下。</p>
+<pre><code class="javascript">function* entries(obj) {
+  for (let key of Object.keys(obj)) {
+    yield [key, obj[key]];
+  }
+}
+
+for (let [key, value] of entries(obj)) {
+  console.log(key, &quot;-&gt;&quot;, value);
+}
+// a -&gt; 1
+// b -&gt; 2
+// c -&gt; 3
+</code></pre>
+<h3 id="与其他遍历语法的比较"><a href="#与其他遍历语法的比较" class="headerlink" title="与其他遍历语法的比较"></a>与其他遍历语法的比较</h3><p>以数组为例，JavaScript提供多种遍历语法。最原始的写法就是for循环。</p>
+<pre><code class="javascript">for (var index = 0; index &lt; myArray.length; index++) {
+  console.log(myArray[index]);
+}
+</code></pre>
+<p>这种写法比较麻烦，因此数组提供内置的forEach方法。</p>
+<pre><code class="javascript">myArray.forEach(function (value) {
+  console.log(value);
+});
+</code></pre>
+<p>这种写法的问题在于，无法中途跳出<code>forEach</code>循环，break命令或return命令都不能奏效。</p>
+<p><code>for...in</code>循环可以遍历数组的键名。</p>
+<pre><code class="javascript">for (var index in myArray) {
+  console.log(myArray[index]);
+}
+</code></pre>
+<p>for…in循环有几个缺点。</p>
+<ul>
+<li>数组的键名是数字，但是for…in循环是以字符串作为键名“0”、“1”、“2”等等。</li>
+<li>for…in循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键。</li>
+<li>某些情况下，for…in循环会以任意顺序遍历键名。</li>
+</ul>
+<p>总之，<code>for...in</code>循环主要是为遍历对象而设计的，不适用于遍历数组。</p>
+<p><code>for...of</code>循环相比上面几种做法，有一些显著的优点。</p>
+<pre><code class="javascript">for (let value of myArray) {
+  console.log(value);
+}
+</code></pre>
+<ul>
+<li>有着同for…in一样的简洁语法，但是没有for…in那些缺点。</li>
+<li>不同用于forEach方法，它可以与break、continue和return配合使用。</li>
+<li>提供了遍历所有数据结构的统一操作接口。</li>
+</ul>
+<p>下面是一个使用break语句，跳出<code>for...of</code>循环的例子。</p>
+<pre><code class="javascript">for (var n of fibonacci) {
+  if (n &gt; 1000)
+    break;
+  console.log(n);
+}
+</code></pre>
+<p>上面的例子，会输出斐波纳契数列小于等于1000的项。如果当前项大于1000，就会使用break语句跳出<code>for...of</code>循环。</p>
+<blockquote>
+<p>感谢阮一峰老师的原创，本分享仅供学习交流</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-08-21T11:35:18.015Z" itemprop="dateUpdated">2017年8月21日 19:35</time>
+</span><br>
+
+
+        转载请注明出处：<a href="https://microzz.com/2017/01/12/iterator/" target="_blank" rel="external">https://microzz.com/2017/01/12/iterator/</a>
+    </div>
+    <footer>
+        <a href="https://microzz.com">
+            <img src="https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" alt="Microzz">
+            Microzz
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Iterator/">Iterator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/for/">for</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2017/01/12/iterator/&title=《Iterator和for...of循环》 — 涵月天-microzz.com&pic=https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2017/01/12/iterator/&title=《Iterator和for...of循环》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2017/01/12/iterator/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Iterator和for...of循环》 — 涵月天-microzz.com&url=https://microzz.com/2017/01/12/iterator/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2017/01/12/iterator/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/13/generator/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Generator 函数</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/11/reflect/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Reflect</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃辣条~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="https://icdn.microzz.com/microzz/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="https://icdn.microzz.com/microzz/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="padding:7px;">
+        
+<p>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+    </div>
+    <div class="bottom" style="padding: 8px;">
+        <p>
+            <!-- <span style="display: none"><a href="https://microzz.com">Zhaohui</a></span> -->
+            <span>
+              <a target="_blank" href="mailto:zhaohui@microzz.com" style="border-bottom:none">
+                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUwOTQ2NDk3IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjUzMjkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTEyIDEwMDcuMjEzMTE1QzIzOC41MDgwNjYgMTAwNy4yMTMxMTUgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDUxMiAxNi43ODY4ODUgMjM4LjUwODA2NiAyMzguNTA4MDY2IDE2Ljc4Njg4NSA1MTIgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDEwMDcuMjEzMTE1IDIzOC41MDgwNjYgMTAwNy4yMTMxMTUgNTEyIDEwMDcuMjEzMTE1IDc4NS40OTE5MzQgNzg1LjQ5MTkzNCAxMDA3LjIxMzExNSA1MTIgMTAwNy4yMTMxMTVaTTUxMiA1MC4zNjA2NTZDMjU3LjA0MDc4NyA1MC4zNjA2NTYgNTAuMzYwNjU2IDI1Ny4wNDA3ODcgNTAuMzYwNjU2IDUxMiA1MC4zNjA2NTYgNzY2Ljk1OTIxMyAyNTcuMDQwNzg3IDk3My42MzkzNDQgNTEyIDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDUxMiA5NzMuNjM5MzQ0IDI1Ny4wNDA3ODcgNzY2Ljk1OTIxMyA1MC4zNjA2NTYgNTEyIDUwLjM2MDY1NlpNNzU1LjQwOTgzNiA3MjEuODM2MDY2IDI4NS4zNzcwNDkgNzIxLjgzNjA2NkMyNjYuODI3NTQxIDcyMS44MzYwNjYgMjUxLjgwMzI3OSA3MDcuOTcwMDk4IDI1MS44MDMyNzkgNjkwLjg0NzQ3NUwyNTEuODAzMjc5IDM0OS45Mzk0MUMyNTEuODAzMjc5IDMzMi44MzM1NzQgMjY2LjgyNzU0MSAzMTguOTUwODIgMjg1LjM3NzA0OSAzMTguOTUwODJMNzU1LjQwOTgzNiAzMTguOTUwODJDNzczLjk1OTM0NCAzMTguOTUwODIgNzg4Ljk4MzYwNyAzMzIuODMzNTc0IDc4OC45ODM2MDcgMzQ5LjkzOTQxTDc4OC45ODM2MDcgNjkwLjg0NzQ3NUM3ODguOTgzNjA3IDcwNy45NzAwOTggNzczLjk1OTM0NCA3MjEuODM2MDY2IDc1NS40MDk4MzYgNzIxLjgzNjA2NlpNNzU1LjQwOTgzNiAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNTAuOTYzNDEgNTIxLjkyMTA0OSA1NjkuMjkzNjM5IDc1NS40MDk4MzYgMzUzLjc2NjgyIDc1NS40MDk4MzYgMzQ5LjkzOTQxWk03NTUuNDA5ODM2IDM5Ny41OTczNzcgNTM4LjQzOTM0NCA1OTcuODY0OTE4IDUwNS4zODU5NjcgNTk3Ljg2NDkxOCAyODUuMzc3MDQ5IDM5NC43NzcxOCAyODUuMzc3MDQ5IDY5MC44NDc0NzUgNzU1LjQwOTgzNiA2OTAuODQ3NDc1IDc1NS40MDk4MzYgMzk3LjU5NzM3N1oiIHAtaWQ9IjUzMzAiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L3N2Zz4=" alt="E-mail联系" title="E-mail" style="width:20px;height:20px;border:none;"/>
+              </a>
+            </span>
+
+	          <span>
+              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=903036377&site=qq&menu=yes" style="border-bottom:none">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUxNTc4MDQ0IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjUgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE1MjE0IiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjIwMC4xOTUzMTI1IiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTE2Ljk3MSAzNC44MTJjLTI2Mi44MzYgMC00NzUuOTExIDIxMy4wNzEtNDc1LjkxMSA0NzUuOTExczIxMy4wNzUgNDc1LjkxIDQ3NS45MTEgNDc1LjkxYzI2Mi44MzggMCA0NzUuOTE1LTIxMy4wNzAgNDc1LjkxNS00NzUuOTEgMC0yNjIuODM5LTIxMy4wNzYtNDc1LjkxMS00NzUuOTE1LTQ3NS45MTF6TTUxNi45NzEgOTYwLjA5OGMtMjQ4LjE4MSAwLTQ0OS4zNzMtMjAxLjE5MS00NDkuMzczLTQ0OS4zNzVzMjAxLjE5Mi00NDkuMzcxIDQ0OS4zNzMtNDQ5LjM3MWMyNDguMTgyIDAgNDQ5LjM3NyAyMDEuMTg4IDQ0OS4zNzcgNDQ5LjM3MSAwIDI0OC4xODMtMjAxLjE5NiA0NDkuMzc1LTQ0OS4zNzcgNDQ5LjM3NXoiIHAtaWQ9IjE1MjE1IiBmaWxsPSIjZmZmZmZmIj48L3BhdGg+PHBhdGggZD0iTTc2Ni45ODYgNTY5LjI2M2wtMS43NDktOS4zMjMtMS4xNjUtNC42NjEtMS4xNjctNC42NjEtMS43NDctNC42NjItMS43NDgtNS4yNDQtMi4zMy01LjI0NC0yLjMzMi01LjI0NC00LjA3OC04LjE1Ny0zLjQ5Ni03LjU3NS0zLjQ5Ni02LjQxLTIuOTEzLTUuODI3LTMuNDk2LTUuODI2LTIuMzMxLTQuNjYyLTUuMjQ0LTguMTU4LTYuOTkyLTkuOTA2LTEuNzQ5LTIuOTEyLTAuNTgyLTAuNTgzIDAtMS4xNjYgMS4xNjYtMy40OTYgMS4xNjUtMi45MTQgMS43NDctNS44MjcgMC41ODMtMy40OTYgMC0yLjkxNCAwLjU4My0yLjMzMSAwLTIuOTEzLTAuNTgzLTIuOTEzLTAuNTgzLTIuOTE0LTAuNTgyLTQuNjYyLTEuMTY1LTQuNjYxLTEuNzQ5LTQuNjYyLTEuNzQ4LTQuMDc5LTEuNzQ4LTMuNDk3LTEuNzQ3LTMuNDk2LTEuNzQ4LTIuOTE0LTMuNDk2LTUuMjQ1LTAuNTgyLTEuNzQ3LTAuNTg0LTEuMTY2LTEuMTY0LTkuMzIzLTEuMTY2LTUuODI2LTAuNTgzLTcuNTc1LTEuNzQ4LTcuNTc1LTIuMzMxLTguNzQxLTEuMTY0LTUuMjQzLTEuMTY1LTQuMDc5LTEuNzQ5LTQuNjYxLTEuNzQ4LTUuMjQ1LTEuNzQ5LTUuMjQzLTEuNzQ3LTUuMjQ1LTQuNjYxLTkuOTA1LTIuMzMtNC42NjItMy40OTgtNS4yNDQtMi45MTItNC42NjItMi45MTQtNS4yNDMtNC4wNzgtNS4yNDUtMy40OTctNC42NjEtNC4wNzktNC42NjItNC42NjEtNC42NjEtNC4wNzktNC4wNzktNS4yNDMtNC4wOC0yLjkxNC0yLjMzMS0yLjMzLTEuNzQ4LTUuODI3LTQuMDc5LTYuNDEtNC4wNzktNi40MDgtNC4wNzktNy41NzUtMy40OTctNi45OTItMi45MTQtNi45OTItMi45MTMtNy41NzYtMi45MTQtNy41NzMtMS43NDgtNy41NzUtMS43NDgtOC4xNTctMS43NDgtNy41NzUtMS43NDgtNy41NzUtMS4xNjUtOC4xNTctMC41ODMtNy41NzYtMS4xNjYtOC4xNTcgMC03LjU3NSAwLTcuNTc0IDAtNy41NzUgMC41ODMtNy41NzQgMS4xNjctNy41NzUgMC41ODItNy41NzUgMS4xNjYtNi45OTIgMS4xNjUtNi45OTEgMS43NDgtNi45OTIgMi4zMzEtNi45OTMgMi4zMzItNi40MDkgMi4zMy02LjQxIDIuOTE0LTUuODI1IDIuMzMxLTUuODI4IDMuNDk3LTUuODI2IDMuNDk2LTUuMjQ1IDMuNDk2LTUuMjQzIDQuMDgtNC42NjIgMy40OTZMNDEwLjM4MyAyODJsLTUuODI3IDUuMjQ1LTUuMjQ0IDUuODI2LTQuNjYxIDUuODI3LTQuNjYxIDUuODI4LTQuMDc4IDUuMjQzLTMuNDk3IDUuODI3LTIuMzMxIDIuOTE0LTEuNzQ4IDIuOTEzLTMuNDk2IDUuMjQ1LTIuOTEzIDUuMjQ0LTIuMzMxIDUuMjQ0LTIuMzMgNS4yNDUtMi4zMzEgNC42NjEtMS43NDggNC42NjEtMS43NDggNS4yNDQtMS43NDggNC4wNzktMS43NDggOC4xNTgtMi4zMzEgOC4xNTgtMC41ODIgNi40MDktMS4xNjYgNS44MjcgMCA0LjA3OSAwIDMuNDk2IDAgMy40OTctMS4xNjUgMS43NDgtMS43NDggMS43NDgtMS4xNjYgMi4zMzEtMC41ODIgMi4zMy0xLjc0OSA0LjY2Mi0xLjE2NSA0LjY2MS0wLjU4MiAzLjQ5NiAwIDMuNDk3IDAgMi45MTMtMy40OTcgNC4wNzktMS43NDcgNC42NjItMi4zMzEgNC4wNzgtMS4xNjUgNC4wNzktMC41ODMgMy40OTctMS4xNjUgMy40OTYgMCAyLjkxNCAwIDMuNDk2IDAgMi4zMzEgMC41ODMgMi4zMzEgMS4xNjUgNC4wNzkgMC41ODMgMi45MTQtMS43NDggMS4xNjUtNC42NjIgMy40OTctNi40MDkgNS44MjctNC4wNzkgMy40OTYtNC4wNzggMy40OTctMi45MTQgMi4zMzEtMS43NDggMi4zMy00LjY2MSA1LjI0NS00LjY2MiA0LjY2Mi0zLjQ5NSA0LjY2Mi00LjA3OSA1LjgyNy00LjA3OSA1LjgyNi00LjA3OCA2LjQxLTMuNDk3IDUuMjQ0LTIuOTEzIDYuNDEtMi45MTMgNS44MjYtMS43NDggNS4yNDQtMi4zMzEgNS44MjctMS43NDggNS44MjYtMS43NDggNS44MjctMS43NDggNS4yNDQtMC41ODIgNS4yNDQtMC41ODMgNS4yNDQtMS4xNjUgNC42NjEtMC41ODMgOS4zMjMgMCA4Ljc0IDAgNC4wNzkgMC41ODMgNC4wNzggMC41ODEgNi40MSAwLjU4NCAzLjQ5NiAxLjE2NSAyLjkxMyAwLjU4MyAyLjkxNCAwLjU4MiAxLjc0OCAyLjMzMSAzLjQ5NiAwLjU4MiAxLjE2NSAxLjE2NiAxLjE2NCAxLjE2NSAwIDEuMTY2IDAuNTg0IDEuMTY1IDAgMS43NDgtMC41ODQgNC42NjEtMS4xNjQgMy40OTctMS4xNjUgMy40OTYtMi4zMyAyLjkxMy0yLjMzMiAzLjQ5NS0yLjMzIDIuOTE0LTIuOTE0IDIuMzMxLTIuOTE0IDIuOTEzLTIuOTEyIDIuMzMxLTIuOTEzIDEuNzQ4LTIuOTE0IDEuMTY1LTIuMzMxIDIuOTEzLTUuMjQ0IDAuNTgzLTEuNzQ3IDAuNTgzLTEuMTY2IDAuNTgyLTEuMTY2IDAuNTgzLTEuMTY0IDAuNTgzIDAgMC41ODMtMC41ODMgMC41ODIgMCAwIDAuNTgzIDAuNTgyIDAgMC41ODQgMCAxLjE2NSA2LjQwOCAxLjc0OCA1LjI0NCAyLjMzIDUuMjQ1IDIuMzMxIDQuNjYgMS43NDggNC42NjIgMi4zMzEgNC42NjIgMi4zMyA0LjA3OSAyLjMzMSA0LjA3OSAyLjMzMSAzLjQ5NSAyLjMzIDMuNDk3IDUuMjQ1IDYuNDA4IDQuNjYxIDUuMjQ1IDQuNjYxIDQuNjYxIDQuMDc5IDQuMDc4IDQuMDc5IDIuOTE0IDUuODI3IDEuNzQ3IDIuMzMgMS4xNjUgMC41ODIgMC41ODQgMCAwLjU4My0wLjU4MiAwLjU4MS0xLjE2NiAwLjU4NC00LjA3OCAwLjU4Mi00LjA3OSAwLTMuNDk2IDAuNTgzLTMuNDk2IDAuNTgzLTMuNDk2IDEuMTY1LTIuOTE0IDEuMTY1LTIuMzMgMS4xNjYtMi4zMzEgMS4xNjUtMi4zMyAwLjU4My0yLjMzMSAxLjc0OC0xLjE2NSAxLjE2Ni0yLjMzMSAxLjE2NC0yLjMzMSAyLjkxNC0xLjE2NSAxLjc0OC0xLjE2NSAxLjE2NS0xLjE2NiAyLjkxNC0wLjU4MiAyLjkxMi0xLjE2NiAyLjMzMi0wLjU4MiAyLjMzIDAgMi45MTMgMCAxLjE2Ni0wLjU4MyAyLjMzIDAgMi4zMyAwIDIuMzMyIDAgMS43NDggMCAyLjMzMSAwLjU4MyAxLjE2NSAxLjc0OCAzLjQ5NiAwLjU4MiAxLjc0NyAwLjU4MyAyLjMzMSAxLjc0OCAxLjc0OCAxLjE2NSAxLjE2NiAxLjc0OCAxLjc0NyAxLjE2NiAxLjE2NyA0LjA3OCAyLjMyOSA0LjA3OSAyLjkxNCA0LjA3OCAyLjMzIDUuMjQ1IDEuNzQ4IDUuMjQ0IDEuNzQ4IDUuMjQ0IDEuNzQ5IDUuODI2IDEuNzQ3IDUuODI3IDEuMTY3IDYuNDA5IDAuNTgxIDUuODI3IDEuMTY2IDYuOTkzIDEuMTY2IDEyLjgxNyAxLjE2NSAxMi44MiAwLjU4MiAxMi4yMzYgMCA1LjgyNiAwIDUuODI4IDAgNS4yNDMtMC41ODIgNC42NjEtMC41ODMgNS4yNDUtMC41ODIgNC4wNzggMCA2Ljk5My0xLjc0OCA1LjI0My0xLjE2NSA1LjI0NC0xLjE2NyA4Ljc0LTMuNDk2IDQuMDc5LTEuNzQ4IDQuMDc4LTEuNzQ4IDYuNDEtMy40OTUgNS44MjYtMi45MTQgNC4wNzgtMi45MTMgMy40OTctMi4zMzEgNC42NjIgMCAzLjQ5NSAwLjU4MyA3LjU3NiAwLjU4MyAzLjQ5NiAwIDIuOTEyIDAgMi4zMzEgMC41ODIgMi4zMyAwLjU4MyA0LjA4IDEuMTY1IDMuNDk2IDEuNzQ4IDguMTU3IDIuMzMxIDcuNTc1IDIuOTEzIDguMTU3IDEuNzQ4IDcuNTc0IDEuNzQ5IDguMTU4IDEuNzQ3IDguMTU4IDEuNzQ5IDguMTU3IDAuNTgyIDcuNTczIDAuNTgyIDcuNTc2IDEuMTY3IDcuNTc0IDAuNTgxIDcuNTc2IDAgNy41NzMgMCA2Ljk5MiAwIDYuOTkzLTEuMTY0IDYuOTkyLTAuNTg0IDYuNDEtMC41ODIgNi40MDgtMS4xNjUgNS44MjctMS43NDkgNS44MjYtMS4xNjQgMi4zMzItMC41ODQgMi45MTQtMS4xNjUgNS4yNDMtMS43NDggNC4wNzktMi4zMyA0LjY2Mi0xLjc0OCA0LjA3OC0yLjMzIDMuNDk1LTIuMzMyIDEuMTY3LTEuNzQ4IDEuNzQ3LTEuNzQ4IDIuMzMxLTIuMzMxIDEuNzQ3LTIuOTEzIDEuMTY2LTIuMzMgMC41ODItMS4xNjUgMC41ODQtMS43NDkgMC41ODItMS43NDggMC0xLjc0NyAwLjU4Mi0xLjc0OC0wLjU4Mi0yLjMzMi0wLjU4Mi0yLjMzLTAuNTg0LTIuMzMtMS4xNjUtMi4zMzItMS4xNjUtMi45MTMtMS43NDgtMS43NDctMS43NDgtMi4zMzItMi4zMy0xLjc0OC00LjY2Mi00LjA3OC01LjI0NC00LjA3OS01LjI0My0yLjkxMy01LjgyOC0yLjkxNC0xMi44MTgtNi40MDktMi41NDktMS41MjkgNC4yOTgtNC4yOTcgMi45MTItMi45MTQgMi4zMzEtMi45MTMgNC4wNzgtNS44MjYgNC4wNzktNi40MSAzLjQ5Ny01LjgyNyAyLjkxMy01LjI0NSA0LjY2MS0xMC40ODcgMy40OTYtOC43NCAxLjc0OC01LjgyNyAxLjc0Ny0yLjMzIDAuNTg0LTEuNzQ4IDEuMTY0LTAuNTgzIDAuNTg0IDAgMC41ODIgMCAyLjkxMyA2LjQwOSAyLjkxMyA1LjgyOCAyLjMzMiAzLjQ5NSAyLjMzIDMuNDk2IDIuMzMxIDMuNDk2IDIuMzMxIDMuNDk2IDIuMzMgMi4zMzEgMS4xNjUgMS4xNjQgMS4xNjYgMS43NDkgMS43NDggMC41ODQgMS4xNjQgMS4xNjQgMi4zMzIgMS4xNjUgMS43NDggMC41ODMgMC41ODIgMCAxLjE2NiAwIDEuNzQ3LTAuNTgzIDEuNzQ5LTEuMTY1IDEuNzQ4LTAuNTgzIDEuNzQ3LTEuMTY1IDEuMTY3LTEuNzQ5IDEuNzQ3LTEuNzQ2IDEuMTY2LTEuNzQ5IDEuMTY1LTIuMzMgMS43NDctMi4zMzIgMS4xNjctMi4zMyAwLjU4MS0yLjkxMyAxLjc0OS01LjgyNyAxLjc0OC02LjQxIDAuNTgyLTYuOTkxIDAuNTgzLTQuMDc4IDAtMy40OTcgMC0zLjQ5NiAwLTQuNjYxLTEuMTY1LTguMTU4TDc2Ni45ODYgNTY5LjI2M3pNNjgwLjc0OCA2NzAuNjQ5bC0wLjU4Mi0wLjU4MiAwLjk3MS0wLjk3MUw2ODAuNzQ4IDY3MC42NDl6IiBwLWlkPSIxNTIxNiIgZmlsbD0iI2ZmZmZmZiI+PC9wYXRoPjwvc3ZnPg==" alt="QQ联系microzz" title="QQ" style="width:22px;height:22px;border:none;"/></a>
+            </span>
+
+	          <span>
+              <a target="_blank" href="https://github.com/microzz" style="border-bottom:none">
+              <img src="data:image/png;base64,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" alt="GitHub microzz" title="GitHub" style="width:19px;height:19px;border:none;"/></a>
+            </span>
+            <!-- <span>&copy; 2015 - 2018</span> -->
+
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2017/01/12/iterator/&title=《Iterator和for...of循环》 — 涵月天-microzz.com&pic=https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2017/01/12/iterator/&title=《Iterator和for...of循环》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2017/01/12/iterator/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Iterator和for...of循环》 — 涵月天-microzz.com&url=https://microzz.com/2017/01/12/iterator/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2017/01/12/iterator/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAAByklEQVR42u3aS47DIBAFwNz/0hkpq0gZe94DTDxSsbL8IUUWLbrpxyMez9d4v34fR+98vn90Z/HAxcWd5j5Px+fPt9+eo9t5cHFxd3Lb4JUs4Gj+9u/AxcW9Mzd/2n6Fi4v7f7nn25f5hAoXF/du3CT5Se4kCzifbVmuhouLO8GdCTqrri+v7+Li4i46lUiC2liZdfDXcXFxt3CT4sX51mRsA5QfxD7aWgsuLu40Nz/4TA5F2hCWBzhcXNyd3OjxUODL/4J6flxc3Iu5eWKTL6xNh+q0BxcX92LuWKha1VQx1sKFi4u7n9uWM9Ye1dQHq7i4uBdw24AycxCbBylcXNy7cfMkJC+Sjr3zy1e4uLgbuTNJS96AlUD/WCQuLu5Xue2xR1JgHSu44OLi7ucmOUVRZy2Tovx9XFzcndwcWqw+3tbUiRAuLu5GbnugMtYkMRYKcXFxv8VtC6YJvQ1SRQMWLi7uxdyZBGaseJonRW3KhIuLu5Y7H7zybU0+z+H8uLi4G7l1nXUoKWoLpsVjXFzcL3HbImnexlGUUXBxcW/PHQuCM+0auLi4O7l5+8VMw1Zem1lQFsHFxZ3gzjdX5eWPsS0ULi7uRu4P8nLnHjQLamcAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+<script>
+// (function(){
+//     var bp = document.createElement('script');
+//     var curProtocol = window.location.protocol.split(':')[0];
+//     if (curProtocol === 'https') {
+//         bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+//     }
+//     else {
+//         bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+//     }
+//     var s = document.getElementsByTagName("script")[0];
+//     s.parentNode.insertBefore(bp, s);
+// })();
+console.log("%c Powered by Zhaohui - microzz.com","background-image:-webkit-gradient( linear, left top,right top, color-stop(0, #00a419),color-stop(0.15, #f44336), color-stop(0.29, #ff4300),color-stop(0.3, #AA00FF),color-stop(0.4, #8BC34A), color-stop(0.45, #607D8B),color-stop(0.6, #4096EE), color-stop(0.75, #D50000),color-stop(0.9, #4096EE), color-stop(1, #FF1A00));color:transparent;-webkit-background-clip:text;font-size:13px;");
+</script>
+
+    <!-- <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script> -->
+
+<script src="https://icdn.microzz.com/microzz/js/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+</script>
+
+<!-- <script src="/js/main.min.js?v=1.4.5"></script> -->
+<script src="https://icdn.microzz.com/microzz/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<!-- <script src="/js/search.min.js?v=1.4.5" async></script> -->
+<script src="https://icdn.microzz.com/microzz/js/search.min.js" async></script>
+
+
+
+
+
+
+<!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script async src="https://icdn.microzz.com/microzz/js/busuanzi.pure.mini.js"></script>
+
+<script>
+  // if ('serviceWorker' in navigator) {
+  //  navigator.serviceWorker.register('/sw0110.js').then(function (registration) {
+      // console.log('ServiceWorker registration successful with scope: ', registration.scope);
+   // }).catch(function (err) {
+      // console.log('ServiceWorker registration failed: ', err);
+   // });
+ // }
+  // var _hmt = _hmt || [];
+  // (function() {
+  //   var hm = document.createElement("script");
+  //   hm.src = "https://hm.baidu.com/hm.js?ce268e8f61069a1636a4629acbb82b9a";
+  //   var s = document.getElementsByTagName("script")[0];
+  //   s.parentNode.insertBefore(hm, s);
+  // })();
+</script>
+
+</body>
+</html>

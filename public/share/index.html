@@ -1,0 +1,137 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>microzz的面试经验分享</title>
+
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" /> -->
+
+    <link href="css/impress-demo.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<body class="impress-not-supported">
+
+<!--
+    For example this fallback message is only visible when there is `impress-not-supported` class on body.
+-->
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<div id="impress">
+
+    <div id="index" class="step slide" data-x="-1000" data-y="-1500">
+        <q><b>个人经验分享交流</b></q>
+        <ul>
+          <li>1) 面试经历</li>
+          <li>2) 说说开源</li>
+          <li>3) 如何学习</li>
+        </ul>
+        <span class="aboutme">Powered by Zhaohui - <a href="https://microzz.com">microzz.com</a></span>
+    </div>
+
+    <div id="title" class="step" data-x="0" data-y="0" data-scale="4">
+        <span class="try">有备无患</span>
+        <h1 style="text-align: center">面试</h1>
+        <span class="footnote"><sup>*</sup> 撸几个好项目</span><br/>
+        <span class="footnote"><sup>*</sup> 写一份好简历</span><br/>
+        <span class="footnote"><sup>*</sup> 拿一个好offer</span>
+    </div>
+
+    <div id="htmlcss" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
+        <p><strong>HTML/HTML5 + CSS/CSS3</strong><br/>
+        1) 盒子模型<br/>
+        2) CSS实现垂直水平居中(<span class="hot">hot</span>)<br/>
+        3) 响应式布局
+    </div>
+
+    <div id="big" class="step" data-x="3500" data-y="2100" data-rotate="180" data-scale="6">
+        <p>你真的知道 <b>JS</b> <span class="thoughts">吗</span></p>
+    </div>
+
+    <div id="tiny" class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
+        <p><b>JavaScript</b></p>
+        <p style="margin-top: 20px;">前端最重要的部分 <b>没有之一</b></p>
+        <p style="font-size: 60%;margin-top: 20px;">DOM + BOM + <b style="color: red;">ECMAScript</b> = JS</p>
+    </div>
+
+    <div id="ing" class="step" data-x="3500" data-y="-850" data-rotate="270" data-scale="6">
+        <p><br> <b class="positioning">闭包</b><b style="margin-left: 90px;margin-right: 10px;transform: rotate(20deg)">this</b><b class="rotating">异步</b><br>
+          <b class="rotating">原型链</b> <span style="margin-left: 90px;transform: rotate(-20deg)">OOP</span> <br> <b class="scaling">FP</b> <b class="rotating">柯里化</b><span style="margin-left: 90px;transform: rotate(-20deg)">bind</span>
+          <br><span style="margin-right: 20px;transform: rotate(-20deg)">throttle</span>
+          <span style="display: inline-block;transform: rotate(19deg);">debounce</span>
+          <b style="margin-right: 10px;transform: rotate(10deg)">设计模式</b>
+        </p>
+    </div>
+
+    <div id="imagination" class="step" data-x="6700" data-y="-300" data-scale="6">
+        <p>拓展<br>
+          <b>RxJS</b><b style="margin-left: 30%;">Ramda</b><br>
+          <b>Rollup</b><b style="margin-left: 21%;">Prepack</b><br>
+          <b>PWA</b><b style="margin-left: 30%;">...</b><br>
+        </p>
+    </div>
+
+    <div id="source" class="step" data-x="6300" data-y="2000" data-rotate="20" data-scale="4">
+        <p>框架/库</p>
+        <q>1) jQuery Bootstrap</q><br>
+        <q>2) Vue React Angular</q><br>
+        <q>3) Underscore Lodash</q>
+    </div>
+
+    <div id="one-more-thing" class="step one-more-thing" data-x="6000" data-y="4000" data-scale="2">
+        <p>其他</p>
+        <p>http状态码 (200,301,304,500...)</p>
+        <p>数据结构与算法(排序算法、红黑树、二叉树...)</p>
+        <p>操作系统</p>
+        <p>Web安全 (XSS、CSRF、SQL注入...)</p>
+        <p>TCP/IP(三次握手、四次挥手...)</p>
+        <p>性能优化解决方案</p>
+        <p>跨域</p>
+    </div>
+
+    <div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+        <p><span class="have" style="padding-top: 30%;padding-left: 20%">提升自己</span></p>
+        <span class="footnote" style="padding-left: 20%">牛客网 (面试题)</span><br>
+        <span class="footnote" style="padding-left: 20%">Codewars (编程题)</span><br>
+        <span class="footnote" style="padding-left: 20%">掘金、SegmentFault (技术社区)</span><br>
+        <span class="footnote" style="padding-left: 20%">GitHub (全球最大的同性交友网站)</span><br>
+        <span class="footnote" style="padding-left: 20%">...</span><br>
+    </div>
+
+    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    </div>
+
+</div>
+
+<script>
+if ("ontouchstart" in document.documentElement) {
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+<script>
+var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ce268e8f61069a1636a4629acbb82b9a";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>

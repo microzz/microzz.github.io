@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Set和Map数据结构 | 涵月天-microzz.com | IT技术分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript,JS,ES6,ECMAScript6,Set,Map">
+    <meta name="description" content="Set和Map数据结构Set基本用法ES6提供了新的数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+Set本身是一个构造函数，用来生成Set数据结构。
+var s = new Set();
+
+[2, 3, 5, 4, 5, 2, 2].map(x =&amp;gt; s.add(x));
+
+for (let i of s) {
+  console.log(i);
+}
+// 2 3 5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Set和Map数据结构">
+<meta property="og:url" content="https://microzz.com/2017/01/05/set-map/index.html">
+<meta property="og:site_name" content="涵月天-microzz.com">
+<meta property="og:description" content="Set和Map数据结构Set基本用法ES6提供了新的数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+Set本身是一个构造函数，用来生成Set数据结构。
+var s = new Set();
+
+[2, 3, 5, 4, 5, 2, 2].map(x =&amp;gt; s.add(x));
+
+for (let i of s) {
+  console.log(i);
+}
+// 2 3 5">
+<meta property="og:updated_time" content="2017-01-12T08:16:10.817Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Set和Map数据结构">
+<meta name="twitter:description" content="Set和Map数据结构Set基本用法ES6提供了新的数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+Set本身是一个构造函数，用来生成Set数据结构。
+var s = new Set();
+
+[2, 3, 5, 4, 5, 2, 2].map(x =&amp;gt; s.add(x));
+
+for (let i of s) {
+  console.log(i);
+}
+// 2 3 5">
+    
+        <link rel="alternative" href="/atom.xml" title="涵月天-microzz.com" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- <link rel="stylesheet" href="/css/style.css?v=1.4.5"> -->
+    <!-- <link rel="stylesheet" href="css.css" media="none" onload="if(media!='all')media='all'"> -->
+    <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/style.css?v=2">
+    <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/atom-one-dark.1.css">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background:none;">
+      <div class="brand" style="background-color:#4154b2;">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" style="height:100%;">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Microzz</h5>
+          <a href="mailto:zhaohui@microzz.com" title="zhaohui@microzz.com" class="mail">zhaohui@microzz.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/archives/"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/microzz" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                GitHub
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://juejin.im/user/57f0f27a128fe100542d29ad" target="_blank" >
+                <i class="icon icon-lg icon-pencil"></i>
+                掘金专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/microzz/posts" target="_blank" >
+                <i class="icon icon-lg icon-leaf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-music/" target="_blank" >
+                <i class="icon icon-lg icon-music"></i>
+                Vue音乐播放器
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-cnode/" target="_blank" >
+                <i class="icon icon-lg icon-comments"></i>
+                Vue CNode社区
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/vue-chat/" target="_blank" >
+                <i class="icon icon-lg icon-globe"></i>
+                智能聊天室
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/github-ranking/" target="_blank" >
+                <i class="icon icon-lg icon-star"></i>
+                GitHub排行榜
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/about/friendly.html"  >
+                <i class="icon icon-lg icon-link"></i>
+                友链
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Set和Map数据结构</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Set和Map数据结构</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-05T03:40:19.000Z" itemprop="datePublished" class="page-time">
+  2017-01-05
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    <script src="https://icdn.microzz.com/microzz/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    Array.prototype.slice.call(document.querySelectorAll('pre code')).forEach(function(block) {
+      hljs.highlightBlock(block);
+  } )
+</script>
+
+<article id="post-set-map"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Set和Map数据结构</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年01月05日 11:40" datetime="2017-01-05T03:40:19.000Z"  itemprop="datePublished">2017-01-05</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Set和Map数据结构"><a href="#Set和Map数据结构" class="headerlink" title="Set和Map数据结构"></a>Set和Map数据结构</h1><h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><h3 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h3><p>ES6提供了新的数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。</p>
+<p>Set本身是一个构造函数，用来生成Set数据结构。</p>
+<pre><code class="javascript">var s = new Set();
+
+[2, 3, 5, 4, 5, 2, 2].map(x =&gt; s.add(x));
+
+for (let i of s) {
+  console.log(i);
+}
+// 2 3 5 4
+</code></pre>
+<p>上面代码通过<code>add</code>方法向Set结构加入成员，结果表明Set结构不会添加重复的值。</p>
+<p>Set函数可以接受一个数组（或类似数组的对象）作为参数，用来初始化。</p>
+<pre><code class="javascript">// 例一
+var set = new Set([1, 2, 3, 4, 4]);
+[...set]
+// [1, 2, 3, 4]
+
+// 例二
+var items = new Set([1, 2, 3, 4, 5, 5, 5, 5]);
+items.size // 5
+
+// 例三
+function divs () {
+  return [...document.querySelectorAll(&#39;div&#39;)];
+}
+
+var set = new Set(divs());
+set.size // 56
+
+// 类似于
+divs().forEach(div =&gt; set.add(div));
+set.size // 56
+</code></pre>
+<p>上面代码中，例一和例二都是<code>Set</code>函数接受数组作为参数，例三是接受类似数组的对象作为参数。</p>
+<p>上面代码中，也展示了一种去除数组重复成员的方法。</p>
+<pre><code class="javascript">// 去除数组的重复成员
+[...new Set(array)]
+</code></pre>
+<p>向Set加入值的时候，不会发生类型转换，所以<code>5</code>和<code>&quot;5&quot;</code>是两个不同的值。Set内部判断两个值是否不同，使用的算法叫做“Same-value equality”，它类似于精确相等运算符（<code>===</code>），主要的区别是<code>NaN</code>等于自身，而精确相等运算符认为<code>NaN</code>不等于自身。</p>
+<pre><code class="javascript">let set = new Set();
+let a = NaN;
+let b = NaN;
+set.add(a);
+set.add(b);
+set // Set {NaN}
+</code></pre>
+<p>上面代码向Set实例添加了两个<code>NaN</code>，但是只能加入一个。这表明，在Set内部，两个<code>NaN</code>是相等。</p>
+<p>另外，两个对象总是不相等的。</p>
+<pre><code class="javascript">let set = new Set();
+
+set.add({});
+set.size // 1
+
+set.add({});
+set.size // 2
+</code></pre>
+<p>上面代码表示，由于两个空对象不相等，所以它们被视为两个值。</p>
+<h3 id="Set实例的属性和方法"><a href="#Set实例的属性和方法" class="headerlink" title="Set实例的属性和方法"></a>Set实例的属性和方法</h3><p>Set结构的实例有以下属性。</p>
+<ul>
+<li><code>Set.prototype.constructor</code>：构造函数，默认就是<code>Set</code>函数。</li>
+<li><code>Set.prototype.size</code>：返回<code>Set</code>实例的成员总数。</li>
+</ul>
+<p>Set实例的方法分为两大类：操作方法（用于操作数据）和遍历方法（用于遍历成员）。下面先介绍四个操作方法。</p>
+<ul>
+<li><code>add(value)</code>：添加某个值，返回Set结构本身。</li>
+<li><code>delete(value)</code>：删除某个值，返回一个布尔值，表示删除是否成功。</li>
+<li><code>has(value)</code>：返回一个布尔值，表示该值是否为<code>Set</code>的成员。</li>
+<li><code>clear()</code>：清除所有成员，没有返回值。</li>
+</ul>
+<p>上面这些属性和方法的实例如下。</p>
+<pre><code class="javascript">s.add(1).add(2).add(2);
+// 注意2被加入了两次
+
+s.size // 2
+
+s.has(1) // true
+s.has(2) // true
+s.has(3) // false
+
+s.delete(2);
+s.has(2) // false
+</code></pre>
+<p>下面是一个对比，看看在判断是否包括一个键上面，<code>Object</code>结构和<code>Set</code>结构的写法不同。</p>
+<pre><code class="javascript">// 对象的写法
+var properties = {
+  &#39;width&#39;: 1,
+  &#39;height&#39;: 1
+};
+
+if (properties[someName]) {
+  // do something
+}
+
+// Set的写法
+var properties = new Set();
+
+properties.add(&#39;width&#39;);
+properties.add(&#39;height&#39;);
+
+if (properties.has(someName)) {
+  // do something
+}
+</code></pre>
+<p><code>Array.from</code>方法可以将Set结构转为数组。</p>
+<pre><code class="javascript">var items = new Set([1, 2, 3, 4, 5]);
+var array = Array.from(items);
+</code></pre>
+<p>这就提供了去除数组重复成员的另一种方法。</p>
+<pre><code class="javascript">function dedupe(array) {
+  return Array.from(new Set(array));
+}
+
+dedupe([1, 1, 2, 3]) // [1, 2, 3]
+</code></pre>
+<h3 id="遍历操作"><a href="#遍历操作" class="headerlink" title="遍历操作"></a>遍历操作</h3><p>Set结构的实例有四个遍历方法，可以用于遍历成员。</p>
+<ul>
+<li><code>keys()</code>：返回键名的遍历器</li>
+<li><code>values()</code>：返回键值的遍历器</li>
+<li><code>entries()</code>：返回键值对的遍历器</li>
+<li><code>forEach()</code>：使用回调函数遍历每个成员</li>
+</ul>
+<p>需要特别指出的是，<code>Set</code>的遍历顺序就是插入顺序。这个特性有时非常有用，比如使用Set保存一个回调函数列表，调用时就能保证按照添加顺序调用。</p>
+<p><strong>（1）<code>keys()</code>，<code>values()</code>，<code>entries()</code></strong></p>
+<p><code>keys</code>方法、<code>values</code>方法、<code>entries</code>方法返回的都是遍历器对象（详见《Iterator 对象》一章）。由于 Set 结构没有键名，只有键值（或者说键名和键值是同一个值），所以<code>keys</code>方法和<code>values</code>方法的行为完全一致。</p>
+<pre><code class="javascript">let set = new Set([&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]);
+
+for (let item of set.keys()) {
+  console.log(item);
+}
+// red
+// green
+// blue
+
+for (let item of set.values()) {
+  console.log(item);
+}
+// red
+// green
+// blue
+
+for (let item of set.entries()) {
+  console.log(item);
+}
+// [&quot;red&quot;, &quot;red&quot;]
+// [&quot;green&quot;, &quot;green&quot;]
+// [&quot;blue&quot;, &quot;blue&quot;]
+</code></pre>
+<p>上面代码中，<code>entries</code>方法返回的遍历器，同时包括键名和键值，所以每次输出一个数组，它的两个成员完全相等。</p>
+<p>Set结构的实例默认可遍历，它的默认遍历器生成函数就是它的<code>values</code>方法。</p>
+<pre><code class="javascript">Set.prototype[Symbol.iterator] === Set.prototype.values
+// true
+</code></pre>
+<p>这意味着，可以省略<code>values</code>方法，直接用<code>for...of</code>循环遍历Set。</p>
+<pre><code class="javascript">let set = new Set([&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]);
+
+for (let x of set) {
+  console.log(x);
+}
+// red
+// green
+// blue
+</code></pre>
+<p><strong>（2）<code>forEach()</code></strong></p>
+<p>Set结构的实例的<code>forEach</code>方法，用于对每个成员执行某种操作，没有返回值。</p>
+<pre><code class="javascript">let set = new Set([1, 2, 3]);
+set.forEach((value, key) =&gt; console.log(value * 2) )
+// 2
+// 4
+// 6
+</code></pre>
+<p>上面代码说明，<code>forEach</code>方法的参数就是一个处理函数。该函数的参数依次为键值、键名、集合本身（上例省略了该参数）。另外，<code>forEach</code>方法还可以有第二个参数，表示绑定的this对象。</p>
+<p><strong>（3）遍历的应用</strong></p>
+<p>扩展运算符（<code>...</code>）内部使用<code>for...of</code>循环，所以也可以用于Set结构。</p>
+<pre><code class="javascript">let set = new Set([&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]);
+let arr = [...set];
+// [&#39;red&#39;, &#39;green&#39;, &#39;blue&#39;]
+</code></pre>
+<p>扩展运算符和Set结构相结合，就可以去除数组的重复成员。</p>
+<pre><code class="javascript">let arr = [3, 5, 2, 2, 5, 5];
+let unique = [...new Set(arr)];
+// [3, 5, 2]
+</code></pre>
+<p>而且，数组的<code>map</code>和<code>filter</code>方法也可以用于Set了。</p>
+<pre><code class="javascript">let set = new Set([1, 2, 3]);
+set = new Set([...set].map(x =&gt; x * 2));
+// 返回Set结构：{2, 4, 6}
+
+let set = new Set([1, 2, 3, 4, 5]);
+set = new Set([...set].filter(x =&gt; (x % 2) == 0));
+// 返回Set结构：{2, 4}
+</code></pre>
+<p>因此使用Set可以很容易地实现并集（Union）、交集（Intersect）和差集（Difference）。</p>
+<pre><code class="javascript">let a = new Set([1, 2, 3]);
+let b = new Set([4, 3, 2]);
+
+// 并集
+let union = new Set([...a, ...b]);
+// Set {1, 2, 3, 4}
+
+// 交集
+let intersect = new Set([...a].filter(x =&gt; b.has(x)));
+// set {2, 3}
+
+// 差集
+let difference = new Set([...a].filter(x =&gt; !b.has(x)));
+// Set {1}
+</code></pre>
+<p>如果想在遍历操作中，同步改变原来的Set结构，目前没有直接的方法，但有两种变通方法。一种是利用原Set结构映射出一个新的结构，然后赋值给原来的Set结构；另一种是利用<code>Array.from</code>方法。</p>
+<pre><code class="javascript">// 方法一
+let set = new Set([1, 2, 3]);
+set = new Set([...set].map(val =&gt; val * 2));
+// set的值是2, 4, 6
+
+// 方法二
+let set = new Set([1, 2, 3]);
+set = new Set(Array.from(set, val =&gt; val * 2));
+// set的值是2, 4, 6
+</code></pre>
+<p>上面代码提供了两种方法，直接在遍历操作中改变原来的Set结构。</p>
+<h2 id="WeakSet"><a href="#WeakSet" class="headerlink" title="WeakSet"></a>WeakSet</h2><p>WeakSet结构与Set类似，也是不重复的值的集合。但是，它与Set有两个区别。</p>
+<p>首先，WeakSet的成员只能是对象，而不能是其他类型的值。</p>
+<p>其次，WeakSet中的对象都是弱引用，即垃圾回收机制不考虑WeakSet对该对象的引用，也就是说，如果其他对象都不再引用该对象，那么垃圾回收机制会自动回收该对象所占用的内存，不考虑该对象还存在于WeakSet之中。这个特点意味着，无法引用WeakSet的成员，因此WeakSet是不可遍历的。</p>
+<pre><code class="javascript">var ws = new WeakSet();
+ws.add(1)
+// TypeError: Invalid value used in weak set
+ws.add(Symbol())
+// TypeError: invalid value used in weak set
+</code></pre>
+<p>上面代码试图向WeakSet添加一个数值和<code>Symbol</code>值，结果报错，因为WeakSet只能放置对象。</p>
+<p>WeakSet是一个构造函数，可以使用<code>new</code>命令，创建WeakSet数据结构。</p>
+<pre><code class="javascript">var ws = new WeakSet();
+</code></pre>
+<p>作为构造函数，WeakSet可以接受一个数组或类似数组的对象作为参数。（实际上，任何具有iterable接口的对象，都可以作为WeakSet的参数。）该数组的所有成员，都会自动成为WeakSet实例对象的成员。</p>
+<pre><code class="javascript">var a = [[1,2], [3,4]];
+var ws = new WeakSet(a);
+</code></pre>
+<p>上面代码中，<code>a</code>是一个数组，它有两个成员，也都是数组。将<code>a</code>作为WeakSet构造函数的参数，<code>a</code>的成员会自动成为WeakSet的成员。</p>
+<p>注意，是<code>a</code>数组的成员成为WeakSet的成员，而不是<code>a</code>数组本身。这意味着，数组的成员只能是对象。</p>
+<pre><code class="javascript">var b = [3, 4];
+var ws = new WeakSet(b);
+// Uncaught TypeError: Invalid value used in weak set(…)
+</code></pre>
+<p>上面代码中，数组<code>b</code>的成员不是对象，加入WeaKSet就会报错。</p>
+<p>WeakSet结构有以下三个方法。</p>
+<ul>
+<li><strong>WeakSet.prototype.add(value)</strong>：向WeakSet实例添加一个新成员。</li>
+<li><strong>WeakSet.prototype.delete(value)</strong>：清除WeakSet实例的指定成员。</li>
+<li><strong>WeakSet.prototype.has(value)</strong>：返回一个布尔值，表示某个值是否在WeakSet实例之中。</li>
+</ul>
+<p>下面是一个例子。</p>
+<pre><code class="javascript">var ws = new WeakSet();
+var obj = {};
+var foo = {};
+
+ws.add(window);
+ws.add(obj);
+
+ws.has(window); // true
+ws.has(foo);    // false
+
+ws.delete(window);
+ws.has(window);    // false
+</code></pre>
+<p>WeakSet没有<code>size</code>属性，没有办法遍历它的成员。</p>
+<pre><code class="javascript">ws.size // undefined
+ws.forEach // undefined
+
+ws.forEach(function(item){ console.log(&#39;WeakSet has &#39; + item)})
+// TypeError: undefined is not a function
+</code></pre>
+<p>上面代码试图获取<code>size</code>和<code>forEach</code>属性，结果都不能成功。</p>
+<p>WeakSet不能遍历，是因为成员都是弱引用，随时可能消失，遍历机制无法保证成员的存在，很可能刚刚遍历结束，成员就取不到了。WeakSet的一个用处，是储存DOM节点，而不用担心这些节点从文档移除时，会引发内存泄漏。</p>
+<p>下面是WeakSet的另一个例子。</p>
+<pre><code class="javascript">const foos = new WeakSet()
+class Foo {
+  constructor() {
+    foos.add(this)
+  }
+  method () {
+    if (!foos.has(this)) {
+      throw new TypeError(&#39;Foo.prototype.method 只能在Foo的实例上调用！&#39;);
+    }
+  }
+}
+</code></pre>
+<p>上面代码保证了<code>Foo</code>的实例方法，只能在<code>Foo</code>的实例上调用。这里使用WeakSet的好处是，<code>foos</code>对实例的引用，不会被计入内存回收机制，所以删除实例的时候，不用考虑<code>foos</code>，也不会出现内存泄漏。</p>
+<h2 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h2><h3 id="Map结构的目的和基本用法"><a href="#Map结构的目的和基本用法" class="headerlink" title="Map结构的目的和基本用法"></a>Map结构的目的和基本用法</h3><p>JavaScript的对象（Object），本质上是键值对的集合（Hash结构），但是传统上只能用字符串当作键。这给它的使用带来了很大的限制。</p>
+<pre><code class="javascript">var data = {};
+var element = document.getElementById(&#39;myDiv&#39;);
+
+data[element] = &#39;metadata&#39;;
+data[&#39;[object HTMLDivElement]&#39;] // &quot;metadata&quot;
+</code></pre>
+<p>上面代码原意是将一个DOM节点作为对象<code>data</code>的键，但是由于对象只接受字符串作为键名，所以<code>element</code>被自动转为字符串<code>[object HTMLDivElement]</code>。</p>
+<p>为了解决这个问题，ES6提供了Map数据结构。它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。也就是说，Object结构提供了“字符串—值”的对应，Map结构提供了“值—值”的对应，是一种更完善的Hash结构实现。如果你需要“键值对”的数据结构，Map比Object更合适。</p>
+<pre><code class="javascript">var m = new Map();
+var o = {p: &#39;Hello World&#39;};
+
+m.set(o, &#39;content&#39;)
+m.get(o) // &quot;content&quot;
+
+m.has(o) // true
+m.delete(o) // true
+m.has(o) // false
+</code></pre>
+<p>上面代码使用<code>set</code>方法，将对象<code>o</code>当作<code>m</code>的一个键，然后又使用<code>get</code>方法读取这个键，接着使用<code>delete</code>方法删除了这个键。</p>
+<p>作为构造函数，Map也可以接受一个数组作为参数。该数组的成员是一个个表示键值对的数组。</p>
+<pre><code class="javascript">var map = new Map([
+  [&#39;name&#39;, &#39;张三&#39;],
+  [&#39;title&#39;, &#39;Author&#39;]
+]);
+
+map.size // 2
+map.has(&#39;name&#39;) // true
+map.get(&#39;name&#39;) // &quot;张三&quot;
+map.has(&#39;title&#39;) // true
+map.get(&#39;title&#39;) // &quot;Author&quot;
+</code></pre>
+<p>上面代码在新建Map实例时，就指定了两个键<code>name</code>和<code>title</code>。</p>
+<p>Map构造函数接受数组作为参数，实际上执行的是下面的算法。</p>
+<pre><code class="javascript">var items = [
+  [&#39;name&#39;, &#39;张三&#39;],
+  [&#39;title&#39;, &#39;Author&#39;]
+];
+var map = new Map();
+items.forEach(([key, value]) =&gt; map.set(key, value));
+</code></pre>
+<p>下面的例子中，字符串<code>true</code>和布尔值<code>true</code>是两个不同的键。</p>
+<pre><code class="javascript">var m = new Map([
+  [true, &#39;foo&#39;],
+  [&#39;true&#39;, &#39;bar&#39;]
+]);
+
+m.get(true) // &#39;foo&#39;
+m.get(&#39;true&#39;) // &#39;bar&#39;
+</code></pre>
+<p>如果对同一个键多次赋值，后面的值将覆盖前面的值。</p>
+<pre><code class="javascript">let map = new Map();
+
+map
+.set(1, &#39;aaa&#39;)
+.set(1, &#39;bbb&#39;);
+
+map.get(1) // &quot;bbb&quot;
+</code></pre>
+<p>上面代码对键<code>1</code>连续赋值两次，后一次的值覆盖前一次的值。</p>
+<p>如果读取一个未知的键，则返回<code>undefined</code>。</p>
+<pre><code class="javascript">new Map().get(&#39;asfddfsasadf&#39;)
+// undefined
+</code></pre>
+<p>注意，只有对同一个对象的引用，Map结构才将其视为同一个键。这一点要非常小心。</p>
+<pre><code class="javascript">var map = new Map();
+
+map.set([&#39;a&#39;], 555);
+map.get([&#39;a&#39;]) // undefined
+</code></pre>
+<p>上面代码的<code>set</code>和<code>get</code>方法，表面是针对同一个键，但实际上这是两个值，内存地址是不一样的，因此<code>get</code>方法无法读取该键，返回<code>undefined</code>。</p>
+<p>同理，同样的值的两个实例，在Map结构中被视为两个键。</p>
+<pre><code class="javascript">var map = new Map();
+
+var k1 = [&#39;a&#39;];
+var k2 = [&#39;a&#39;];
+
+map
+.set(k1, 111)
+.set(k2, 222);
+
+map.get(k1) // 111
+map.get(k2) // 222
+</code></pre>
+<p>上面代码中，变量<code>k1</code>和<code>k2</code>的值是一样的，但是它们在Map结构中被视为两个键。</p>
+<p>由上可知，Map的键实际上是跟内存地址绑定的，只要内存地址不一样，就视为两个键。这就解决了同名属性碰撞（clash）的问题，我们扩展别人的库的时候，如果使用对象作为键名，就不用担心自己的属性与原作者的属性同名。</p>
+<p>如果Map的键是一个简单类型的值（数字、字符串、布尔值），则只要两个值严格相等，Map将其视为一个键，包括<code>0</code>和<code>-0</code>。另外，虽然<code>NaN</code>不严格相等于自身，但Map将其视为同一个键。</p>
+<pre><code class="javascript">let map = new Map();
+
+map.set(NaN, 123);
+map.get(NaN) // 123
+
+map.set(-0, 123);
+map.get(+0) // 123
+</code></pre>
+<h3 id="实例的属性和操作方法"><a href="#实例的属性和操作方法" class="headerlink" title="实例的属性和操作方法"></a>实例的属性和操作方法</h3><p>Map结构的实例有以下属性和操作方法。</p>
+<p><strong>（1）size属性</strong></p>
+<p><code>size</code>属性返回Map结构的成员总数。</p>
+<pre><code class="javascript">let map = new Map();
+map.set(&#39;foo&#39;, true);
+map.set(&#39;bar&#39;, false);
+
+map.size // 2
+</code></pre>
+<p><strong>（2）set(key, value)</strong></p>
+<p><code>set</code>方法设置<code>key</code>所对应的键值，然后返回整个Map结构。如果<code>key</code>已经有值，则键值会被更新，否则就新生成该键。</p>
+<pre><code class="javascript">var m = new Map();
+
+m.set(&quot;edition&quot;, 6)        // 键是字符串
+m.set(262, &quot;standard&quot;)     // 键是数值
+m.set(undefined, &quot;nah&quot;)    // 键是undefined
+</code></pre>
+<p><code>set</code>方法返回的是Map本身，因此可以采用链式写法。</p>
+<pre><code class="javascript">let map = new Map()
+  .set(1, &#39;a&#39;)
+  .set(2, &#39;b&#39;)
+  .set(3, &#39;c&#39;);
+</code></pre>
+<p><strong>（3）get(key)</strong></p>
+<p><code>get</code>方法读取<code>key</code>对应的键值，如果找不到<code>key</code>，返回<code>undefined</code>。</p>
+<pre><code class="javascript">var m = new Map();
+
+var hello = function() {console.log(&quot;hello&quot;);}
+m.set(hello, &quot;Hello ES6!&quot;) // 键是函数
+
+m.get(hello)  // Hello ES6!
+</code></pre>
+<p><strong>（4）has(key)</strong></p>
+<p><code>has</code>方法返回一个布尔值，表示某个键是否在Map数据结构中。</p>
+<pre><code class="javascript">var m = new Map();
+
+m.set(&quot;edition&quot;, 6);
+m.set(262, &quot;standard&quot;);
+m.set(undefined, &quot;nah&quot;);
+
+m.has(&quot;edition&quot;)     // true
+m.has(&quot;years&quot;)       // false
+m.has(262)           // true
+m.has(undefined)     // true
+</code></pre>
+<p><strong>（5）delete(key)</strong></p>
+<p><code>delete</code>方法删除某个键，返回true。如果删除失败，返回false。</p>
+<pre><code class="javascript">var m = new Map();
+m.set(undefined, &quot;nah&quot;);
+m.has(undefined)     // true
+
+m.delete(undefined)
+m.has(undefined)       // false
+</code></pre>
+<p><strong>（6）clear()</strong></p>
+<p><code>clear</code>方法清除所有成员，没有返回值。</p>
+<pre><code class="javascript">let map = new Map();
+map.set(&#39;foo&#39;, true);
+map.set(&#39;bar&#39;, false);
+
+map.size // 2
+map.clear()
+map.size // 0
+</code></pre>
+<h3 id="遍历方法"><a href="#遍历方法" class="headerlink" title="遍历方法"></a>遍历方法</h3><p>Map原生提供三个遍历器生成函数和一个遍历方法。</p>
+<ul>
+<li><code>keys()</code>：返回键名的遍历器。</li>
+<li><code>values()</code>：返回键值的遍历器。</li>
+<li><code>entries()</code>：返回所有成员的遍历器。</li>
+<li><code>forEach()</code>：遍历Map的所有成员。</li>
+</ul>
+<p>需要特别注意的是，Map的遍历顺序就是插入顺序。</p>
+<p>下面是使用实例。</p>
+<pre><code class="javascript">let map = new Map([
+  [&#39;F&#39;, &#39;no&#39;],
+  [&#39;T&#39;,  &#39;yes&#39;],
+]);
+
+for (let key of map.keys()) {
+  console.log(key);
+}
+// &quot;F&quot;
+// &quot;T&quot;
+
+for (let value of map.values()) {
+  console.log(value);
+}
+// &quot;no&quot;
+// &quot;yes&quot;
+
+for (let item of map.entries()) {
+  console.log(item[0], item[1]);
+}
+// &quot;F&quot; &quot;no&quot;
+// &quot;T&quot; &quot;yes&quot;
+
+// 或者
+for (let [key, value] of map.entries()) {
+  console.log(key, value);
+}
+
+// 等同于使用map.entries()
+for (let [key, value] of map) {
+  console.log(key, value);
+}
+</code></pre>
+<p>上面代码最后的那个例子，表示Map结构的默认遍历器接口（<code>Symbol.iterator</code>属性），就是<code>entries</code>方法。</p>
+<pre><code class="javascript">map[Symbol.iterator] === map.entries
+// true
+</code></pre>
+<p>Map结构转为数组结构，比较快速的方法是结合使用扩展运算符（<code>...</code>）。</p>
+<pre><code class="javascript">let map = new Map([
+  [1, &#39;one&#39;],
+  [2, &#39;two&#39;],
+  [3, &#39;three&#39;],
+]);
+
+[...map.keys()]
+// [1, 2, 3]
+
+[...map.values()]
+// [&#39;one&#39;, &#39;two&#39;, &#39;three&#39;]
+
+[...map.entries()]
+// [[1,&#39;one&#39;], [2, &#39;two&#39;], [3, &#39;three&#39;]]
+
+[...map]
+// [[1,&#39;one&#39;], [2, &#39;two&#39;], [3, &#39;three&#39;]]
+</code></pre>
+<p>结合数组的<code>map</code>方法、<code>filter</code>方法，可以实现Map的遍历和过滤（Map本身没有<code>map</code>和<code>filter</code>方法）。</p>
+<pre><code class="javascript">let map0 = new Map()
+  .set(1, &#39;a&#39;)
+  .set(2, &#39;b&#39;)
+  .set(3, &#39;c&#39;);
+
+let map1 = new Map(
+  [...map0].filter(([k, v]) =&gt; k &lt; 3)
+);
+// 产生Map结构 {1 =&gt; &#39;a&#39;, 2 =&gt; &#39;b&#39;}
+
+let map2 = new Map(
+  [...map0].map(([k, v]) =&gt; [k * 2, &#39;_&#39; + v])
+    );
+// 产生Map结构 {2 =&gt; &#39;_a&#39;, 4 =&gt; &#39;_b&#39;, 6 =&gt; &#39;_c&#39;}
+</code></pre>
+<p>此外，Map还有一个<code>forEach</code>方法，与数组的<code>forEach</code>方法类似，也可以实现遍历。</p>
+<pre><code class="javascript">map.forEach(function(value, key, map) {
+  console.log(&quot;Key: %s, Value: %s&quot;, key, value);
+});
+</code></pre>
+<p><code>forEach</code>方法还可以接受第二个参数，用来绑定<code>this</code>。</p>
+<pre><code class="javascript">var reporter = {
+  report: function(key, value) {
+    console.log(&quot;Key: %s, Value: %s&quot;, key, value);
+  }
+};
+
+map.forEach(function(value, key, map) {
+  this.report(key, value);
+}, reporter);
+</code></pre>
+<p>上面代码中，<code>forEach</code>方法的回调函数的<code>this</code>，就指向<code>reporter</code>。</p>
+<h3 id="与其他数据结构的互相转换"><a href="#与其他数据结构的互相转换" class="headerlink" title="与其他数据结构的互相转换"></a>与其他数据结构的互相转换</h3><p><strong>（1）Map转为数组</strong></p>
+<p>前面已经提过，Map转为数组最方便的方法，就是使用扩展运算符（…）。</p>
+<pre><code class="javascript">let myMap = new Map().set(true, 7).set({foo: 3}, [&#39;abc&#39;]);
+[...myMap]
+// [ [ true, 7 ], [ { foo: 3 }, [ &#39;abc&#39; ] ] ]
+</code></pre>
+<p><strong>（2）数组转为Map</strong></p>
+<p>将数组转入Map构造函数，就可以转为Map。</p>
+<pre><code class="javascript">new Map([[true, 7], [{foo: 3}, [&#39;abc&#39;]]])
+// Map {true =&gt; 7, Object {foo: 3} =&gt; [&#39;abc&#39;]}
+</code></pre>
+<p><strong>（3）Map转为对象</strong></p>
+<p>如果所有Map的键都是字符串，它可以转为对象。</p>
+<pre><code class="javascript">function strMapToObj(strMap) {
+  let obj = Object.create(null);
+  for (let [k,v] of strMap) {
+    obj[k] = v;
+  }
+  return obj;
+}
+
+let myMap = new Map().set(&#39;yes&#39;, true).set(&#39;no&#39;, false);
+strMapToObj(myMap)
+// { yes: true, no: false }
+</code></pre>
+<p><strong>（4）对象转为Map</strong></p>
+<pre><code class="javascript">function objToStrMap(obj) {
+  let strMap = new Map();
+  for (let k of Object.keys(obj)) {
+    strMap.set(k, obj[k]);
+  }
+  return strMap;
+}
+
+objToStrMap({yes: true, no: false})
+// [ [ &#39;yes&#39;, true ], [ &#39;no&#39;, false ] ]
+</code></pre>
+<p><strong>（5）Map转为JSON</strong></p>
+<p>Map转为JSON要区分两种情况。一种情况是，Map的键名都是字符串，这时可以选择转为对象JSON。</p>
+<pre><code class="javascript">function strMapToJson(strMap) {
+  return JSON.stringify(strMapToObj(strMap));
+}
+
+let myMap = new Map().set(&#39;yes&#39;, true).set(&#39;no&#39;, false);
+strMapToJson(myMap)
+// &#39;{&quot;yes&quot;:true,&quot;no&quot;:false}&#39;
+</code></pre>
+<p>另一种情况是，Map的键名有非字符串，这时可以选择转为数组JSON。</p>
+<pre><code class="javascript">function mapToArrayJson(map) {
+  return JSON.stringify([...map]);
+}
+
+let myMap = new Map().set(true, 7).set({foo: 3}, [&#39;abc&#39;]);
+mapToArrayJson(myMap)
+// &#39;[[true,7],[{&quot;foo&quot;:3},[&quot;abc&quot;]]]&#39;
+</code></pre>
+<p><strong>（6）JSON转为Map</strong></p>
+<p>JSON转为Map，正常情况下，所有键名都是字符串。</p>
+<pre><code class="javascript">function jsonToStrMap(jsonStr) {
+  return objToStrMap(JSON.parse(jsonStr));
+}
+
+jsonToStrMap(&#39;{&quot;yes&quot;:true,&quot;no&quot;:false}&#39;)
+// Map {&#39;yes&#39; =&gt; true, &#39;no&#39; =&gt; false}
+</code></pre>
+<p>但是，有一种特殊情况，整个JSON就是一个数组，且每个数组成员本身，又是一个有两个成员的数组。这时，它可以一一对应地转为Map。这往往是数组转为JSON的逆操作。</p>
+<pre><code class="javascript">function jsonToMap(jsonStr) {
+  return new Map(JSON.parse(jsonStr));
+}
+
+jsonToMap(&#39;[[true,7],[{&quot;foo&quot;:3},[&quot;abc&quot;]]]&#39;)
+// Map {true =&gt; 7, Object {foo: 3} =&gt; [&#39;abc&#39;]}
+</code></pre>
+<h2 id="WeakMap"><a href="#WeakMap" class="headerlink" title="WeakMap"></a>WeakMap</h2><p><code>WeakMap</code>结构与<code>Map</code>结构基本类似，唯一的区别是它只接受对象作为键名（<code>null</code>除外），不接受其他类型的值作为键名，而且键名所指向的对象，不计入垃圾回收机制。</p>
+<pre><code class="javascript">var map = new WeakMap()
+map.set(1, 2)
+// TypeError: 1 is not an object!
+map.set(Symbol(), 2)
+// TypeError: Invalid value used as weak map key
+</code></pre>
+<p>上面代码中，如果将<code>1</code>和<code>Symbol</code>作为WeakMap的键名，都会报错。</p>
+<p><code>WeakMap</code>的设计目的在于，键名是对象的弱引用（垃圾回收机制不将该引用考虑在内），所以其所对应的对象可能会被自动回收。当对象被回收后，<code>WeakMap</code>自动移除对应的键值对。典型应用是，一个对应DOM元素的<code>WeakMap</code>结构，当某个DOM元素被清除，其所对应的<code>WeakMap</code>记录就会自动被移除。基本上，<code>WeakMap</code>的专用场合就是，它的键所对应的对象，可能会在将来消失。<code>WeakMap</code>结构有助于防止内存泄漏。</p>
+<p>下面是<code>WeakMap</code>结构的一个例子，可以看到用法上与<code>Map</code>几乎一样。</p>
+<pre><code class="javascript">var wm = new WeakMap();
+var element = document.querySelector(&quot;.element&quot;);
+
+wm.set(element, &quot;Original&quot;);
+wm.get(element) // &quot;Original&quot;
+
+element.parentNode.removeChild(element);
+element = null;
+wm.get(element) // undefined
+</code></pre>
+<p>上面代码中，变量<code>wm</code>是一个<code>WeakMap</code>实例，我们将一个<code>DOM</code>节点<code>element</code>作为键名，然后销毁这个节点，<code>element</code>对应的键就自动消失了，再引用这个键名就返回<code>undefined</code>。</p>
+<p>WeakMap与Map在API上的区别主要是两个，一是没有遍历操作（即没有<code>key()</code>、<code>values()</code>和<code>entries()</code>方法），也没有<code>size</code>属性；二是无法清空，即不支持<code>clear</code>方法。这与<code>WeakMap</code>的键不被计入引用、被垃圾回收机制忽略有关。因此，<code>WeakMap</code>只有四个方法可用：<code>get()</code>、<code>set()</code>、<code>has()</code>、<code>delete()</code>。</p>
+<pre><code class="javascript">var wm = new WeakMap();
+
+wm.size
+// undefined
+
+wm.forEach
+// undefined
+</code></pre>
+<p>前文说过，WeakMap应用的典型场合就是DOM节点作为键名。下面是一个例子。</p>
+<pre><code class="javascript">let myElement = document.getElementById(&#39;logo&#39;);
+let myWeakmap = new WeakMap();
+
+myWeakmap.set(myElement, {timesClicked: 0});
+
+myElement.addEventListener(&#39;click&#39;, function() {
+  let logoData = myWeakmap.get(myElement);
+  logoData.timesClicked++;
+}, false);
+</code></pre>
+<p>上面代码中，<code>myElement</code>是一个 DOM 节点，每当发生<code>click</code>事件，就更新一下状态。我们将这个状态作为键值放在 WeakMap 里，对应的键名就是<code>myElement</code>。一旦这个 DOM 节点删除，该状态就会自动消失，不存在内存泄漏风险。</p>
+<p>WeakMap 的另一个用处是部署私有属性。</p>
+<pre><code class="javascript">let _counter = new WeakMap();
+let _action = new WeakMap();
+
+class Countdown {
+  constructor(counter, action) {
+    _counter.set(this, counter);
+    _action.set(this, action);
+  }
+  dec() {
+    let counter = _counter.get(this);
+    if (counter &lt; 1) return;
+    counter--;
+    _counter.set(this, counter);
+    if (counter === 0) {
+      _action.get(this)();
+    }
+  }
+}
+
+let c = new Countdown(2, () =&gt; console.log(&#39;DONE&#39;));
+
+c.dec()
+c.dec()
+// DONE
+</code></pre>
+<p>上面代码中，Countdown类的两个内部属性<code>_counter</code>和<code>_action</code>，是实例的弱引用，所以如果删除实例，它们也就随之消失，不会造成内存泄漏。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-01-12T08:16:10.817Z" itemprop="dateUpdated">2017年1月12日 16:16</time>
+</span><br>
+
+
+        转载请注明出处：<a href="https://microzz.com/2017/01/05/set-map/" target="_blank" rel="external">https://microzz.com/2017/01/05/set-map/</a>
+    </div>
+    <footer>
+        <a href="https://microzz.com">
+            <img src="https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" alt="Microzz">
+            Microzz
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Map/">Map</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Set/">Set</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2017/01/05/set-map/&title=《Set和Map数据结构》 — 涵月天-microzz.com&pic=https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2017/01/05/set-map/&title=《Set和Map数据结构》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2017/01/05/set-map/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Set和Map数据结构》 — 涵月天-microzz.com&url=https://microzz.com/2017/01/05/set-map/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2017/01/05/set-map/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/09/proxy/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Proxy</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/01/symbol/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Symbol</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃辣条~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="https://icdn.microzz.com/microzz/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="https://icdn.microzz.com/microzz/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top" style="padding:7px;">
+        
+<p>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+    </div>
+    <div class="bottom" style="padding: 8px;">
+        <p>
+            <!-- <span style="display: none"><a href="https://microzz.com">Zhaohui</a></span> -->
+            <span>
+              <a target="_blank" href="mailto:zhaohui@microzz.com" style="border-bottom:none">
+                <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUwOTQ2NDk3IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjUzMjkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTEyIDEwMDcuMjEzMTE1QzIzOC41MDgwNjYgMTAwNy4yMTMxMTUgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDUxMiAxNi43ODY4ODUgMjM4LjUwODA2NiAyMzguNTA4MDY2IDE2Ljc4Njg4NSA1MTIgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDEwMDcuMjEzMTE1IDIzOC41MDgwNjYgMTAwNy4yMTMxMTUgNTEyIDEwMDcuMjEzMTE1IDc4NS40OTE5MzQgNzg1LjQ5MTkzNCAxMDA3LjIxMzExNSA1MTIgMTAwNy4yMTMxMTVaTTUxMiA1MC4zNjA2NTZDMjU3LjA0MDc4NyA1MC4zNjA2NTYgNTAuMzYwNjU2IDI1Ny4wNDA3ODcgNTAuMzYwNjU2IDUxMiA1MC4zNjA2NTYgNzY2Ljk1OTIxMyAyNTcuMDQwNzg3IDk3My42MzkzNDQgNTEyIDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDUxMiA5NzMuNjM5MzQ0IDI1Ny4wNDA3ODcgNzY2Ljk1OTIxMyA1MC4zNjA2NTYgNTEyIDUwLjM2MDY1NlpNNzU1LjQwOTgzNiA3MjEuODM2MDY2IDI4NS4zNzcwNDkgNzIxLjgzNjA2NkMyNjYuODI3NTQxIDcyMS44MzYwNjYgMjUxLjgwMzI3OSA3MDcuOTcwMDk4IDI1MS44MDMyNzkgNjkwLjg0NzQ3NUwyNTEuODAzMjc5IDM0OS45Mzk0MUMyNTEuODAzMjc5IDMzMi44MzM1NzQgMjY2LjgyNzU0MSAzMTguOTUwODIgMjg1LjM3NzA0OSAzMTguOTUwODJMNzU1LjQwOTgzNiAzMTguOTUwODJDNzczLjk1OTM0NCAzMTguOTUwODIgNzg4Ljk4MzYwNyAzMzIuODMzNTc0IDc4OC45ODM2MDcgMzQ5LjkzOTQxTDc4OC45ODM2MDcgNjkwLjg0NzQ3NUM3ODguOTgzNjA3IDcwNy45NzAwOTggNzczLjk1OTM0NCA3MjEuODM2MDY2IDc1NS40MDk4MzYgNzIxLjgzNjA2NlpNNzU1LjQwOTgzNiAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNTAuOTYzNDEgNTIxLjkyMTA0OSA1NjkuMjkzNjM5IDc1NS40MDk4MzYgMzUzLjc2NjgyIDc1NS40MDk4MzYgMzQ5LjkzOTQxWk03NTUuNDA5ODM2IDM5Ny41OTczNzcgNTM4LjQzOTM0NCA1OTcuODY0OTE4IDUwNS4zODU5NjcgNTk3Ljg2NDkxOCAyODUuMzc3MDQ5IDM5NC43NzcxOCAyODUuMzc3MDQ5IDY5MC44NDc0NzUgNzU1LjQwOTgzNiA2OTAuODQ3NDc1IDc1NS40MDk4MzYgMzk3LjU5NzM3N1oiIHAtaWQ9IjUzMzAiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L3N2Zz4=" alt="E-mail联系" title="E-mail" style="width:20px;height:20px;border:none;"/>
+              </a>
+            </span>
+
+	          <span>
+              <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=903036377&site=qq&menu=yes" style="border-bottom:none">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUxNTc4MDQ0IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjUgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjE1MjE0IiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgd2lkdGg9IjIwMC4xOTUzMTI1IiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTE2Ljk3MSAzNC44MTJjLTI2Mi44MzYgMC00NzUuOTExIDIxMy4wNzEtNDc1LjkxMSA0NzUuOTExczIxMy4wNzUgNDc1LjkxIDQ3NS45MTEgNDc1LjkxYzI2Mi44MzggMCA0NzUuOTE1LTIxMy4wNzAgNDc1LjkxNS00NzUuOTEgMC0yNjIuODM5LTIxMy4wNzYtNDc1LjkxMS00NzUuOTE1LTQ3NS45MTF6TTUxNi45NzEgOTYwLjA5OGMtMjQ4LjE4MSAwLTQ0OS4zNzMtMjAxLjE5MS00NDkuMzczLTQ0OS4zNzVzMjAxLjE5Mi00NDkuMzcxIDQ0OS4zNzMtNDQ5LjM3MWMyNDguMTgyIDAgNDQ5LjM3NyAyMDEuMTg4IDQ0OS4zNzcgNDQ5LjM3MSAwIDI0OC4xODMtMjAxLjE5NiA0NDkuMzc1LTQ0OS4zNzcgNDQ5LjM3NXoiIHAtaWQ9IjE1MjE1IiBmaWxsPSIjZmZmZmZmIj48L3BhdGg+PHBhdGggZD0iTTc2Ni45ODYgNTY5LjI2M2wtMS43NDktOS4zMjMtMS4xNjUtNC42NjEtMS4xNjctNC42NjEtMS43NDctNC42NjItMS43NDgtNS4yNDQtMi4zMy01LjI0NC0yLjMzMi01LjI0NC00LjA3OC04LjE1Ny0zLjQ5Ni03LjU3NS0zLjQ5Ni02LjQxLTIuOTEzLTUuODI3LTMuNDk2LTUuODI2LTIuMzMxLTQuNjYyLTUuMjQ0LTguMTU4LTYuOTkyLTkuOTA2LTEuNzQ5LTIuOTEyLTAuNTgyLTAuNTgzIDAtMS4xNjYgMS4xNjYtMy40OTYgMS4xNjUtMi45MTQgMS43NDctNS44MjcgMC41ODMtMy40OTYgMC0yLjkxNCAwLjU4My0yLjMzMSAwLTIuOTEzLTAuNTgzLTIuOTEzLTAuNTgzLTIuOTE0LTAuNTgyLTQuNjYyLTEuMTY1LTQuNjYxLTEuNzQ5LTQuNjYyLTEuNzQ4LTQuMDc5LTEuNzQ4LTMuNDk3LTEuNzQ3LTMuNDk2LTEuNzQ4LTIuOTE0LTMuNDk2LTUuMjQ1LTAuNTgyLTEuNzQ3LTAuNTg0LTEuMTY2LTEuMTY0LTkuMzIzLTEuMTY2LTUuODI2LTAuNTgzLTcuNTc1LTEuNzQ4LTcuNTc1LTIuMzMxLTguNzQxLTEuMTY0LTUuMjQzLTEuMTY1LTQuMDc5LTEuNzQ5LTQuNjYxLTEuNzQ4LTUuMjQ1LTEuNzQ5LTUuMjQzLTEuNzQ3LTUuMjQ1LTQuNjYxLTkuOTA1LTIuMzMtNC42NjItMy40OTgtNS4yNDQtMi45MTItNC42NjItMi45MTQtNS4yNDMtNC4wNzgtNS4yNDUtMy40OTctNC42NjEtNC4wNzktNC42NjItNC42NjEtNC42NjEtNC4wNzktNC4wNzktNS4yNDMtNC4wOC0yLjkxNC0yLjMzMS0yLjMzLTEuNzQ4LTUuODI3LTQuMDc5LTYuNDEtNC4wNzktNi40MDgtNC4wNzktNy41NzUtMy40OTctNi45OTItMi45MTQtNi45OTItMi45MTMtNy41NzYtMi45MTQtNy41NzMtMS43NDgtNy41NzUtMS43NDgtOC4xNTctMS43NDgtNy41NzUtMS43NDgtNy41NzUtMS4xNjUtOC4xNTctMC41ODMtNy41NzYtMS4xNjYtOC4xNTcgMC03LjU3NSAwLTcuNTc0IDAtNy41NzUgMC41ODMtNy41NzQgMS4xNjctNy41NzUgMC41ODItNy41NzUgMS4xNjYtNi45OTIgMS4xNjUtNi45OTEgMS43NDgtNi45OTIgMi4zMzEtNi45OTMgMi4zMzItNi40MDkgMi4zMy02LjQxIDIuOTE0LTUuODI1IDIuMzMxLTUuODI4IDMuNDk3LTUuODI2IDMuNDk2LTUuMjQ1IDMuNDk2LTUuMjQzIDQuMDgtNC42NjIgMy40OTZMNDEwLjM4MyAyODJsLTUuODI3IDUuMjQ1LTUuMjQ0IDUuODI2LTQuNjYxIDUuODI3LTQuNjYxIDUuODI4LTQuMDc4IDUuMjQzLTMuNDk3IDUuODI3LTIuMzMxIDIuOTE0LTEuNzQ4IDIuOTEzLTMuNDk2IDUuMjQ1LTIuOTEzIDUuMjQ0LTIuMzMxIDUuMjQ0LTIuMzMgNS4yNDUtMi4zMzEgNC42NjEtMS43NDggNC42NjEtMS43NDggNS4yNDQtMS43NDggNC4wNzktMS43NDggOC4xNTgtMi4zMzEgOC4xNTgtMC41ODIgNi40MDktMS4xNjYgNS44MjcgMCA0LjA3OSAwIDMuNDk2IDAgMy40OTctMS4xNjUgMS43NDgtMS43NDggMS43NDgtMS4xNjYgMi4zMzEtMC41ODIgMi4zMy0xLjc0OSA0LjY2Mi0xLjE2NSA0LjY2MS0wLjU4MiAzLjQ5NiAwIDMuNDk3IDAgMi45MTMtMy40OTcgNC4wNzktMS43NDcgNC42NjItMi4zMzEgNC4wNzgtMS4xNjUgNC4wNzktMC41ODMgMy40OTctMS4xNjUgMy40OTYgMCAyLjkxNCAwIDMuNDk2IDAgMi4zMzEgMC41ODMgMi4zMzEgMS4xNjUgNC4wNzkgMC41ODMgMi45MTQtMS43NDggMS4xNjUtNC42NjIgMy40OTctNi40MDkgNS44MjctNC4wNzkgMy40OTYtNC4wNzggMy40OTctMi45MTQgMi4zMzEtMS43NDggMi4zMy00LjY2MSA1LjI0NS00LjY2MiA0LjY2Mi0zLjQ5NSA0LjY2Mi00LjA3OSA1LjgyNy00LjA3OSA1LjgyNi00LjA3OCA2LjQxLTMuNDk3IDUuMjQ0LTIuOTEzIDYuNDEtMi45MTMgNS44MjYtMS43NDggNS4yNDQtMi4zMzEgNS44MjctMS43NDggNS44MjYtMS43NDggNS44MjctMS43NDggNS4yNDQtMC41ODIgNS4yNDQtMC41ODMgNS4yNDQtMS4xNjUgNC42NjEtMC41ODMgOS4zMjMgMCA4Ljc0IDAgNC4wNzkgMC41ODMgNC4wNzggMC41ODEgNi40MSAwLjU4NCAzLjQ5NiAxLjE2NSAyLjkxMyAwLjU4MyAyLjkxNCAwLjU4MiAxLjc0OCAyLjMzMSAzLjQ5NiAwLjU4MiAxLjE2NSAxLjE2NiAxLjE2NCAxLjE2NSAwIDEuMTY2IDAuNTg0IDEuMTY1IDAgMS43NDgtMC41ODQgNC42NjEtMS4xNjQgMy40OTctMS4xNjUgMy40OTYtMi4zMyAyLjkxMy0yLjMzMiAzLjQ5NS0yLjMzIDIuOTE0LTIuOTE0IDIuMzMxLTIuOTE0IDIuOTEzLTIuOTEyIDIuMzMxLTIuOTEzIDEuNzQ4LTIuOTE0IDEuMTY1LTIuMzMxIDIuOTEzLTUuMjQ0IDAuNTgzLTEuNzQ3IDAuNTgzLTEuMTY2IDAuNTgyLTEuMTY2IDAuNTgzLTEuMTY0IDAuNTgzIDAgMC41ODMtMC41ODMgMC41ODIgMCAwIDAuNTgzIDAuNTgyIDAgMC41ODQgMCAxLjE2NSA2LjQwOCAxLjc0OCA1LjI0NCAyLjMzIDUuMjQ1IDIuMzMxIDQuNjYgMS43NDggNC42NjIgMi4zMzEgNC42NjIgMi4zMyA0LjA3OSAyLjMzMSA0LjA3OSAyLjMzMSAzLjQ5NSAyLjMzIDMuNDk3IDUuMjQ1IDYuNDA4IDQuNjYxIDUuMjQ1IDQuNjYxIDQuNjYxIDQuMDc5IDQuMDc4IDQuMDc5IDIuOTE0IDUuODI3IDEuNzQ3IDIuMzMgMS4xNjUgMC41ODIgMC41ODQgMCAwLjU4My0wLjU4MiAwLjU4MS0xLjE2NiAwLjU4NC00LjA3OCAwLjU4Mi00LjA3OSAwLTMuNDk2IDAuNTgzLTMuNDk2IDAuNTgzLTMuNDk2IDEuMTY1LTIuOTE0IDEuMTY1LTIuMzMgMS4xNjYtMi4zMzEgMS4xNjUtMi4zMyAwLjU4My0yLjMzMSAxLjc0OC0xLjE2NSAxLjE2Ni0yLjMzMSAxLjE2NC0yLjMzMSAyLjkxNC0xLjE2NSAxLjc0OC0xLjE2NSAxLjE2NS0xLjE2NiAyLjkxNC0wLjU4MiAyLjkxMi0xLjE2NiAyLjMzMi0wLjU4MiAyLjMzIDAgMi45MTMgMCAxLjE2Ni0wLjU4MyAyLjMzIDAgMi4zMyAwIDIuMzMyIDAgMS43NDggMCAyLjMzMSAwLjU4MyAxLjE2NSAxLjc0OCAzLjQ5NiAwLjU4MiAxLjc0NyAwLjU4MyAyLjMzMSAxLjc0OCAxLjc0OCAxLjE2NSAxLjE2NiAxLjc0OCAxLjc0NyAxLjE2NiAxLjE2NyA0LjA3OCAyLjMyOSA0LjA3OSAyLjkxNCA0LjA3OCAyLjMzIDUuMjQ1IDEuNzQ4IDUuMjQ0IDEuNzQ4IDUuMjQ0IDEuNzQ5IDUuODI2IDEuNzQ3IDUuODI3IDEuMTY3IDYuNDA5IDAuNTgxIDUuODI3IDEuMTY2IDYuOTkzIDEuMTY2IDEyLjgxNyAxLjE2NSAxMi44MiAwLjU4MiAxMi4yMzYgMCA1LjgyNiAwIDUuODI4IDAgNS4yNDMtMC41ODIgNC42NjEtMC41ODMgNS4yNDUtMC41ODIgNC4wNzggMCA2Ljk5My0xLjc0OCA1LjI0My0xLjE2NSA1LjI0NC0xLjE2NyA4Ljc0LTMuNDk2IDQuMDc5LTEuNzQ4IDQuMDc4LTEuNzQ4IDYuNDEtMy40OTUgNS44MjYtMi45MTQgNC4wNzgtMi45MTMgMy40OTctMi4zMzEgNC42NjIgMCAzLjQ5NSAwLjU4MyA3LjU3NiAwLjU4MyAzLjQ5NiAwIDIuOTEyIDAgMi4zMzEgMC41ODIgMi4zMyAwLjU4MyA0LjA4IDEuMTY1IDMuNDk2IDEuNzQ4IDguMTU3IDIuMzMxIDcuNTc1IDIuOTEzIDguMTU3IDEuNzQ4IDcuNTc0IDEuNzQ5IDguMTU4IDEuNzQ3IDguMTU4IDEuNzQ5IDguMTU3IDAuNTgyIDcuNTczIDAuNTgyIDcuNTc2IDEuMTY3IDcuNTc0IDAuNTgxIDcuNTc2IDAgNy41NzMgMCA2Ljk5MiAwIDYuOTkzLTEuMTY0IDYuOTkyLTAuNTg0IDYuNDEtMC41ODIgNi40MDgtMS4xNjUgNS44MjctMS43NDkgNS44MjYtMS4xNjQgMi4zMzItMC41ODQgMi45MTQtMS4xNjUgNS4yNDMtMS43NDggNC4wNzktMi4zMyA0LjY2Mi0xLjc0OCA0LjA3OC0yLjMzIDMuNDk1LTIuMzMyIDEuMTY3LTEuNzQ4IDEuNzQ3LTEuNzQ4IDIuMzMxLTIuMzMxIDEuNzQ3LTIuOTEzIDEuMTY2LTIuMzMgMC41ODItMS4xNjUgMC41ODQtMS43NDkgMC41ODItMS43NDggMC0xLjc0NyAwLjU4Mi0xLjc0OC0wLjU4Mi0yLjMzMi0wLjU4Mi0yLjMzLTAuNTg0LTIuMzMtMS4xNjUtMi4zMzItMS4xNjUtMi45MTMtMS43NDgtMS43NDctMS43NDgtMi4zMzItMi4zMy0xLjc0OC00LjY2Mi00LjA3OC01LjI0NC00LjA3OS01LjI0My0yLjkxMy01LjgyOC0yLjkxNC0xMi44MTgtNi40MDktMi41NDktMS41MjkgNC4yOTgtNC4yOTcgMi45MTItMi45MTQgMi4zMzEtMi45MTMgNC4wNzgtNS44MjYgNC4wNzktNi40MSAzLjQ5Ny01LjgyNyAyLjkxMy01LjI0NSA0LjY2MS0xMC40ODcgMy40OTYtOC43NCAxLjc0OC01LjgyNyAxLjc0Ny0yLjMzIDAuNTg0LTEuNzQ4IDEuMTY0LTAuNTgzIDAuNTg0IDAgMC41ODIgMCAyLjkxMyA2LjQwOSAyLjkxMyA1LjgyOCAyLjMzMiAzLjQ5NSAyLjMzIDMuNDk2IDIuMzMxIDMuNDk2IDIuMzMxIDMuNDk2IDIuMzMgMi4zMzEgMS4xNjUgMS4xNjQgMS4xNjYgMS43NDkgMS43NDggMC41ODQgMS4xNjQgMS4xNjQgMi4zMzIgMS4xNjUgMS43NDggMC41ODMgMC41ODIgMCAxLjE2NiAwIDEuNzQ3LTAuNTgzIDEuNzQ5LTEuMTY1IDEuNzQ4LTAuNTgzIDEuNzQ3LTEuMTY1IDEuMTY3LTEuNzQ5IDEuNzQ3LTEuNzQ2IDEuMTY2LTEuNzQ5IDEuMTY1LTIuMzMgMS43NDctMi4zMzIgMS4xNjctMi4zMyAwLjU4MS0yLjkxMyAxLjc0OS01LjgyNyAxLjc0OC02LjQxIDAuNTgyLTYuOTkxIDAuNTgzLTQuMDc4IDAtMy40OTcgMC0zLjQ5NiAwLTQuNjYxLTEuMTY1LTguMTU4TDc2Ni45ODYgNTY5LjI2M3pNNjgwLjc0OCA2NzAuNjQ5bC0wLjU4Mi0wLjU4MiAwLjk3MS0wLjk3MUw2ODAuNzQ4IDY3MC42NDl6IiBwLWlkPSIxNTIxNiIgZmlsbD0iI2ZmZmZmZiI+PC9wYXRoPjwvc3ZnPg==" alt="QQ联系microzz" title="QQ" style="width:22px;height:22px;border:none;"/></a>
+            </span>
+
+	          <span>
+              <a target="_blank" href="https://github.com/microzz" style="border-bottom:none">
+              <img src="data:image/png;base64,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" alt="GitHub microzz" title="GitHub" style="width:19px;height:19px;border:none;"/></a>
+            </span>
+            <!-- <span>&copy; 2015 - 2018</span> -->
+
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2017/01/05/set-map/&title=《Set和Map数据结构》 — 涵月天-microzz.com&pic=https://icdn.microzz.com/microzz/img/avatar.jpg?v=2" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2017/01/05/set-map/&title=《Set和Map数据结构》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2017/01/05/set-map/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Set和Map数据结构》 — 涵月天-microzz.com&url=https://microzz.com/2017/01/05/set-map/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2017/01/05/set-map/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABzklEQVR42u3aOW4EMQwF0b7/pW3AkQGjNfVJiVZQHQ0GvTwlBLfnwdfXz/X7N7n+3v/2z+ZLrly5bS7/ZO33Gs0NcuXKneemwWv9BnL/+niv/8uVK/cy7vr+Naj2Trly5d7PTcuetKCSK1fubdxaayNNhkijZFutJleu3Aa3E3T2tk4O9nflypW7aSrBQ1K/QEJflytX7gh33e7kqQkZnZIWCTqwXLlyL+B2li2CZgcew8iVK3eGy1+RrlnUVrJQYJUrV+4xbvowL43IghcPlE/trHLlyt3E5Z8hYStNYj6scMmVK3eQy4NXh1g7QGtPRK5cuQ0uX7boNEc+BClShsmVK3eEm9J50kNaKq2xily5co9xa+XKhgZHKc2SK1fuf3F5asIHLeSQiC5XrtwRLl+uIqULeZYHzdd3ypUr9zA3bYjwsSsfwMiVK/dOLg9nPE3hYS4ouuTKlTvI7Y9J+uPb4vhErly5B7hpQKlVV0FLtFEyyZUrdy+XB6+0pEkLJ7ly5d7GTdMRngalS1dBf1euXLkXcDupz7roCpqqcuXKvZKbjlV4YwUVTnLlyh3kph8gCxn8qEEYlStX7gg3bZiuof2FLd5ylStX7gHuNx7jJQvHjxh0AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+<script>
+// (function(){
+//     var bp = document.createElement('script');
+//     var curProtocol = window.location.protocol.split(':')[0];
+//     if (curProtocol === 'https') {
+//         bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+//     }
+//     else {
+//         bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+//     }
+//     var s = document.getElementsByTagName("script")[0];
+//     s.parentNode.insertBefore(bp, s);
+// })();
+console.log("%c Powered by Zhaohui - microzz.com","background-image:-webkit-gradient( linear, left top,right top, color-stop(0, #00a419),color-stop(0.15, #f44336), color-stop(0.29, #ff4300),color-stop(0.3, #AA00FF),color-stop(0.4, #8BC34A), color-stop(0.45, #607D8B),color-stop(0.6, #4096EE), color-stop(0.75, #D50000),color-stop(0.9, #4096EE), color-stop(1, #FF1A00));color:transparent;-webkit-background-clip:text;font-size:13px;");
+</script>
+
+    <!-- <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script> -->
+
+<script src="https://icdn.microzz.com/microzz/js/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+</script>
+
+<!-- <script src="/js/main.min.js?v=1.4.5"></script> -->
+<script src="https://icdn.microzz.com/microzz/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<!-- <script src="/js/search.min.js?v=1.4.5" async></script> -->
+<script src="https://icdn.microzz.com/microzz/js/search.min.js" async></script>
+
+
+
+
+
+
+<!-- <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script> -->
+<script async src="https://icdn.microzz.com/microzz/js/busuanzi.pure.mini.js"></script>
+
+<script>
+  // if ('serviceWorker' in navigator) {
+  //  navigator.serviceWorker.register('/sw0110.js').then(function (registration) {
+      // console.log('ServiceWorker registration successful with scope: ', registration.scope);
+   // }).catch(function (err) {
+      // console.log('ServiceWorker registration failed: ', err);
+   // });
+ // }
+  // var _hmt = _hmt || [];
+  // (function() {
+  //   var hm = document.createElement("script");
+  //   hm.src = "https://hm.baidu.com/hm.js?ce268e8f61069a1636a4629acbb82b9a";
+  //   var s = document.getElementsByTagName("script")[0];
+  //   s.parentNode.insertBefore(hm, s);
+  // })();
+</script>
+
+</body>
+</html>
