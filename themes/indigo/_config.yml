@@ -35,22 +35,22 @@ menu:
     text: SegmentFault
     url: https://segmentfault.com/u/microzz/posts
     target: _blank
-  music:
-    text: Vue音乐播放器
-    url: https://microzz.com/vue-music/
-    target: _blank
-  comments:
-    text: Vue CNode社区
-    url: https://microzz.com/vue-cnode/
-    target: _blank
-  globe:
-    text: 智能聊天室
-    url: https://microzz.com/vue-chat/
-    target: _blank
-  star:
-    text: GitHub排行榜
-    url: https://microzz.com/github-ranking/
-    target: _blank
+  #music:
+  #  text: Vue音乐播放器
+  #  url: https://microzz.com/vue-music/
+  #  target: _blank
+  #comments:
+  #  text: Vue CNode社区
+  #  url: https://microzz.com/vue-cnode/
+  #  target: _blank
+  #globe:
+  #  text: 智能聊天室
+  #  url: https://microzz.com/vue-chat/
+  #  target: _blank
+  #star:
+  #  text: GitHub排行榜
+  #  url: https://microzz.com/github-ranking/
+  #  target: _blank
   link:
     text: 友链
     url: https://microzz.com/about/friendly.html
