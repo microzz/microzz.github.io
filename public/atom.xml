@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://microzz.com/"/>
-  <updated>2018-07-10T00:19:37.817Z</updated>
+  <updated>2019-07-03T07:56:10.489Z</updated>
   <id>https://microzz.com/</id>
   
   <author>
@@ -14,6 +14,104 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac/iOS自带输入法导入第三方输入法词库</title>
+    <link href="https://microzz.com/2019/06/15/word2plist/"/>
+    <id>https://microzz.com/2019/06/15/word2plist/</id>
+    <published>2019-06-15T02:27:41.000Z</published>
+    <updated>2019-07-03T07:56:10.489Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Mac-iOS自带输入法导入第三方输入法词库"><a href="#Mac-iOS自带输入法导入第三方输入法词库" class="headerlink" title="Mac/iOS自带输入法导入第三方输入法词库"></a>Mac/iOS自带输入法导入第三方输入法词库</h1><blockquote>
+<p>苹果的自带输入法简洁美观流畅，对各种软件的兼容性也是最好的，但是很明显的不足的就是词库没有第三方输入法强大。下面就介绍如何把第三方输入法个人词库导入到苹果自带输入法，原理都类似，支持百度输入法、搜狗输入法</p>
+</blockquote>
+<h2 id="词库文件"><a href="#词库文件" class="headerlink" title="词库文件"></a>词库文件</h2><p>macOS、iOS上面输入法里面都有文本替换，这就可以让用户自定义词库，但是并没有导入的选项。但是发现在Mac上面选中文本项之后往桌面拖动是会在桌面生成一个 <code>用户词典.plist</code> 的文件，所以我们可以大胆把已有的文本替换都删除，把生成的plist文件拖进窗口里面，发现都还原了，我们可以推断这就是苹果自带输入法的自定义的词库文件了。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://icdn.microzz.com/20190615/1.png" alt="用户词典文件" title="">
+                </div>
+                <div class="image-caption">用户词典文件</div>
+            </figure><br>打开 <code>用户词典.plist</code> 的文件，发现里面的结构也比较简单清晰，词库文件规则也一目了然，如下图：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://icdn.microzz.com/20190615/2.png" alt="plist用户词典文件规则" title="">
+                </div>
+                <div class="image-caption">plist用户词典文件规则</div>
+            </figure></p>
+<h2 id="导入百度输入法用户词库"><a href="#导入百度输入法用户词库" class="headerlink" title="导入百度输入法用户词库"></a>导入百度输入法用户词库</h2><p>在百度输入法用户偏好设置里面选择导出用户词库文件，使用编辑器打开文件，发现并没有加密，打开文件，内容格式如下：<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://icdn.microzz.com/20190615/3.png" alt="百度输入法词库文件" title="">
+                </div>
+                <div class="image-caption">百度输入法词库文件</div>
+            </figure></p>
+<p>接下来我们就可以写一个脚本来对百度输入法导出的词库文件内容格式进行转换，转换逻辑都类似，不同的语言都可以实现，因为我是Web前端开发，所以用NodeJS来对文件进行处理。</p>
+<h3 id="用NodeJS转换词库文件"><a href="#用NodeJS转换词库文件" class="headerlink" title="用NodeJS转换词库文件"></a>用NodeJS转换词库文件</h3><p>需要注意的是，你在VSCode打开百度输入法词库文件，发现其编码是UTF-16 LE，我在用NodeJS读取文件需要使用encoding UCS-2，否则会出现乱码。下面写了一个通用的脚本<code>word2plist.js</code></p>
+<pre><code class="javascript">const { join } = require(&#39;path&#39;);
+const { readFileSync, writeFileSync } = require(&#39;fs&#39;);
+
+const fileName = process.argv.pop();
+
+const wordStr = readFileSync(join(__dirname, fileName), { encoding: &#39;ucs-2&#39;}).toString();
+
+const wordList = wordStr.split(/\r\n/);
+
+const plist = wordList.filter(v =&gt; v).map(record =&gt; {
+  const match = record.match(/(.+)\((.+)\)/);
+  const phrase = match[1];
+  const shortcut = match[2].replace(/\|/g, &#39;&#39;);
+  return `&lt;dict&gt;
+        &lt;key&gt;phrase&lt;/key&gt;
+        &lt;string&gt;${phrase}&lt;/string&gt;
+        &lt;key&gt;shortcut&lt;/key&gt;
+        &lt;string&gt;${shortcut}&lt;/string&gt;
+    &lt;/dict&gt;`;
+}).join(&#39;\r\n&#39;);
+
+writeFileSync(join(__dirname, `${fileName}.plist`), `&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;
+&lt;plist version=&quot;1.0&quot;&gt;
+&lt;array&gt;
+  ${plist}
+&lt;/array&gt;
+&lt;/plist&gt;`);
+</code></pre>
+<p><a href="https://nodejs.org/" target="_blank" rel="external">安装NodeJS</a> 之后，就可以直接运行：<code>node word2plist.js 文件路径</code>，比如导出的文件名是<code>baidu</code>，我们就可以运行</p>
+<pre><code class="bash">node word2plist.js baidu
+</code></pre>
+<p>运行之后就会在目录下生成一个<code>baidu.plist</code>文件，我们拖动文件到文本替换窗口里面，发现词库全部导入进去了！<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://icdn.microzz.com/20190615/4.png" alt="导入百度输入法词库文件" title="">
+                </div>
+                <div class="image-caption">导入百度输入法词库文件</div>
+            </figure></p>
+<h2 id="导入搜狗输入法词库"><a href="#导入搜狗输入法词库" class="headerlink" title="导入搜狗输入法词库"></a>导入搜狗输入法词库</h2><p>因为搜狗输入法mac版本升级之后导出的词库bin文件是加密的，我们可以使用<a href="https://github.com/studyzy/imewlconverter" target="_blank" rel="external">深蓝词库</a>转换成百度的，然后用上面的脚本同样适用，QQ拼音等其他输入法用同意做法也是可以的。</p>
+<blockquote>
+<p>PS：词库是可以自动同步到iPhone设备上的，所以打开手机上的文本替换发现刚才导入的词库全有了！因为我的词库量太大了，不得不吐槽一下，手机上打开文本替换动不动就会卡死，苹果官方目前对该长列表展示的优化不足呀…</p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Mac-iOS自带输入法导入第三方输入法词库&quot;&gt;&lt;a href=&quot;#Mac-iOS自带输入法导入第三方输入法词库&quot; class=&quot;headerlink&quot; title=&quot;Mac/iOS自带输入法导入第三方输入法词库&quot;&gt;&lt;/a&gt;Mac/iOS自带输入法导入第三方输入法
+    
+    </summary>
+    
+    
+      <category term="Mac" scheme="https://microzz.com/tags/Mac/"/>
+    
+      <category term="输入法" scheme="https://microzz.com/tags/%E8%BE%93%E5%85%A5%E6%B3%95/"/>
+    
+      <category term="词库" scheme="https://microzz.com/tags/%E8%AF%8D%E5%BA%93/"/>
+    
+      <category term="iOS" scheme="https://microzz.com/tags/iOS/"/>
+    
+      <category term="苹果" scheme="https://microzz.com/tags/%E8%8B%B9%E6%9E%9C/"/>
+    
+      <category term="iPhone" scheme="https://microzz.com/tags/iPhone/"/>
+    
+  </entry>
   
   <entry>
     <title>前端水印生成方案</title>
