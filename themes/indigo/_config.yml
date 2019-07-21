@@ -51,9 +51,9 @@ menu:
   #  text: GitHub排行榜
   #  url: https://microzz.com/github-ranking/
   #  target: _blank
-  link:
-    text: 友链
-    url: https://microzz.com/about/friendly.html
+  # link:
+  #   text: 友链
+  #   url: https://microzz.com/about/friendly.html
 
 rss: /atom.xml
 
