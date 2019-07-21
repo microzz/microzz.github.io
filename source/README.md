@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/microzz/hexo-blog.svg?token=eLwKZUdQHF5sTseyrmza&branch=master)](https://travis-ci.com/microzz/hexo-blog)
+
 # 介绍
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是我的个人网站。里面有各种IT技术分享，欢迎大家访问。 
 你可以通过👉https://microzz.com/ 访问 
