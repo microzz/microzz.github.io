@@ -35,7 +35,7 @@ menu:
     text: SegmentFault
     url: https://segmentfault.com/u/microzz/posts
     target: _blank
-  app-store:
+  hotjar:
     text: 垃圾分类学习
     url: https://garbage.microzz.com
   #music:
