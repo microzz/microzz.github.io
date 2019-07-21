@@ -4,4 +4,6 @@ node_js:
 install:
  - npm install hexo-cli@2.0.0 -g 
  - npm install
-script: hexo g -d
+script:
+ - rm -rf .deploy_git
+ - hexo g -d
