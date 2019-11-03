@@ -25,9 +25,9 @@ Image.memory(
 )
 ```
 
-如果用上面的方法，发现在`ListView`中使用，滚动`ListView`的时候会出现重复渲染，并且渲染很慢。框架没有比较base64字符串，所以一张已经存在的照片被当作一张新的照片来处理。
+如果用上面的方法，发现在`ListView`中使用，滚动`ListView`的时候会出现重复渲染，并且渲染很慢。框架没有比较base64字符串，所以一张已经存在的照片被当作一张新的照片来处理。下面介绍如何避免多次解码重渲染问题
 
-## 图片多次解码重渲染问题
+## Base64图片多次解码重渲染问题
 我们可以用`StatefulWidget`，在`initState`方法中的数据进行解码，从而避免多次对图像进行解码，提升性能和改善用户体验。
 下面是封装的`Base64Image` Widget：
 
@@ -91,7 +91,7 @@ class _Base64ImageState extends State<Base64Image> {
 ```
 
 ## 背景图中使用Base64图片
-我们可以在Container中设置Base64图片为背景图：
+我们可以在`Container`中设置Base64图片为背景图：
 
 ```dart
 Container(
