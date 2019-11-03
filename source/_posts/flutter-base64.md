@@ -16,10 +16,10 @@ tags:
 ```dart
 import 'dart:convert';
 
-const String Base64Str = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAgMAAAAOFJJnAAAADFBMVEUAAAAWFyMYGCMXHCilIQtpAAAABHRSTlMAmV8tOa34CwAAAEdJREFUGNNjoAdgPgDBDLwJDAycBSBGBAODKojBFMbAMLUByACSQDYIqCZwRoAZnBGqQPVgRSAlYEVAJRBFEVAGZwLCEhoAAKvbDA7roJ+AAAAAAElFTkSuQmCC';
+const String base64Str = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAgMAAAAOFJJnAAAADFBMVEUAAAAWFyMYGCMXHCilIQtpAAAABHRSTlMAmV8tOa34CwAAAEdJREFUGNNjoAdgPgDBDLwJDAycBSBGBAODKojBFMbAMLUByACSQDYIqCZwRoAZnBGqQPVgRSAlYEVAJRBFEVAGZwLCEhoAAKvbDA7roJ+AAAAAAElFTkSuQmCC';
 
 Image.memory(
-  Base64Decoder().convert(Base64Str.split(',')[1]),
+  Base64Decoder().convert(base64Str.split(',')[1]),
   width: 22.0,
   height: 22.0,
 )
@@ -88,4 +88,20 @@ class _Base64ImageState extends State<Base64Image> {
     
   }
 }
+```
+
+## 背景图中使用Base64图片
+我们可以在Container中设置Base64图片为背景图：
+
+```dart
+Container(
+  decoration: BoxDecoration(
+    image: DecorationImage(
+      image: MemoryImage(
+        Base64Decoder().convert(base64Str.split(',')[1]),
+        scale: widget.scale ?? 1
+      )
+    )
+  )
+)
 ```
