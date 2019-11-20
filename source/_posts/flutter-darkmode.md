@@ -1,5 +1,5 @@
 ---
-title: JS中的高阶函数和偏函数
+title: Flutter适配夜间模式
 date: 2019-11-20 10:49:42
 tags:
   - Flutter
