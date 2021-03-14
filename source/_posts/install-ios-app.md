@@ -11,7 +11,7 @@ tags:
 ---
 
 
-# 如何在M1芯片Mac电脑上安装任意iOS App
+# 如何在M1芯片Mac电脑上刷抖音
 
 ## 一、提取ipa文件
 首先得提取`.ipa`文件（如果已有则可以跳至后面步骤）
@@ -58,6 +58,6 @@ sudo xattr -rd com.apple.quarantine /Applications/抖音.app
 
 ## 四、享用
 
-* 打开app，这样就能直接在M1型片（Apple Silicon）电脑刷抖音啦！
+* 打开app，这样就能直接在M1芯片（Apple Silicon）电脑刷抖音啦！
 
 ![没有权限](https://icdn.microzz.com/20210314/enjoy.png)
