@@ -30,7 +30,11 @@ tags:
 
 ![下载ipa文件](https://icdn.microzz.com/20210314/download-ipa.png)
 
-* 下载完成，ipa文件是保存在`~/Library/Group\ Containers/K36BKF7T3D.group.com.apple.configurator/Library/Caches/Assets/TemporaryItems/**/*.ipa`位置，我们可以把文件移动到其他合适的位置，比如这里是移动到`~/Downloads`：
+* 下载完成，之后会出现这个弹窗：
+![下载完成](https://icdn.microzz.com/20210314/pause.png)
+
+这个时候不要点弹窗，否则ipa文件可能会被清理掉。
+ipa文件是保存在`~/Library/Group\ Containers/K36BKF7T3D.group.com.apple.configurator/Library/Caches/Assets/TemporaryItems/**/*.ipa`位置，我们可以把文件移动到其他合适的位置，比如这里是移动到`~/Downloads`：
 
 ```bash
 cp ~/Library/Group\ Containers/K36BKF7T3D.group.com.apple.configurator/Library/Caches/Assets/TemporaryItems/**/*.ipa ~/Downloads
@@ -58,6 +62,6 @@ sudo xattr -rd com.apple.quarantine /Applications/抖音.app
 
 ## 四、享用
 
-* 打开app，这样就能直接在M1芯片（Apple Silicon）电脑刷抖音啦！
+打开app，这样就能直接在M1芯片（Apple Silicon）电脑刷抖音啦！
 
-![没有权限](https://icdn.microzz.com/20210314/enjoy.png)
+![Mac电脑刷抖音](https://icdn.microzz.com/20210314/enjoy.png)
