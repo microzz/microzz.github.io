@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>获取文件Base64编码</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      word-break: break-all;
+      padding: 5px;
+      margin: 0;
+      overflow-x: hidden;
+      background: rgba(255, 255, 255, .5);
+    }
+
+    .js_hint {
+      width: 100%;
+      height: 100%;
+      font-size: 3rem;
+      color: rgba(0, 0, 0, .5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="js_hint">
+    拖文件到这里
+  </div>
+  <script>
+    window.addEventListener("dragenter", function (e) {
+      // console.log('dragenter', e)
+      e.preventDefault(); 
+    }, false);
+
+    window.addEventListener("dragover", function (e) {
+      // console.log('dragover', e)
+       e.preventDefault(); 
+    }, false);
+
+    window.addEventListener("drop", function (e) {
+      // console.log('drop', e)
+      var reader = new FileReader();
+      reader.onload = function (event) {
+        document.querySelector('body').innerText = event.target.result;
+      };
+      reader.readAsDataURL(e.dataTransfer.files[0]);
+      console.log('e.dataTransfer.files[0]', e.dataTransfer.files[0])
+
+      // 阻止默认动作（如打开一些元素的链接）
+       e.preventDefault(); 
+    }, false);
+
+  </script>
+</body>
+</html>
