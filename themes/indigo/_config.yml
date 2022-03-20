@@ -61,7 +61,7 @@ menu:
 rss: /atom.xml
 
 # 你的头像url
-avatar: https://icdn.microzz.com/microzz/img/avatar_v2.min.png
+avatar: /static/avatar.png
 # favicon
 favicon: /favicon.ico
 
