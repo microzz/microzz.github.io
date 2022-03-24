@@ -20,18 +20,18 @@ tags:
 
 * 连接iOS设备之后，选中设备，点右上角 `添加`
 
-![添加](https://icdn.microzz.com/20210314/add.png)
+![添加](/static/install-ios-app/add.png)
 
 * 选择想要安装的app，比如选择 `抖音`，选择之后点添加
 
-![选择需要安装的app](https://icdn.microzz.com/20210314/select-app.png)
+![选择需要安装的app](/static/install-ios-app/select-app.png)
 
 * 下载`ipa`文件
 
-![下载ipa文件](https://icdn.microzz.com/20210314/download-ipa.png)
+![下载ipa文件](/static/install-ios-app/download-ipa.png)
 
 * 下载完成，之后会出现这个弹窗：
-![下载完成](https://icdn.microzz.com/20210314/pause.png)
+![下载完成](/static/install-ios-app/pause.png)
 
 这个时候不要点弹窗，否则ipa文件可能会被清理掉。
 ipa文件是保存在`~/Library/Group\ Containers/K36BKF7T3D.group.com.apple.configurator/Library/Caches/Assets/TemporaryItems/**/*.ipa`位置，我们可以把文件移动到其他合适的位置，比如这里是移动到`~/Downloads`：
@@ -46,13 +46,13 @@ cp ~/Library/Group\ Containers/K36BKF7T3D.group.com.apple.configurator/Library/C
 
 * 安装完之后会在`Applications`目录有抖音app
 
-![安装ipa文件](https://icdn.microzz.com/20210314/install-ipa-end.png)
+![安装ipa文件](/static/install-ios-app/install-ipa-end.png)
 
 ## 三、设置权限
 
 * 此时我们直接点双击打开，会提示：
 
-![没有权限](https://icdn.microzz.com/20210314/no-permission.png)
+![没有权限](/static/install-ios-app/no-permission.png)
 
 * 通过以下命令设置权限
 
@@ -64,4 +64,4 @@ sudo xattr -rd com.apple.quarantine /Applications/抖音.app
 
 打开app，这样就能直接在M1芯片（Apple Silicon）电脑刷抖音啦！
 
-![Mac电脑刷抖音](https://icdn.microzz.com/20210314/enjoy.png)
+![Mac电脑刷抖音](/static/install-ios-app/enjoy.png)
