@@ -35,9 +35,9 @@ menu:
     text: SegmentFault
     url: https://segmentfault.com/u/microzz/posts
     target: _blank
-  leanpub:
-    text: 垃圾分类学习
-    url: https://garbage.microzz.com
+  # leanpub:
+  #   text: 垃圾分类学习
+  #   url: https://garbage.microzz.com
   #music:
   #  text: Vue音乐播放器
   #  url: https://microzz.com/vue-music/
