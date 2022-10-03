@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>JavaScript编码规范指南 | 涵月天-microzz.com | IT技术分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript,JS,编码规范,Airbnb">
+    <meta name="description" content="Airbnb的JavaScript编码规范指南=====================常用的一些javascript规范
+数据类型
+原始类型(Primitives)：当你给一个原始类型赋值时，返回的是这个值的本身。
+
+string
+number
+boolean
+null
+undefined
+var foo = 1,
+  bar = foo;
+
+bar = 9;
+
+console.log(foo,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript编码规范指南">
+<meta property="og:url" content="https://microzz.com/2016/10/01/javascript-code-style/index.html">
+<meta property="og:site_name" content="涵月天-microzz.com">
+<meta property="og:description" content="Airbnb的JavaScript编码规范指南=====================常用的一些javascript规范
+数据类型
+原始类型(Primitives)：当你给一个原始类型赋值时，返回的是这个值的本身。
+
+string
+number
+boolean
+null
+undefined
+var foo = 1,
+  bar = foo;
+
+bar = 9;
+
+console.log(foo,">
+<meta property="og:updated_time" content="2022-10-03T10:38:36.378Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript编码规范指南">
+<meta name="twitter:description" content="Airbnb的JavaScript编码规范指南=====================常用的一些javascript规范
+数据类型
+原始类型(Primitives)：当你给一个原始类型赋值时，返回的是这个值的本身。
+
+string
+number
+boolean
+null
+undefined
+var foo = 1,
+  bar = foo;
+
+bar = 9;
+
+console.log(foo,">
+    
+        <link rel="alternative" href="/atom.xml" title="涵月天-microzz.com" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <!-- <link rel="stylesheet" href="css.css" media="none" onload="if(media!='all')media='all'"> -->
+    <!-- <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/atom-one-dark.1.css"> -->
+    <script>
+    // if(location.host!=='microzz.com'){setTimeout(function() {location.replace(location.href.replace(location.host,'microzz.com'));}, 2000)}window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background:none;">
+      <div class="brand" style="background-color:#4154b2;">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/static/avatar.png" style="height:100%;">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Microzz</h5>
+          <a href="mailto:zhaohui@microzz.com" title="zhaohui@microzz.com" class="mail">zhaohui@microzz.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/archives/"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/microzz" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                GitHub
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://juejin.im/user/57f0f27a128fe100542d29ad" target="_blank" >
+                <i class="icon icon-lg icon-pencil"></i>
+                掘金专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/microzz/posts" target="_blank" >
+                <i class="icon icon-lg icon-leaf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">JavaScript编码规范指南</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">JavaScript编码规范指南</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2016-10-01T09:26:09.000Z" itemprop="datePublished" class="page-time">
+  2016-10-01
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.5.0/styles/atom-one-dark.min.css" rel="stylesheet">
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    Array.prototype.slice.call(document.querySelectorAll('pre code')).forEach(function(block) {
+      hljs.highlightBlock(block);
+  } )
+</script>
+
+<article id="post-javascript-code-style"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">JavaScript编码规范指南</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2016年10月01日 9:26" datetime="2016-10-01T09:26:09.000Z"  itemprop="datePublished">2016-10-01</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Airbnb的JavaScript编码规范指南"><a href="#Airbnb的JavaScript编码规范指南" class="headerlink" title="Airbnb的JavaScript编码规范指南"></a>Airbnb的JavaScript编码规范指南</h1><p>=====================<br><em>常用的一些javascript规范</em></p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><ul>
+<li><p><strong>原始类型(Primitives)</strong>：当你给一个原始类型赋值时，返回的是这个值的本身。</p>
+<ul>
+<li><code>string</code></li>
+<li><code>number</code></li>
+<li><code>boolean</code></li>
+<li><code>null</code></li>
+<li><p><code>undefined</code></p>
+<pre><code class="javascript">var foo = 1,
+  bar = foo;
+
+bar = 9;
+
+console.log(foo, bar); // =&gt; 1, 9
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><strong>对象类型</strong>:当你给一个对象类型赋值时，返回的是这个值的引用。</p>
+<ul>
+<li><code>object</code></li>
+<li><code>array</code></li>
+<li><p><code>function</code></p>
+<pre><code class="javascript">var foo = [1, 2],
+  bar = foo;
+
+bar[0] = 9;
+
+console.log(foo[0], bar[0]); // =&gt; 9, 9
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><ul>
+<li><p>新建一个对象的语法</p>
+<pre><code class="javascript">  //不推荐
+  var item = new Object();
+
+  //推荐
+  var item = {};
+</code></pre>
+</li>
+<li><p>不要使用<a href="http://es5.github.io/#x7.6.1" target="_blank" rel="external">保留字</a>作为键值，否则在IE8下面会出现问题(<a href="https://github.com/airbnb/javascript/issues/61" target="_blank" rel="external">详情</a>)。</p>
+<pre><code class="javascript">  //不推荐
+  var superman = {
+    default: { clark: &#39;kent&#39;},
+    private: true
+  };
+
+  //推荐
+  var superman ={
+    defaults: { clark: &#39;kent&#39;},
+    hidden: true
+  };
+</code></pre>
+</li>
+<li><p>使用可读性强的同义词代替保留字</p>
+<pre><code class="javascript">  //不推荐
+  var superman = {
+    class: &#39;alien&#39;
+  };
+
+  //不推荐
+  var superman = {
+    klass: &#39;alien&#39;
+  };
+
+  //推荐
+  var superman = {
+    type: &#39;alien&#39;
+  };
+</code></pre>
+</li>
+</ul>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><ul>
+<li><p>新建一个数组的语法</p>
+<pre><code class="javascript">  //不推荐
+  var items = new Array();
+
+  //推荐
+  var items = [];
+</code></pre>
+</li>
+<li><p>如果你不知道数组的长度可以使用push将元素加入。</p>
+<pre><code class="javascript">  var someStack = [];
+
+  //不推荐
+  someStack[someStack.length] = &#39;something&#39;;
+
+  //推荐
+  someStack.push(&#39;something&#39;);
+</code></pre>
+</li>
+<li><p>当你需要复制一个数组的时候使用slice。<a href="http://jsperf.com/converting-arguments-to-an-array/7" target="_blank" rel="external">jsPerf</a></p>
+<pre><code class="javascript">  var len = items.length,
+    itemsCopy = [],
+    i;
+
+  //不推荐
+  for (i = 0; i &lt; len; i++){
+    itemsCopy[i] = items[i];
+  }
+
+  //推荐
+  itemsCopy = items.slice();
+</code></pre>
+</li>
+<li><p>用slice转换伪数组对象到数组</p>
+<pre><code class="javascript">  function trigger() {
+    var args = Array.prototype.slice.call(arguments);
+    ...
+  }
+</code></pre>
+</li>
+</ul>
+<h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><ul>
+<li><p>使用单引号<code>&#39;&#39;</code></p>
+<pre><code class="javascript">  //不推荐
+  var name = &quot;Bob Parr&quot;;
+
+  //推荐
+  var name = &#39;Bob Parr&#39;;
+
+  //不推荐
+  var fullName - &quot;Bob &quot; + this.lastName;
+
+  //推荐
+  var fullName = &#39;Bob &#39; + this.lastName;
+</code></pre>
+</li>
+<li><p>当字符串长度超过80个时，应该通过字符串连接多行显示。</p>
+</li>
+<li><p>注意：过度使用字符串连接将会影响性能。<a href="http://jsperf.com/ya-string-concat" target="_blank" rel="external">jsPerf</a>&amp;<a href="https://github.com/airbnb/javascript/issues/40" target="_blank" rel="external">Discussion</a></p>
+<pre><code class="javascript">  //不推荐
+  var errorMessage = &#39;This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.&#39;;
+
+  //不推荐
+  var errorMessage = &#39;This is a super long error that \
+  was thrown because of Batman. \
+  When you stop to think about \
+  how Batman had anything to do \
+  with this, you would get nowhere \
+  fast.&#39;;
+
+  //推荐
+  var errorMessage = &#39;This is a super long error that &#39; +
+    &#39;was thrown because of Batman.&#39; +
+    &#39;When you stop to think about &#39; +
+    &#39;how Batman had anything to do &#39; +
+    &#39;with this, you would get nowhere &#39; +
+    &#39;fast.&#39;;
+</code></pre>
+</li>
+<li><p>当程序建立一个字符串时， 使用join代替字符串连接。特别是在IE下：<a href="http://jsperf.com/string-vs-array-concat/2" target="_blank" rel="external">jsPerf</a></p>
+<pre><code class="javascript">  var items,
+      messages,
+      length, i;
+
+  messages = [{
+      state: &#39;success&#39;,
+      message: &#39;This one worked.&#39;
+  },{
+      state: &#39;success&#39;,
+      message: &#39;This one worked as well.&#39;
+  },{
+      state: &#39;error&#39;,
+      message: &#39;This one did not work.&#39;
+  }];
+
+  length = messages.length;
+
+  // 不推荐
+  function inbox(messages) {
+    items = &#39;&lt;ul&gt;&#39;;
+
+    for (i = 0; i &lt; length; i++) {
+      items += &#39;&lt;li&gt;&#39; + messages[i].message + &#39;&lt;/li&gt;&#39;;
+    }
+
+    return items + &#39;&lt;/ul&gt;&#39;;
+  }
+
+  // 推荐
+  function inbox(messages) {
+    items = [];
+
+    for (i = 0; i &lt; length; i++) {
+      items[i] = messages[i].message;
+    }
+
+    return &#39;&lt;ul&gt;&lt;li&gt;&#39; + items.join(&#39;&lt;/li&gt;&lt;li&gt;&#39;) + &#39;&lt;/li&gt;&lt;/ul&gt;&#39;;
+  }
+</code></pre>
+</li>
+</ul>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
+<li><p>函数表达式：</p>
+<pre><code class="javascript">  // 匿名函数表达式
+  var anonymous = function(){
+    return true;
+  }
+
+  // 命名函数表达式
+  var named = function named() {
+    return true;
+  };
+
+  // 立即执行的函数表达式（IIFE）
+  (function(){
+    console.log(&#39;Welcome to the Internet. Please follow me.&#39;);
+  })();
+</code></pre>
+</li>
+<li><p>不要将函数声明放在如if/while循环或其他任何语句中。但可以用函数表达式来替代函数声明这么做。一些浏览器可能的确可以在语句中使用函数声明。但是在解析方面的处理各不相同，各种浏览器下兼容性很不好。</p>
+</li>
+<li><p><strong>注意:</strong> ECMA-262定义了一系列的语句，但是函数声明并没有被归类为真正的语句。<a href="http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97" target="_blank" rel="external">关于这点可查看ECMA-262的文档</a></p>
+<pre><code class="javascript">  //不推荐
+  if (currentUser){
+    function test() {
+      console.log(&#39;Nope.&#39;);
+    }
+  }
+
+  //推荐
+  if (currentUser){
+    var test = function test() {
+      console.log(&#39;Yup.&#39;);
+    }
+  }
+</code></pre>
+</li>
+<li><p><code>arguments</code> 不能作为一个参数的名字， 因为这会覆盖每一个函数内的<code>arguments</code>对象。</p>
+<pre><code class="javascript">  //不推荐
+  function nope(name, options, arguments) {
+    // ...stuff...
+  }
+
+  //推荐
+  function yup(name, options, args) {
+    // ...stuff...
+  }
+</code></pre>
+</li>
+</ul>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><ul>
+<li><p>访问一个属性时，使用点的形式取值。</p>
+<pre><code class="javascript">  var luke = {
+    jedi: true,
+    age: 28
+  };
+
+  // 不推荐
+  var isJedi = luke[&#39;jedi&#39;];
+
+  // 推荐
+  var isJedi = luke.jedi;
+</code></pre>
+</li>
+<li><p>需要一个变量访问一个属性时，使用“[]”来取值。</p>
+<pre><code class="javascript">  var luke = {
+    jedi: true,
+    age: 28
+  };
+
+  function getProp(prop) {
+    return luke[prop];
+  }
+
+  var isJedi = getProp(&#39;jedi&#39;);
+</code></pre>
+</li>
+</ul>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ul>
+<li><p>总是使用 <code>var</code> 来定义变量。如果不这么做将定义一个全局变量出来。我们希望避免全局命名空间的污染。</p>
+<pre><code class="javascript">  // 不推荐
+  superPower = new SuperPower();
+
+  // 推荐
+  var superPower = new SuperPower();
+</code></pre>
+</li>
+<li><p>使用一个<code>var</code> 声明多个变量，并且每声明一个变量就换一行。</p>
+<pre><code class="javascript">  // 不推荐
+  var items = getItems();
+  var goSportsTeam = true;
+  var dragonball = &#39;z&#39;;
+
+  // 推荐
+  var items = getItems(),
+      goSportsTeam = true,
+      dragonball = &#39;z&#39;;
+</code></pre>
+</li>
+<li><p>声明多个变量时，把不赋值的变量放在后面。这样做是有好处的，如果日后你想给未赋值变量赋值的时候，可能要引用到上面已经赋值的变量。</p>
+<pre><code class="javascript">  // 不推荐
+  var i, len, dragonball,
+      items = getItems(),
+      goSportsTeam = true;
+
+  // 不推荐
+  var i, items = getItems(),
+      dragonball,
+      goSportsTeam = true,
+      len;
+
+  // 推荐
+  var items = getItems(),
+      goSportsTeam = true,
+      dragonball,
+      length,
+      i;
+</code></pre>
+</li>
+<li><p>在一个作用域的顶部给一个变量赋值。这样有助于避开，变量声明和声明提前的分配问题。</p>
+<pre><code class="javascript">  // 不推荐
+  function() {
+    test();
+    console.log(&#39;doing stuff..&#39;);
+
+    //..other stuff..
+
+    var name = getName();
+
+    if (name === &#39;test&#39;) {
+      return false;
+    }
+
+    return name;
+  }
+
+  // 推荐
+  function() {
+    var name = getName();
+
+    test();
+    console.log(&#39;doing stuff..&#39;);
+
+    //..other stuff..
+
+    if (name === &#39;test&#39;) {
+      return false;
+    }
+
+    return name;
+  }
+
+  // 不推荐
+  function() {
+    var name = getName();
+
+    if (!arguments.length) {
+      return false;
+    }
+
+    return true;
+  }
+
+  // 推荐
+  function() {
+    if (!arguments.length) {
+      return false;
+    }
+
+    var name = getName();
+
+    return true;
+  }
+</code></pre>
+</li>
+</ul>
+<h2 id="声明提前"><a href="#声明提前" class="headerlink" title="声明提前"></a>声明提前</h2><ul>
+<li><p>不管你在何处给一个变量声明或赋值，javascript解析器都会事先在作用域的顶端做声明提前（Hoisting）。</p>
+<pre><code class="javascript">  // 我们知道下面将不能正常运行（假设没有全局变量）
+  function example() {
+    console.log(notDefined); // =&gt; 抛出一个引用错误
+  }
+
+  // 在引用这个变量之后，给这个变量赋值将不会抛异常，这是因为javascript解析器有声明提前。
+  // 注意：赋的“true”值，不会被提前。
+  function example() {
+    console.log(declaredButNotAssigned); // =&gt; undefined
+    var declaredButNotAssigned = true;
+  }
+
+  // javascript解析器,会在作用域的顶部提前声明变量。
+  // 用代码描述出来，其实就等同于下面这种情况。
+  function example() {
+    var declaredButNotAssigned;
+    console.log(declaredButNotAssigned); // =&gt; undefined
+    declaredButNotAssigned = true;
+  }
+</code></pre>
+</li>
+<li><p>匿名函数表达式将该变量名做了提前声明，没有给该变量赋值函数。</p>
+<pre><code class="javascript">  function example() {
+    console.log(anonymous); // =&gt; undefined
+
+    anonymous(); // =&gt; 抛出异常，anonymous 不是一个函数
+
+    var anonymous = function() {
+      console.log(&#39;anonymous function expression&#39;);
+    };
+  }
+</code></pre>
+</li>
+<li><p>和匿名一样，有名函数表达式将该变量名做了提前声明，没有给该变量赋值函数名和函数体。</p>
+<pre><code class="javascript">  function example() {
+    console.log(named); // =&gt; undefined
+
+    named(); // =&gt; 抛出异常， named 不是一个函数
+
+    superPower(); // =&gt; 抛出异常， superPower 没定义
+
+    var named = function superPower() {
+      console.log(&#39;Flying&#39;);
+    };
+  }
+
+  // 把函数名改成和变量名一样，也得出同样的结果。
+  function example() {
+    console.log(named); // =&gt; undefined
+
+    named(); // =&gt; 抛出异常， named 不是一个函数
+
+    var named = function named() {
+      console.log(&#39;named&#39;);
+    };
+  }
+</code></pre>
+</li>
+<li><p>函数声明会将函数名和函数体声明提前。</p>
+<pre><code class="javascript">  function example() {
+    superPower(); // =&gt; Flying
+
+    function superPower() {
+      console.log(&#39;Flying&#39;);
+    }
+  }
+</code></pre>
+</li>
+<li><p>更多信息请参照 <a href="http://www.adequatelygood.com/" target="_blank" rel="external">Ben Cherry</a> 的 <a href="http://www.adequatelygood.com/2010/2/JavaScript-Scoping-and-Hoisting" target="_blank" rel="external">JavaScript Scoping &amp; Hoisting</a></p>
+</li>
+</ul>
+<h2 id="条件表达式与等式"><a href="#条件表达式与等式" class="headerlink" title="条件表达式与等式"></a>条件表达式与等式</h2><ul>
+<li><p>使用 <code>===</code> 和 <code>!==</code> 代替 <code>==</code> 和 <code>!=</code>。</p>
+</li>
+<li><p>条件表达式 会通过 <code>ToBoolean</code> 来进行强制转化，而且遵循以下的规则：</p>
+<ul>
+<li><strong>对象</strong>被转化为<strong>true</strong></li>
+<li><strong>Undefined</strong>被转化为<strong>false</strong></li>
+<li><strong>Null</strong>被转化为<strong>false</strong></li>
+<li><strong>布尔值</strong>被转化为<strong>相应的布尔值</strong></li>
+<li><strong>数字</strong>当值为<strong>+0</strong>,<strong>-0</strong>或<strong>NaN</strong>时转化为<strong>false</strong>，其他的转化为<strong>true</strong></li>
+<li><p><strong>Strings类型</strong>如果为空时转化为<strong>false</strong>,否则转化为<strong>true</strong></p>
+<pre><code class="javascript">if ([0]) {
+  // true    
+  // 因为数组是对象，对象会被转化为 true
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>使用快捷方式</p>
+<pre><code class="javascript">  // 不推荐
+  if (name !== &#39;&#39;) {
+    // ...stuff...
+  }
+
+  // 推荐
+  if (name) {
+    // ...stuff...
+  }
+
+  // 不推荐
+  if (collection.length &gt; 0) {
+    // ...stuff...
+  }
+
+  // 推荐
+  if (collection.length) {
+    // ...stuff...
+  }
+</code></pre>
+</li>
+<li>更多的信息 请看 Angus Croll 的 <a href="http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/#more-2108" target="_blank" rel="external">Truth Equality and JavaScript</a></li>
+</ul>
+<h2 id="块"><a href="#块" class="headerlink" title="块"></a>块</h2><ul>
+<li><p>给多行的块，使用大括号</p>
+<pre><code class="javascript">  // 不推荐
+  if (test)
+    return false;
+
+  // 推荐
+  if (test) return false;
+
+  // 推荐
+  if (test) {
+    return false;
+  }
+
+  // 不推荐
+  function() { return false; }
+
+  // 推荐
+  function() {
+    return false;
+  }
+</code></pre>
+</li>
+</ul>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><ul>
+<li><p>使用 <code>/**...*/</code> 进行多行注释。注释要包括描述、指定类型、参数值和返回值。</p>
+<pre><code class="javascript">  // 不推荐
+
+  // make() returns a new element
+  // based on the passed in tag name
+  //
+  // @param &lt;String&gt; tag
+  // @return &lt;Element&gt; element
+  function make(tag) {
+
+    // ...stuff...
+
+    return element;
+  }
+
+  // 推荐
+  /**
+   * make() returns a new element
+   * based on the passed in tag name
+   *
+   * @param &lt;String&gt; tag
+   * @return &lt;Element&gt; element
+   */
+  function make(tag) {
+
+    // ...stuff...
+
+    return element;
+  }
+</code></pre>
+</li>
+<li><p>使用 <code>//</code> 进行单行注释。注释单独占一行，并写在需要注释对象的上面。在注释的上面留一个空行。</p>
+<pre><code class="javascript">  // 不推荐
+  var active = true;  // is current tab
+
+  // 推荐
+  // is current tab
+  var active = true;
+
+  // 不推荐
+  function getType() {
+    console.log(&#39;fetching type...&#39;);
+    // set the default type to &#39;no type&#39;
+    var type = this._type || &#39;no type&#39;;
+
+    return type;
+  }
+
+  // 推荐
+  function getType() {
+    console.log(&#39;fetching type...&#39;);
+
+    // set the default type to &#39;no type&#39;
+    var type = this._type || &#39;no type&#39;;
+
+    return type;
+  }
+</code></pre>
+</li>
+<li><p>给你的代码加前缀，比如<code>FIXME</code>或<code>TODO</code>，这样有助于其他开发者可以迅速理解你指出的需要被处理的问题。<br>如果想更清晰一点你还可以在后面加上描述，比如: <code>FIXME -- need to figure this out</code>或<code>TODO -- need to implement.</code></p>
+</li>
+<li><p>使用 <code>// FIXME:</code> 去注释问题</p>
+<pre><code class="javascript">  function Calculator() {
+
+    // FIXME: shouldn&#39;t use a global here
+    total = 0;
+
+    return this;
+  }
+</code></pre>
+</li>
+<li><p>使用 <code>// TODO:</code> 来注释解决方法</p>
+<pre><code class="javascript">  function Calculator() {
+
+    // TODO: total should be configurable by an options param
+    this.total = 0;
+
+    return this;
+  }
+</code></pre>
+</li>
+</ul>
+<h2 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h2><ul>
+<li><p>将tab键设成2个空格</p>
+<pre><code class="javascript">
+  // 不推荐
+  function() {
+  ∙∙∙∙var name;
+  }
+
+  // 不推荐
+  function() {
+  ∙var name;
+  }
+
+  // 推荐
+  function() {
+  ∙∙var name;
+  }
+</code></pre>
+</li>
+<li><p>逗号/冒号/小括号后面留一个空格</p>
+<pre><code class="javascript">  // 不推荐
+  function test(){
+    console.log(&#39;test&#39;);
+  }
+
+  // 推荐
+  function test() {
+    console.log(&#39;test&#39;);
+  }
+
+  // 不推荐
+  dog.set(&#39;attr&#39;,{
+    age: &#39;1 year&#39;,
+    breed: &#39;Bernese Mountain Dog&#39;
+  });
+
+  // 推荐
+  dog.set(&#39;attr&#39;, {
+    age: &#39;1 year&#39;,
+    breed: &#39;Bernese Mountain Dog&#39;
+  });
+</code></pre>
+</li>
+<li><p>在文件的最后留一个空行</p>
+<pre><code class="javascript">  // 不推荐
+  (function(global) {
+    // ...stuff...
+  })(this);
+</code></pre>
+<pre><code class="javascript">  // 推荐
+  (function(global) {
+    // ...stuff...
+  })(this);
+</code></pre>
+</li>
+</ul>
+<h2 id="逗号"><a href="#逗号" class="headerlink" title="逗号"></a>逗号</h2><ul>
+<li><p>逗号不要前置</p>
+<pre><code class="javascript">  // 不推荐
+  var once
+    , upon
+    , aTime;
+
+  // 推荐
+  var once,
+      upon,
+      aTime;
+
+  // 不推荐
+  var hero = {
+      firstName: &#39;Bob&#39;
+    , lastName: &#39;Parr&#39;
+    , heroName: &#39;Mr. Incredible&#39;
+    , superPower: &#39;strength&#39;
+  };
+
+  // 推荐
+  var hero = {
+    firstName: &#39;Bob&#39;,
+    lastName: &#39;Parr&#39;,
+    heroName: &#39;Mr. Incredible&#39;,
+    superPower: &#39;strength&#39;
+  };
+</code></pre>
+</li>
+<li><p>最后一个元素不可以加逗号。这在IE6和IE7还有IE9的怪异模式下出错。</p>
+</li>
+</ul>
+<blockquote>
+<p>感谢阮一峰老师的原创，本分享仅供学习交流</p>
+</blockquote>
+<pre><code>## 关于
+GitHub: 👉https://github.com/microzz
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2022-10-03T10:38:36.378Z" itemprop="dateUpdated">2022年10月3日 10:38</time>
+</span><br>
+
+
+        转载请注明出处：<a href="https://microzz.com/2016/10/01/javascript-code-style/" target="_blank" rel="external">https://microzz.com/2016/10/01/javascript-code-style/</a>
+    </div>
+    <footer>
+        <a href="https://microzz.com">
+            <img src="/static/avatar.png" alt="Microzz">
+            Microzz
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Airbnb/">Airbnb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编码规范/">编码规范</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2016/10/01/javascript-code-style/&title=《JavaScript编码规范指南》 — 涵月天-microzz.com&pic=https://microzz.com/static/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2016/10/01/javascript-code-style/&title=《JavaScript编码规范指南》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2016/10/01/javascript-code-style/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript编码规范指南》 — 涵月天-microzz.com&url=https://microzz.com/2016/10/01/javascript-code-style/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2016/10/01/javascript-code-style/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2016/11/12/let/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">let和const命令</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃辣条~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/static/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/static/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+  <div class="top" style="padding:7px;">
+    
+<p>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+  </div>
+
+  <div class="bottom" style="padding: 8px;">
+    <p>
+      <!-- <span style="display: none"><a href="https://microzz.com">Zhaohui</a></span> -->
+      <span>
+        <a target="_blank" href="mailto:zhaohui@microzz.com" style="border-bottom:none">
+          <img
+            src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUwOTQ2NDk3IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjUzMjkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTEyIDEwMDcuMjEzMTE1QzIzOC41MDgwNjYgMTAwNy4yMTMxMTUgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDUxMiAxNi43ODY4ODUgMjM4LjUwODA2NiAyMzguNTA4MDY2IDE2Ljc4Njg4NSA1MTIgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDEwMDcuMjEzMTE1IDIzOC41MDgwNjYgMTAwNy4yMTMxMTUgNTEyIDEwMDcuMjEzMTE1IDc4NS40OTE5MzQgNzg1LjQ5MTkzNCAxMDA3LjIxMzExNSA1MTIgMTAwNy4yMTMxMTVaTTUxMiA1MC4zNjA2NTZDMjU3LjA0MDc4NyA1MC4zNjA2NTYgNTAuMzYwNjU2IDI1Ny4wNDA3ODcgNTAuMzYwNjU2IDUxMiA1MC4zNjA2NTYgNzY2Ljk1OTIxMyAyNTcuMDQwNzg3IDk3My42MzkzNDQgNTEyIDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDUxMiA5NzMuNjM5MzQ0IDI1Ny4wNDA3ODcgNzY2Ljk1OTIxMyA1MC4zNjA2NTYgNTEyIDUwLjM2MDY1NlpNNzU1LjQwOTgzNiA3MjEuODM2MDY2IDI4NS4zNzcwNDkgNzIxLjgzNjA2NkMyNjYuODI3NTQxIDcyMS44MzYwNjYgMjUxLjgwMzI3OSA3MDcuOTcwMDk4IDI1MS44MDMyNzkgNjkwLjg0NzQ3NUwyNTEuODAzMjc5IDM0OS45Mzk0MUMyNTEuODAzMjc5IDMzMi44MzM1NzQgMjY2LjgyNzU0MSAzMTguOTUwODIgMjg1LjM3NzA0OSAzMTguOTUwODJMNzU1LjQwOTgzNiAzMTguOTUwODJDNzczLjk1OTM0NCAzMTguOTUwODIgNzg4Ljk4MzYwNyAzMzIuODMzNTc0IDc4OC45ODM2MDcgMzQ5LjkzOTQxTDc4OC45ODM2MDcgNjkwLjg0NzQ3NUM3ODguOTgzNjA3IDcwNy45NzAwOTggNzczLjk1OTM0NCA3MjEuODM2MDY2IDc1NS40MDk4MzYgNzIxLjgzNjA2NlpNNzU1LjQwOTgzNiAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNTAuOTYzNDEgNTIxLjkyMTA0OSA1NjkuMjkzNjM5IDc1NS40MDk4MzYgMzUzLjc2NjgyIDc1NS40MDk4MzYgMzQ5LjkzOTQxWk03NTUuNDA5ODM2IDM5Ny41OTczNzcgNTM4LjQzOTM0NCA1OTcuODY0OTE4IDUwNS4zODU5NjcgNTk3Ljg2NDkxOCAyODUuMzc3MDQ5IDM5NC43NzcxOCAyODUuMzc3MDQ5IDY5MC44NDc0NzUgNzU1LjQwOTgzNiA2OTAuODQ3NDc1IDc1NS40MDk4MzYgMzk3LjU5NzM3N1oiIHAtaWQ9IjUzMzAiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L3N2Zz4="
+            alt="E-mail联系" title="E-mail" style="width:20px;height:20px;border:none;" />
+        </a>
+      </span>
+
+      <span>
+        <a target="_blank" href="https://github.com/microzz" style="border-bottom:none">
+          <img
+            src="data:image/png;base64,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"
+            alt="GitHub microzz" title="GitHub" style="width:19px;height:19px;border:none;" /></a>
+      </span>
+      <!-- <span>&copy; 2015 - 2022</span> -->
+
+    </p>
+  </div>
+
+  <div class="beian" style="text-align:center">
+    <a href="http://beian.miit.gov.cn" style="color: rgba(255, 255, 255, .5);font-size: 12px;">粤ICP备2022042010号-1</a>
+  </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2016/10/01/javascript-code-style/&title=《JavaScript编码规范指南》 — 涵月天-microzz.com&pic=https://microzz.com/static/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2016/10/01/javascript-code-style/&title=《JavaScript编码规范指南》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2016/10/01/javascript-code-style/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《JavaScript编码规范指南》 — 涵月天-microzz.com&url=https://microzz.com/2016/10/01/javascript-code-style/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2016/10/01/javascript-code-style/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aS3KDMBBFUe9/0840KQe4r1u4CvVlRBkCOgyU/r1e+HifHr/v+bz/6Or5W153HDJkyHgsgy+RXz2HfS40fe8/VBkyZAxgHO1g5Ly2uHSbvlizDBkyZICXnf9O2GkQKUOGDBk1BnllypYhQ4aMtJR2R0nuq7m4DBkyHsjgVffvn9/S35AhQ8ajGO/wWMtLt+DDVcmQIWNrRifsI0tZVkojYxkyZMgYwODpK1kob1uSJ6NgUYYMGZsy+DZKAPEW2Qgx//wiQ4aMAQyeUqaJaL/Ad/4cGTJkTGDUhidqgSApq/ERkIskVoYMGRsx0oSzds5T1mIwKkOGjAGMTlGe38+blDxYRBGuDBkytmCQpLQDqIWAQeFPhgwZIxlpo7HzhFrr9CILlyFDxkaMoE3YSD5JuS0dtpAhQ8ZMxqpWJWkJrAoiLwZYZciQsREjDcV4+T4tqBXHLGTIkDGAkZbp1/L6fytDhoxpDNKArAWLtVCPfzIZMmTMYZBhL47nCW2twRnn4jJkyHg4g7+ebMp8ubWPKEOGjJmMtJGZDnKlBTX+yWTIkLE34x0e51skuZoGkWgLliFDxtaMdJvrpJ21J6z9NyBDhoznMvgmmw5SdIK/OHyUIUPGAAbPejvDGbw5GqfHMmTIkBGOXLRSTVwElCFDhgy+4fYDUB5iHt4pQ4aMAYx+M4AvvVOMO7wqQ4aMrRm1EYc4dAvbk6veKEOGjIczfgDlY0upO57leQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/node-waves/0.7.6/waves.min.js"></script>
+
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>

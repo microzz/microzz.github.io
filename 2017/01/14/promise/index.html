@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Promise对象 | 涵月天-microzz.com | IT技术分享</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="JavaScript,JS,ES6,ECMAScript6,Promise">
+    <meta name="description" content="Promise对象Promise的含义Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了Promise对象。
+所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise是一个对象，从它可以获取异步操作的消息。Pro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise对象">
+<meta property="og:url" content="https://microzz.com/2017/01/14/promise/index.html">
+<meta property="og:site_name" content="涵月天-microzz.com">
+<meta property="og:description" content="Promise对象Promise的含义Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了Promise对象。
+所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise是一个对象，从它可以获取异步操作的消息。Pro">
+<meta property="og:updated_time" content="2022-10-03T10:38:36.378Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Promise对象">
+<meta name="twitter:description" content="Promise对象Promise的含义Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了Promise对象。
+所谓Promise，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise是一个对象，从它可以获取异步操作的消息。Pro">
+    
+        <link rel="alternative" href="/atom.xml" title="涵月天-microzz.com" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.5">
+    <!-- <link rel="stylesheet" href="css.css" media="none" onload="if(media!='all')media='all'"> -->
+    <!-- <link rel="stylesheet" href="https://icdn.microzz.com/microzz/css/atom-one-dark.1.css"> -->
+    <script>
+    // if(location.host!=='microzz.com'){setTimeout(function() {location.replace(location.href.replace(location.host,'microzz.com'));}, 2000)}window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background:none;">
+      <div class="brand" style="background-color:#4154b2;">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/static/avatar.png" style="height:100%;">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Microzz</h5>
+          <a href="mailto:zhaohui@microzz.com" title="zhaohui@microzz.com" class="mail">zhaohui@microzz.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/archives/"  >
+                <i class="icon icon-lg icon-archives"></i>
+                文章
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://microzz.com/tags/"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/microzz" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                GitHub
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://juejin.im/user/57f0f27a128fe100542d29ad" target="_blank" >
+                <i class="icon icon-lg icon-pencil"></i>
+                掘金专栏
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://segmentfault.com/u/microzz/posts" target="_blank" >
+                <i class="icon icon-lg icon-leaf"></i>
+                SegmentFault
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Promise对象</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Promise对象</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-01-14T14:11:38.000Z" itemprop="datePublished" class="page-time">
+  2017-01-14
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    <link href="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.5.0/styles/atom-one-dark.min.css" rel="stylesheet">
+<script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>
+    Array.prototype.slice.call(document.querySelectorAll('pre code')).forEach(function(block) {
+      hljs.highlightBlock(block);
+  } )
+</script>
+
+<article id="post-promise"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Promise对象</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年01月14日 14:11" datetime="2017-01-14T14:11:38.000Z"  itemprop="datePublished">2017-01-14</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="Promise对象"><a href="#Promise对象" class="headerlink" title="Promise对象"></a>Promise对象</h1><h2 id="Promise的含义"><a href="#Promise的含义" class="headerlink" title="Promise的含义"></a>Promise的含义</h2><p>Promise是异步编程的一种解决方案，比传统的解决方案——回调函数和事件——更合理和更强大。它由社区最早提出和实现，ES6将其写进了语言标准，统一了用法，原生提供了<code>Promise</code>对象。</p>
+<p>所谓<code>Promise</code>，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise是一个对象，从它可以获取异步操作的消息。Promise提供统一的API，各种异步操作都可以用同样的方法进行处理。</p>
+<p><code>Promise</code>对象有以下两个特点。</p>
+<p>（1）对象的状态不受外界影响。<code>Promise</code>对象代表一个异步操作，有三种状态：<code>Pending</code>（进行中）、<code>Resolved</code>（已完成，又称Fulfilled）和<code>Rejected</code>（已失败）。只有异步操作的结果，可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。这也是<code>Promise</code>这个名字的由来，它的英语意思就是“承诺”，表示其他手段无法改变。</p>
+<p>（2）一旦状态改变，就不会再变，任何时候都可以得到这个结果。<code>Promise</code>对象的状态改变，只有两种可能：从<code>Pending</code>变为<code>Resolved</code>和从<code>Pending</code>变为<code>Rejected</code>。只要这两种情况发生，状态就凝固了，不会再变了，会一直保持这个结果。就算改变已经发生了，你再对<code>Promise</code>对象添加回调函数，也会立即得到这个结果。这与事件（Event）完全不同，事件的特点是，如果你错过了它，再去监听，是得不到结果的。</p>
+<p>有了<code>Promise</code>对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数。此外，<code>Promise</code>对象提供统一的接口，使得控制异步操作更加容易。</p>
+<p><code>Promise</code>也有一些缺点。首先，无法取消<code>Promise</code>，一旦新建它就会立即执行，无法中途取消。其次，如果不设置回调函数，<code>Promise</code>内部抛出的错误，不会反应到外部。第三，当处于<code>Pending</code>状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。</p>
+<p>如果某些事件不断地反复发生，一般来说，使用stream模式是比部署<code>Promise</code>更好的选择。</p>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><p>ES6规定，Promise对象是一个构造函数，用来生成Promise实例。</p>
+<p>下面代码创造了一个Promise实例。</p>
+<pre><code class="javascript">var promise = new Promise(function(resolve, reject) {
+  // ... some code
+
+  if (/* 异步操作成功 */){
+    resolve(value);
+  } else {
+    reject(error);
+  }
+});
+</code></pre>
+<p>Promise构造函数接受一个函数作为参数，该函数的两个参数分别是<code>resolve</code>和<code>reject</code>。它们是两个函数，由JavaScript引擎提供，不用自己部署。</p>
+<p><code>resolve</code>函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从Pending变为Resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；<code>reject</code>函数的作用是，将Promise对象的状态从“未完成”变为“失败”（即从Pending变为Rejected），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。</p>
+<p>Promise实例生成以后，可以用<code>then</code>方法分别指定<code>Resolved</code>状态和<code>Reject</code>状态的回调函数。</p>
+<pre><code class="javascript">promise.then(function(value) {
+  // success
+}, function(error) {
+  // failure
+});
+</code></pre>
+<p><code>then</code>方法可以接受两个回调函数作为参数。第一个回调函数是Promise对象的状态变为Resolved时调用，第二个回调函数是Promise对象的状态变为Reject时调用。其中，第二个函数是可选的，不一定要提供。这两个函数都接受Promise对象传出的值作为参数。</p>
+<p>下面是一个Promise对象的简单例子。</p>
+<pre><code class="javascript">function timeout(ms) {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(resolve, ms, &#39;done&#39;);
+  });
+}
+
+timeout(100).then((value) =&gt; {
+  console.log(value);
+});
+</code></pre>
+<p>上面代码中，<code>timeout</code>方法返回一个Promise实例，表示一段时间以后才会发生的结果。过了指定的时间（<code>ms</code>参数）以后，Promise实例的状态变为Resolved，就会触发<code>then</code>方法绑定的回调函数。</p>
+<p>Promise新建后就会立即执行。</p>
+<pre><code class="javascript">let promise = new Promise(function(resolve, reject) {
+  console.log(&#39;Promise&#39;);
+  resolve();
+});
+
+promise.then(function() {
+  console.log(&#39;Resolved.&#39;);
+});
+
+console.log(&#39;Hi!&#39;);
+
+// Promise
+// Hi!
+// Resolved
+</code></pre>
+<p>上面代码中，Promise新建后立即执行，所以首先输出的是“Promise”。然后，<code>then</code>方法指定的回调函数，将在当前脚本所有同步任务执行完才会执行，所以“Resolved”最后输出。</p>
+<p>下面是异步加载图片的例子。</p>
+<pre><code class="javascript">function loadImageAsync(url) {
+  return new Promise(function(resolve, reject) {
+    var image = new Image();
+
+    image.onload = function() {
+      resolve(image);
+    };
+
+    image.onerror = function() {
+      reject(new Error(&#39;Could not load image at &#39; + url));
+    };
+
+    image.src = url;
+  });
+}
+</code></pre>
+<p>上面代码中，使用Promise包装了一个图片加载的异步操作。如果加载成功，就调用<code>resolve</code>方法，否则就调用<code>reject</code>方法。</p>
+<p>下面是一个用Promise对象实现的Ajax操作的例子。</p>
+<pre><code class="javascript">var getJSON = function(url) {
+  var promise = new Promise(function(resolve, reject){
+    var client = new XMLHttpRequest();
+    client.open(&quot;GET&quot;, url);
+    client.onreadystatechange = handler;
+    client.responseType = &quot;json&quot;;
+    client.setRequestHeader(&quot;Accept&quot;, &quot;application/json&quot;);
+    client.send();
+
+    function handler() {
+      if (this.readyState !== 4) {
+        return;
+      }
+      if (this.status === 200) {
+        resolve(this.response);
+      } else {
+        reject(new Error(this.statusText));
+      }
+    };
+  });
+
+  return promise;
+};
+
+getJSON(&quot;/posts.json&quot;).then(function(json) {
+  console.log(&#39;Contents: &#39; + json);
+}, function(error) {
+  console.error(&#39;出错了&#39;, error);
+});
+</code></pre>
+<p>上面代码中，<code>getJSON</code>是对XMLHttpRequest对象的封装，用于发出一个针对JSON数据的HTTP请求，并且返回一个Promise对象。需要注意的是，在<code>getJSON</code>内部，<code>resolve</code>函数和<code>reject</code>函数调用时，都带有参数。</p>
+<p>如果调用<code>resolve</code>函数和<code>reject</code>函数时带有参数，那么它们的参数会被传递给回调函数。<code>reject</code>函数的参数通常是Error对象的实例，表示抛出的错误；<code>resolve</code>函数的参数除了正常的值以外，还可能是另一个Promise实例，表示异步操作的结果有可能是一个值，也有可能是另一个异步操作，比如像下面这样。</p>
+<pre><code class="javascript">var p1 = new Promise(function (resolve, reject) {
+  // ...
+});
+
+var p2 = new Promise(function (resolve, reject) {
+  // ...
+  resolve(p1);
+})
+</code></pre>
+<p>上面代码中，<code>p1</code>和<code>p2</code>都是Promise的实例，但是<code>p2</code>的<code>resolve</code>方法将<code>p1</code>作为参数，即一个异步操作的结果是返回另一个异步操作。</p>
+<p>注意，这时<code>p1</code>的状态就会传递给<code>p2</code>，也就是说，<code>p1</code>的状态决定了<code>p2</code>的状态。如果<code>p1</code>的状态是<code>Pending</code>，那么<code>p2</code>的回调函数就会等待<code>p1</code>的状态改变；如果<code>p1</code>的状态已经是<code>Resolved</code>或者<code>Rejected</code>，那么<code>p2</code>的回调函数将会立刻执行。</p>
+<pre><code class="javascript">var p1 = new Promise(function (resolve, reject) {
+  setTimeout(() =&gt; reject(new Error(&#39;fail&#39;)), 3000)
+})
+
+var p2 = new Promise(function (resolve, reject) {
+  setTimeout(() =&gt; resolve(p1), 1000)
+})
+
+p2
+  .then(result =&gt; console.log(result))
+  .catch(error =&gt; console.log(error))
+// Error: fail
+</code></pre>
+<p>上面代码中，<code>p1</code>是一个Promise，3秒之后变为<code>rejected</code>。<code>p2</code>的状态在1秒之后改变，<code>resolve</code>方法返回的是<code>p1</code>。此时，由于<code>p2</code>返回的是另一个Promise，所以后面的<code>then</code>语句都变成针对后者（<code>p1</code>）。又过了2秒，<code>p1</code>变为<code>rejected</code>，导致触发<code>catch</code>方法指定的回调函数。</p>
+<h2 id="Promise-prototype-then"><a href="#Promise-prototype-then" class="headerlink" title="Promise.prototype.then()"></a>Promise.prototype.then()</h2><p>Promise实例具有<code>then</code>方法，也就是说，<code>then</code>方法是定义在原型对象Promise.prototype上的。它的作用是为Promise实例添加状态改变时的回调函数。前面说过，<code>then</code>方法的第一个参数是Resolved状态的回调函数，第二个参数（可选）是Rejected状态的回调函数。</p>
+<p><code>then</code>方法返回的是一个新的Promise实例（注意，不是原来那个Promise实例）。因此可以采用链式写法，即<code>then</code>方法后面再调用另一个<code>then</code>方法。</p>
+<pre><code class="javascript">getJSON(&quot;/posts.json&quot;).then(function(json) {
+  return json.post;
+}).then(function(post) {
+  // ...
+});
+</code></pre>
+<p>上面的代码使用<code>then</code>方法，依次指定了两个回调函数。第一个回调函数完成以后，会将返回结果作为参数，传入第二个回调函数。</p>
+<p>采用链式的<code>then</code>，可以指定一组按照次序调用的回调函数。这时，前一个回调函数，有可能返回的还是一个Promise对象（即有异步操作），这时后一个回调函数，就会等待该Promise对象的状态发生变化，才会被调用。</p>
+<pre><code class="javascript">getJSON(&quot;/post/1.json&quot;).then(function(post) {
+  return getJSON(post.commentURL);
+}).then(function funcA(comments) {
+  console.log(&quot;Resolved: &quot;, comments);
+}, function funcB(err){
+  console.log(&quot;Rejected: &quot;, err);
+});
+</code></pre>
+<p>上面代码中，第一个<code>then</code>方法指定的回调函数，返回的是另一个Promise对象。这时，第二个<code>then</code>方法指定的回调函数，就会等待这个新的Promise对象状态发生变化。如果变为Resolved，就调用<code>funcA</code>，如果状态变为Rejected，就调用<code>funcB</code>。</p>
+<p>如果采用箭头函数，上面的代码可以写得更简洁。</p>
+<pre><code class="javascript">getJSON(&quot;/post/1.json&quot;).then(
+  post =&gt; getJSON(post.commentURL)
+).then(
+  comments =&gt; console.log(&quot;Resolved: &quot;, comments),
+  err =&gt; console.log(&quot;Rejected: &quot;, err)
+);
+</code></pre>
+<h2 id="Promise-prototype-catch"><a href="#Promise-prototype-catch" class="headerlink" title="Promise.prototype.catch()"></a>Promise.prototype.catch()</h2><p><code>Promise.prototype.catch</code>方法是<code>.then(null, rejection)</code>的别名，用于指定发生错误时的回调函数。</p>
+<pre><code class="javascript">getJSON(&quot;/posts.json&quot;).then(function(posts) {
+  // ...
+}).catch(function(error) {
+  // 处理 getJSON 和 前一个回调函数运行时发生的错误
+  console.log(&#39;发生错误！&#39;, error);
+});
+</code></pre>
+<p>上面代码中，<code>getJSON</code>方法返回一个Promise对象，如果该对象状态变为<code>Resolved</code>，则会调用<code>then</code>方法指定的回调函数；如果异步操作抛出错误，状态就会变为<code>Rejected</code>，就会调用<code>catch</code>方法指定的回调函数，处理这个错误。另外，<code>then</code>方法指定的回调函数，如果运行中抛出错误，也会被<code>catch</code>方法捕获。</p>
+<pre><code class="javascript">p.then((val) =&gt; console.log(&quot;fulfilled:&quot;, val))
+  .catch((err) =&gt; console.log(&quot;rejected:&quot;, err));
+
+// 等同于
+p.then((val) =&gt; console.log(&quot;fulfilled:&quot;, val))
+  .then(null, (err) =&gt; console.log(&quot;rejected:&quot;, err));
+</code></pre>
+<p>下面是一个例子。</p>
+<pre><code class="javascript">var promise = new Promise(function(resolve, reject) {
+  throw new Error(&#39;test&#39;);
+});
+promise.catch(function(error) {
+  console.log(error);
+});
+// Error: test
+</code></pre>
+<p>上面代码中，<code>promise</code>抛出一个错误，就被<code>catch</code>方法指定的回调函数捕获。注意，上面的写法与下面两种写法是等价的。</p>
+<pre><code class="javascript">// 写法一
+var promise = new Promise(function(resolve, reject) {
+  try {
+    throw new Error(&#39;test&#39;);
+  } catch(e) {
+    reject(e);
+  }
+});
+promise.catch(function(error) {
+  console.log(error);
+});
+
+// 写法二
+var promise = new Promise(function(resolve, reject) {
+  reject(new Error(&#39;test&#39;));
+});
+promise.catch(function(error) {
+  console.log(error);
+});
+</code></pre>
+<p>比较上面两种写法，可以发现<code>reject</code>方法的作用，等同于抛出错误。</p>
+<p>如果Promise状态已经变成<code>Resolved</code>，再抛出错误是无效的。</p>
+<pre><code class="javascript">var promise = new Promise(function(resolve, reject) {
+  resolve(&#39;ok&#39;);
+  throw new Error(&#39;test&#39;);
+});
+promise
+  .then(function(value) { console.log(value) })
+  .catch(function(error) { console.log(error) });
+// ok
+</code></pre>
+<p>上面代码中，Promise在<code>resolve</code>语句后面，再抛出错误，不会被捕获，等于没有抛出。</p>
+<p>Promise对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。也就是说，错误总是会被下一个<code>catch</code>语句捕获。</p>
+<pre><code class="javascript">getJSON(&quot;/post/1.json&quot;).then(function(post) {
+  return getJSON(post.commentURL);
+}).then(function(comments) {
+  // some code
+}).catch(function(error) {
+  // 处理前面三个Promise产生的错误
+});
+</code></pre>
+<p>上面代码中，一共有三个Promise对象：一个由<code>getJSON</code>产生，两个由<code>then</code>产生。它们之中任何一个抛出的错误，都会被最后一个<code>catch</code>捕获。</p>
+<p>一般来说，不要在<code>then</code>方法里面定义Reject状态的回调函数（即<code>then</code>的第二个参数），总是使用<code>catch</code>方法。</p>
+<pre><code class="javascript">// bad
+promise
+  .then(function(data) {
+    // success
+  }, function(err) {
+    // error
+  });
+
+// good
+promise
+  .then(function(data) { //cb
+    // success
+  })
+  .catch(function(err) {
+    // error
+  });
+</code></pre>
+<p>上面代码中，第二种写法要好于第一种写法，理由是第二种写法可以捕获前面<code>then</code>方法执行中的错误，也更接近同步的写法（<code>try/catch</code>）。因此，建议总是使用<code>catch</code>方法，而不使用<code>then</code>方法的第二个参数。</p>
+<p>跟传统的<code>try/catch</code>代码块不同的是，如果没有使用<code>catch</code>方法指定错误处理的回调函数，Promise对象抛出的错误不会传递到外层代码，即不会有任何反应。</p>
+<pre><code class="javascript">var someAsyncThing = function() {
+  return new Promise(function(resolve, reject) {
+    // 下面一行会报错，因为x没有声明
+    resolve(x + 2);
+  });
+};
+
+someAsyncThing().then(function() {
+  console.log(&#39;everything is great&#39;);
+});
+</code></pre>
+<p>上面代码中，<code>someAsyncThing</code>函数产生的Promise对象会报错，但是由于没有指定<code>catch</code>方法，这个错误不会被捕获，也不会传递到外层代码，导致运行后没有任何输出。注意，Chrome浏览器不遵守这条规定，它会抛出错误“ReferenceError: x is not defined”。</p>
+<pre><code class="javascript">var promise = new Promise(function(resolve, reject) {
+  resolve(&#39;ok&#39;);
+  setTimeout(function() { throw new Error(&#39;test&#39;) }, 0)
+});
+promise.then(function(value) { console.log(value) });
+// ok
+// Uncaught Error: test
+</code></pre>
+<p>上面代码中，Promise 指定在下一轮“事件循环”再抛出错误，结果由于没有指定使用<code>try...catch</code>语句，就冒泡到最外层，成了未捕获的错误。因为此时，Promise的函数体已经运行结束了，所以这个错误是在Promise函数体外抛出的。</p>
+<p>Node 有一个<code>unhandledRejection</code>事件，专门监听未捕获的<code>reject</code>错误。</p>
+<pre><code class="javascript">process.on(&#39;unhandledRejection&#39;, function (err, p) {
+  console.error(err.stack)
+});
+</code></pre>
+<p>上面代码中，<code>unhandledRejection</code>事件的监听函数有两个参数，第一个是错误对象，第二个是报错的Promise实例，它可以用来了解发生错误的环境信息。。</p>
+<p>需要注意的是，<code>catch</code>方法返回的还是一个 Promise 对象，因此后面还可以接着调用<code>then</code>方法。</p>
+<pre><code class="javascript">var someAsyncThing = function() {
+  return new Promise(function(resolve, reject) {
+    // 下面一行会报错，因为x没有声明
+    resolve(x + 2);
+  });
+};
+
+someAsyncThing()
+.catch(function(error) {
+  console.log(&#39;oh no&#39;, error);
+})
+.then(function() {
+  console.log(&#39;carry on&#39;);
+});
+// oh no [ReferenceError: x is not defined]
+// carry on
+</code></pre>
+<p>上面代码运行完<code>catch</code>方法指定的回调函数，会接着运行后面那个<code>then</code>方法指定的回调函数。如果没有报错，则会跳过<code>catch</code>方法。</p>
+<pre><code class="javascript">Promise.resolve()
+.catch(function(error) {
+  console.log(&#39;oh no&#39;, error);
+})
+.then(function() {
+  console.log(&#39;carry on&#39;);
+});
+// carry on
+</code></pre>
+<p>上面的代码因为没有报错，跳过了<code>catch</code>方法，直接执行后面的<code>then</code>方法。此时，要是<code>then</code>方法里面报错，就与前面的<code>catch</code>无关了。</p>
+<p><code>catch</code>方法之中，还能再抛出错误。</p>
+<pre><code class="javascript">var someAsyncThing = function() {
+  return new Promise(function(resolve, reject) {
+    // 下面一行会报错，因为x没有声明
+    resolve(x + 2);
+  });
+};
+
+someAsyncThing().then(function() {
+  return someOtherAsyncThing();
+}).catch(function(error) {
+  console.log(&#39;oh no&#39;, error);
+  // 下面一行会报错，因为y没有声明
+  y + 2;
+}).then(function() {
+  console.log(&#39;carry on&#39;);
+});
+// oh no [ReferenceError: x is not defined]
+</code></pre>
+<p>上面代码中，<code>catch</code>方法抛出一个错误，因为后面没有别的<code>catch</code>方法了，导致这个错误不会被捕获，也不会传递到外层。如果改写一下，结果就不一样了。</p>
+<pre><code class="javascript">someAsyncThing().then(function() {
+  return someOtherAsyncThing();
+}).catch(function(error) {
+  console.log(&#39;oh no&#39;, error);
+  // 下面一行会报错，因为y没有声明
+  y + 2;
+}).catch(function(error) {
+  console.log(&#39;carry on&#39;, error);
+});
+// oh no [ReferenceError: x is not defined]
+// carry on [ReferenceError: y is not defined]
+</code></pre>
+<p>上面代码中，第二个<code>catch</code>方法用来捕获，前一个<code>catch</code>方法抛出的错误。</p>
+<h2 id="Promise-all"><a href="#Promise-all" class="headerlink" title="Promise.all()"></a>Promise.all()</h2><p><code>Promise.all</code>方法用于将多个Promise实例，包装成一个新的Promise实例。</p>
+<pre><code class="javascript">var p = Promise.all([p1, p2, p3]);
+</code></pre>
+<p>上面代码中，<code>Promise.all</code>方法接受一个数组作为参数，<code>p1</code>、<code>p2</code>、<code>p3</code>都是Promise对象的实例，如果不是，就会先调用下面讲到的<code>Promise.resolve</code>方法，将参数转为Promise实例，再进一步处理。（<code>Promise.all</code>方法的参数可以不是数组，但必须具有Iterator接口，且返回的每个成员都是Promise实例。）</p>
+<p><code>p</code>的状态由<code>p1</code>、<code>p2</code>、<code>p3</code>决定，分成两种情况。</p>
+<p>（1）只有<code>p1</code>、<code>p2</code>、<code>p3</code>的状态都变成<code>fulfilled</code>，<code>p</code>的状态才会变成<code>fulfilled</code>，此时<code>p1</code>、<code>p2</code>、<code>p3</code>的返回值组成一个数组，传递给<code>p</code>的回调函数。</p>
+<p>（2）只要<code>p1</code>、<code>p2</code>、<code>p3</code>之中有一个被<code>rejected</code>，<code>p</code>的状态就变成<code>rejected</code>，此时第一个被<code>reject</code>的实例的返回值，会传递给<code>p</code>的回调函数。</p>
+<p>下面是一个具体的例子。</p>
+<pre><code class="javascript">// 生成一个Promise对象的数组
+var promises = [2, 3, 5, 7, 11, 13].map(function (id) {
+  return getJSON(&quot;/post/&quot; + id + &quot;.json&quot;);
+});
+
+Promise.all(promises).then(function (posts) {
+  // ...
+}).catch(function(reason){
+  // ...
+});
+</code></pre>
+<p>上面代码中，<code>promises</code>是包含6个Promise实例的数组，只有这6个实例的状态都变成<code>fulfilled</code>，或者其中有一个变为<code>rejected</code>，才会调用<code>Promise.all</code>方法后面的回调函数。</p>
+<p>下面是另一个例子。</p>
+<pre><code class="javascript">const databasePromise = connectDatabase();
+
+const booksPromise = databaseProimse
+  .then(findAllBooks);
+
+const userPromise = databasePromise
+  .then(getCurrentUser);
+
+Promise.all([
+  booksPromise,
+  userPromise
+])
+.then(([books, user]) =&gt; pickTopRecommentations(books, user));
+</code></pre>
+<p>上面代码中，<code>booksPromise</code>和<code>userPromise</code>是两个异步操作，只有等到它们的结果都返回了，才会触发<code>pickTopRecommentations</code>这个回调函数。</p>
+<h2 id="Promise-race"><a href="#Promise-race" class="headerlink" title="Promise.race()"></a>Promise.race()</h2><p><code>Promise.race</code>方法同样是将多个Promise实例，包装成一个新的Promise实例。</p>
+<pre><code class="javascript">var p = Promise.race([p1, p2, p3]);
+</code></pre>
+<p>上面代码中，只要<code>p1</code>、<code>p2</code>、<code>p3</code>之中有一个实例率先改变状态，<code>p</code>的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给<code>p</code>的回调函数。</p>
+<p><code>Promise.race</code>方法的参数与<code>Promise.all</code>方法一样，如果不是 Promise 实例，就会先调用下面讲到的<code>Promise.resolve</code>方法，将参数转为 Promise 实例，再进一步处理。</p>
+<p>下面是一个例子，如果指定时间内没有获得结果，就将Promise的状态变为<code>reject</code>，否则变为<code>resolve</code>。</p>
+<pre><code class="javascript">var p = Promise.race([
+  fetch(&#39;/resource-that-may-take-a-while&#39;),
+  new Promise(function (resolve, reject) {
+    setTimeout(() =&gt; reject(new Error(&#39;request timeout&#39;)), 5000)
+  })
+])
+p.then(response =&gt; console.log(response))
+p.catch(error =&gt; console.log(error))
+</code></pre>
+<p>上面代码中，如果5秒之内<code>fetch</code>方法无法返回结果，变量<code>p</code>的状态就会变为<code>rejected</code>，从而触发<code>catch</code>方法指定的回调函数。</p>
+<h2 id="Promise-resolve"><a href="#Promise-resolve" class="headerlink" title="Promise.resolve()"></a>Promise.resolve()</h2><p>有时需要将现有对象转为Promise对象，<code>Promise.resolve</code>方法就起到这个作用。</p>
+<pre><code class="javascript">var jsPromise = Promise.resolve($.ajax(&#39;/whatever.json&#39;));
+</code></pre>
+<p>上面代码将jQuery生成的<code>deferred</code>对象，转为一个新的Promise对象。</p>
+<p><code>Promise.resolve</code>等价于下面的写法。</p>
+<pre><code class="javascript">Promise.resolve(&#39;foo&#39;)
+// 等价于
+new Promise(resolve =&gt; resolve(&#39;foo&#39;))
+</code></pre>
+<p><code>Promise.resolve</code>方法的参数分成四种情况。</p>
+<p><strong>（1）参数是一个Promise实例</strong></p>
+<p>如果参数是Promise实例，那么<code>Promise.resolve</code>将不做任何修改、原封不动地返回这个实例。</p>
+<p><strong>（2）参数是一个<code>thenable</code>对象</strong></p>
+<p><code>thenable</code>对象指的是具有<code>then</code>方法的对象，比如下面这个对象。</p>
+<pre><code class="javascript">let thenable = {
+  then: function(resolve, reject) {
+    resolve(42);
+  }
+};
+</code></pre>
+<p><code>Promise.resolve</code>方法会将这个对象转为Promise对象，然后就立即执行<code>thenable</code>对象的<code>then</code>方法。</p>
+<pre><code class="javascript">let thenable = {
+  then: function(resolve, reject) {
+    resolve(42);
+  }
+};
+
+let p1 = Promise.resolve(thenable);
+p1.then(function(value) {
+  console.log(value);  // 42
+});
+</code></pre>
+<p>上面代码中，<code>thenable</code>对象的<code>then</code>方法执行后，对象<code>p1</code>的状态就变为<code>resolved</code>，从而立即执行最后那个<code>then</code>方法指定的回调函数，输出42。</p>
+<p><strong>（3）参数不是具有<code>then</code>方法的对象，或根本就不是对象</strong></p>
+<p>如果参数是一个原始值，或者是一个不具有<code>then</code>方法的对象，则<code>Promise.resolve</code>方法返回一个新的Promise对象，状态为<code>Resolved</code>。</p>
+<pre><code class="javascript">var p = Promise.resolve(&#39;Hello&#39;);
+
+p.then(function (s){
+  console.log(s)
+});
+// Hello
+</code></pre>
+<p>上面代码生成一个新的Promise对象的实例<code>p</code>。由于字符串<code>Hello</code>不属于异步操作（判断方法是它不是具有then方法的对象），返回Promise实例的状态从一生成就是<code>Resolved</code>，所以回调函数会立即执行。<code>Promise.resolve</code>方法的参数，会同时传给回调函数。</p>
+<p><strong>（4）不带有任何参数</strong></p>
+<p><code>Promise.resolve</code>方法允许调用时不带参数，直接返回一个<code>Resolved</code>状态的Promise对象。</p>
+<p>所以，如果希望得到一个Promise对象，比较方便的方法就是直接调用<code>Promise.resolve</code>方法。</p>
+<pre><code class="javascript">var p = Promise.resolve();
+
+p.then(function () {
+  // ...
+});
+</code></pre>
+<p>上面代码的变量<code>p</code>就是一个Promise对象。</p>
+<p>需要注意的是，立即<code>resolve</code>的Promise对象，是在本轮“事件循环”（event loop）的结束时，而不是在下一轮“事件循环”的开始时。</p>
+<pre><code class="javascript">setTimeout(function () {
+  console.log(&#39;three&#39;);
+}, 0);
+
+Promise.resolve().then(function () {
+  console.log(&#39;two&#39;);
+});
+
+console.log(&#39;one&#39;);
+
+// one
+// two
+// three
+</code></pre>
+<p>上面代码中，<code>setTimeout(fn, 0)</code>在下一轮“事件循环”开始时执行，<code>Promise.resolve()</code>在本轮“事件循环”结束时执行，<code>console.log(’one‘)</code>则是立即执行，因此最先输出。</p>
+<h2 id="Promise-reject"><a href="#Promise-reject" class="headerlink" title="Promise.reject()"></a>Promise.reject()</h2><p><code>Promise.reject(reason)</code>方法也会返回一个新的 Promise 实例，该实例的状态为<code>rejected</code>。</p>
+<pre><code class="javascript">var p = Promise.reject(&#39;出错了&#39;);
+// 等同于
+var p = new Promise((resolve, reject) =&gt; reject(&#39;出错了&#39;))
+
+p.then(null, function (s) {
+  console.log(s)
+});
+// 出错了
+</code></pre>
+<p>上面代码生成一个Promise对象的实例<code>p</code>，状态为<code>rejected</code>，回调函数会立即执行。</p>
+<p>注意，<code>Promise.reject()</code>方法的参数，会原封不动地作为<code>reject</code>的理由，变成后续方法的参数。这一点与<code>Promise.resolve</code>方法不一致。</p>
+<pre><code class="javascript">const thenable = {
+  then(resolve, reject) {
+    reject(&#39;出错了&#39;);
+  }
+};
+
+Promise.reject(thenable)
+.catch(e =&gt; {
+  console.log(e === thenable)
+})
+// true
+</code></pre>
+<p>上面代码中，<code>Promise.reject</code>方法的参数是一个<code>thenable</code>对象，执行以后，后面<code>catch</code>方法的参数不是<code>reject</code>抛出的“出错了”这个字符串，而是<code>thenable</code>对象。</p>
+<h2 id="两个有用的附加方法"><a href="#两个有用的附加方法" class="headerlink" title="两个有用的附加方法"></a>两个有用的附加方法</h2><p>ES6的Promise API提供的方法不是很多，有些有用的方法可以自己部署。下面介绍如何部署两个不在ES6之中、但很有用的方法。</p>
+<h3 id="done"><a href="#done" class="headerlink" title="done()"></a>done()</h3><p>Promise对象的回调链，不管以<code>then</code>方法或<code>catch</code>方法结尾，要是最后一个方法抛出错误，都有可能无法捕捉到（因为Promise内部的错误不会冒泡到全局）。因此，我们可以提供一个<code>done</code>方法，总是处于回调链的尾端，保证抛出任何可能出现的错误。</p>
+<pre><code class="javascript">asyncFunc()
+  .then(f1)
+  .catch(r1)
+  .then(f2)
+  .done();
+</code></pre>
+<p>它的实现代码相当简单。</p>
+<pre><code class="javascript">Promise.prototype.done = function (onFulfilled, onRejected) {
+  this.then(onFulfilled, onRejected)
+    .catch(function (reason) {
+      // 抛出一个全局错误
+      setTimeout(() =&gt; { throw reason }, 0);
+    });
+};
+</code></pre>
+<p>从上面代码可见，<code>done</code>方法的使用，可以像<code>then</code>方法那样用，提供<code>Fulfilled</code>和<code>Rejected</code>状态的回调函数，也可以不提供任何参数。但不管怎样，<code>done</code>都会捕捉到任何可能出现的错误，并向全局抛出。</p>
+<h3 id="finally"><a href="#finally" class="headerlink" title="finally()"></a>finally()</h3><p><code>finally</code>方法用于指定不管Promise对象最后状态如何，都会执行的操作。它与<code>done</code>方法的最大区别，它接受一个普通的回调函数作为参数，该函数不管怎样都必须执行。</p>
+<p>下面是一个例子，服务器使用Promise处理请求，然后使用<code>finally</code>方法关掉服务器。</p>
+<pre><code class="javascript">server.listen(0)
+  .then(function () {
+    // run test
+  })
+  .finally(server.stop);
+</code></pre>
+<p>它的实现也很简单。</p>
+<pre><code class="javascript">Promise.prototype.finally = function (callback) {
+  let P = this.constructor;
+  return this.then(
+    value  =&gt; P.resolve(callback()).then(() =&gt; value),
+    reason =&gt; P.resolve(callback()).then(() =&gt; { throw reason })
+  );
+};
+</code></pre>
+<p>上面代码中，不管前面的Promise是<code>fulfilled</code>还是<code>rejected</code>，都会执行回调函数<code>callback</code>。</p>
+<p>更多IT技术分享尽在 🔗<a href="http://microzz.com">涵月天-microzz.com</a></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="加载图片"><a href="#加载图片" class="headerlink" title="加载图片"></a>加载图片</h3><p>我们可以将图片的加载写成一个<code>Promise</code>，一旦加载完成，<code>Promise</code>的状态就发生变化。</p>
+<pre><code class="javascript">const preloadImage = function (path) {
+  return new Promise(function (resolve, reject) {
+    var image = new Image();
+    image.onload  = resolve;
+    image.onerror = reject;
+    image.src = path;
+  });
+};
+</code></pre>
+<h3 id="Generator函数与Promise的结合"><a href="#Generator函数与Promise的结合" class="headerlink" title="Generator函数与Promise的结合"></a>Generator函数与Promise的结合</h3><p>使用Generator函数管理流程，遇到异步操作的时候，通常返回一个<code>Promise</code>对象。</p>
+<pre><code class="javascript">function getFoo () {
+  return new Promise(function (resolve, reject){
+    resolve(&#39;foo&#39;);
+  });
+}
+
+var g = function* () {
+  try {
+    var foo = yield getFoo();
+    console.log(foo);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+function run (generator) {
+  var it = generator();
+
+  function go(result) {
+    if (result.done) return result.value;
+
+    return result.value.then(function (value) {
+      return go(it.next(value));
+    }, function (error) {
+      return go(it.throw(error));
+    });
+  }
+
+  go(it.next());
+}
+
+run(g);
+</code></pre>
+<p>上面代码的Generator函数<code>g</code>之中，有一个异步操作<code>getFoo</code>，它返回的就是一个<code>Promise</code>对象。函数<code>run</code>用来处理这个<code>Promise</code>对象，并调用下一个<code>next</code>方法。</p>
+<h2 id="Promise-try"><a href="#Promise-try" class="headerlink" title="Promise.try()"></a>Promise.try()</h2><p>实际开发中，经常遇到一种情况：不知道或者不想区分，函数<code>f</code>是同步函数还是异步操作，但是想用 Promise 来处理它。因为这样就可以不管<code>f</code>是否包含异步操作，都用<code>then</code>方法指定下一步流程，用<code>catch</code>方法处理<code>f</code>抛出的错误。一般就会采用下面的写法。</p>
+<pre><code class="javascript">Promise.resolve().then(f)
+</code></pre>
+<p>上面的写法有一个缺点，就是如果<code>f</code>是同步函数，那么它会在本轮事件循环的末尾执行。</p>
+<pre><code class="javascript">const f = () =&gt; console.log(&#39;now&#39;);
+Promise.resolve().then(f);
+console.log(&#39;next&#39;);
+// next
+// now
+</code></pre>
+<p>上面代码中，函数<code>f</code>是同步的，但是用 Promise 包装了以后，就变成异步执行了。</p>
+<p>那么有没有一种方法，让同步函数同步执行，异步函数异步执行，并且让它们具有统一的 API 呢？回答是可以的，并且还有两种写法。第一种写法是用<code>async</code>函数来写。</p>
+<pre><code class="javascript">const f = () =&gt; console.log(&#39;now&#39;);
+(async () =&gt; f())();
+console.log(&#39;next&#39;);
+// now
+// next
+</code></pre>
+<p>上面代码中，第二行是一个立即执行的匿名函数，会立即执行里面的<code>async</code>函数，因此如果<code>f</code>是同步的，就会得到同步的结果；如果<code>f</code>是异步的，就可以用<code>then</code>指定下一步，就像下面的写法。</p>
+<pre><code class="javascript">(async () =&gt; f())()
+.then(...)
+</code></pre>
+<p>需要注意的是，<code>async () =&gt; f()</code>会吃掉<code>f()</code>抛出的错误。所以，如果想捕获错误，要使用<code>promise.catch</code>方法。</p>
+<pre><code class="javascript">(async () =&gt; f())()
+.then(...)
+.catch(...)
+</code></pre>
+<p>第二种写法是使用<code>new Promise()</code>。</p>
+<pre><code class="javascript">const f = () =&gt; console.log(&#39;now&#39;);
+(
+  () =&gt; new Promise(
+    resolve =&gt; resolve(f())
+  )
+)();
+console.log(&#39;next&#39;);
+// now
+// next
+</code></pre>
+<p>上面代码也是使用立即执行的匿名函数，执行<code>new Promise()</code>。这种情况下，同步函数也是同步执行的。</p>
+<p>鉴于这是一个很常见的需求，所以现在有一个<a href="https://github.com/ljharb/proposal-promise-try" target="_blank" rel="external">提案</a>，提供<code>Promise.try</code>方法替代上面的写法。</p>
+<pre><code class="javascript">const f = () =&gt; console.log(&#39;now&#39;);
+Promise.try(f);
+console.log(&#39;next&#39;);
+// now
+// next
+</code></pre>
+<p>事实上，<code>Promise.try</code>存在已久，Promise 库<a href="http://bluebirdjs.com/docs/api/promise.try.html" target="_blank" rel="external"><code>Bluebird</code></a>、<a href="https://github.com/kriskowal/q/wiki/API-Reference#promisefcallargs" target="_blank" rel="external"><code>Q</code></a>和<a href="https://github.com/cujojs/when/blob/master/docs/api.md#whentry" target="_blank" rel="external"><code>when</code></a>，早就提供了这个方法。</p>
+<p>由于<code>Promise.try</code>为所有操作提供了统一的处理机制，所以如果想用<code>then</code>方法管理流程，最好都用<code>Promise.try</code>包装一下。这样有<a href="http://cryto.net/~joepie91/blog/2016/05/11/what-is-promise-try-and-why-does-it-matter/" target="_blank" rel="external">许多好处</a>，其中一点就是可以更好地管理异常。</p>
+<pre><code class="javascript">function getUsername(userId) {
+  return database.users.get({id: userId})
+  .then(function(user) {
+    return user.name;
+  });
+}
+</code></pre>
+<p>上面代码中，<code>database.users.get()</code>返回一个 Promise 对象，如果抛出异步错误，可以用<code>catch</code>方法捕获，就像下面这样写。</p>
+<pre><code class="javascript">database.users.get({id: userId})
+.then(...)
+.catch(...)
+</code></pre>
+<p>但是<code>database.users.get()</code>可能还会抛出同步错误（比如数据库连接错误，具体要看实现方法），这时你就不得不用<code>try...catch</code>去捕获。</p>
+<pre><code class="javascript">try {
+  database.users.get({id: userId})
+  .then(...)
+  .catch(...)
+} catch (e) {
+  // ...
+}
+</code></pre>
+<p>上面这样的写法就很笨拙了，这时就可以统一用<code>promise.catch()</code>捕获所有同步和异步的错误。</p>
+<pre><code class="javascript">Promise.try(database.users.get({id: userId}))
+  .then(...)
+  .catch(...)
+</code></pre>
+<p>事实上，<code>Promise.try</code>就是模拟<code>try</code>代码块，就像<code>promise.catch</code>模拟的是<code>catch</code>代码块。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2022-10-03T10:38:36.378Z" itemprop="dateUpdated">2022年10月3日 10:38</time>
+</span><br>
+
+
+        转载请注明出处：<a href="https://microzz.com/2017/01/14/promise/" target="_blank" rel="external">https://microzz.com/2017/01/14/promise/</a>
+    </div>
+    <footer>
+        <a href="https://microzz.com">
+            <img src="/static/avatar.png" alt="Microzz">
+            Microzz
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ECMAScript6/">ECMAScript6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/">ES6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise/">Promise</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2017/01/14/promise/&title=《Promise对象》 — 涵月天-microzz.com&pic=https://microzz.com/static/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2017/01/14/promise/&title=《Promise对象》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2017/01/14/promise/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Promise对象》 — 涵月天-microzz.com&url=https://microzz.com/2017/01/14/promise/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2017/01/14/promise/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/01/15/async/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">异步操作和Async函数</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/01/13/generator/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Generator 函数</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃辣条~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/static/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/static/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+  <div class="top" style="padding:7px;">
+    
+<p>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+  </div>
+
+  <div class="bottom" style="padding: 8px;">
+    <p>
+      <!-- <span style="display: none"><a href="https://microzz.com">Zhaohui</a></span> -->
+      <span>
+        <a target="_blank" href="mailto:zhaohui@microzz.com" style="border-bottom:none">
+          <img
+            src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB0PSIxNDkwMTUwOTQ2NDk3IiBjbGFzcz0iaWNvbiIgc3R5bGU9IiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjUzMjkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCI+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48L3N0eWxlPjwvZGVmcz48cGF0aCBkPSJNNTEyIDEwMDcuMjEzMTE1QzIzOC41MDgwNjYgMTAwNy4yMTMxMTUgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDUxMiAxNi43ODY4ODUgMjM4LjUwODA2NiAyMzguNTA4MDY2IDE2Ljc4Njg4NSA1MTIgMTYuNzg2ODg1IDc4NS40OTE5MzQgMTYuNzg2ODg1IDEwMDcuMjEzMTE1IDIzOC41MDgwNjYgMTAwNy4yMTMxMTUgNTEyIDEwMDcuMjEzMTE1IDc4NS40OTE5MzQgNzg1LjQ5MTkzNCAxMDA3LjIxMzExNSA1MTIgMTAwNy4yMTMxMTVaTTUxMiA1MC4zNjA2NTZDMjU3LjA0MDc4NyA1MC4zNjA2NTYgNTAuMzYwNjU2IDI1Ny4wNDA3ODcgNTAuMzYwNjU2IDUxMiA1MC4zNjA2NTYgNzY2Ljk1OTIxMyAyNTcuMDQwNzg3IDk3My42MzkzNDQgNTEyIDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDk3My42MzkzNDQgNzY2Ljk1OTIxMyA5NzMuNjM5MzQ0IDUxMiA5NzMuNjM5MzQ0IDI1Ny4wNDA3ODcgNzY2Ljk1OTIxMyA1MC4zNjA2NTYgNTEyIDUwLjM2MDY1NlpNNzU1LjQwOTgzNiA3MjEuODM2MDY2IDI4NS4zNzcwNDkgNzIxLjgzNjA2NkMyNjYuODI3NTQxIDcyMS44MzYwNjYgMjUxLjgwMzI3OSA3MDcuOTcwMDk4IDI1MS44MDMyNzkgNjkwLjg0NzQ3NUwyNTEuODAzMjc5IDM0OS45Mzk0MUMyNTEuODAzMjc5IDMzMi44MzM1NzQgMjY2LjgyNzU0MSAzMTguOTUwODIgMjg1LjM3NzA0OSAzMTguOTUwODJMNzU1LjQwOTgzNiAzMTguOTUwODJDNzczLjk1OTM0NCAzMTguOTUwODIgNzg4Ljk4MzYwNyAzMzIuODMzNTc0IDc4OC45ODM2MDcgMzQ5LjkzOTQxTDc4OC45ODM2MDcgNjkwLjg0NzQ3NUM3ODguOTgzNjA3IDcwNy45NzAwOTggNzczLjk1OTM0NCA3MjEuODM2MDY2IDc1NS40MDk4MzYgNzIxLjgzNjA2NlpNNzU1LjQwOTgzNiAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNDkuOTM5NDEgMjg1LjM3NzA0OSAzNTAuOTYzNDEgNTIxLjkyMTA0OSA1NjkuMjkzNjM5IDc1NS40MDk4MzYgMzUzLjc2NjgyIDc1NS40MDk4MzYgMzQ5LjkzOTQxWk03NTUuNDA5ODM2IDM5Ny41OTczNzcgNTM4LjQzOTM0NCA1OTcuODY0OTE4IDUwNS4zODU5NjcgNTk3Ljg2NDkxOCAyODUuMzc3MDQ5IDM5NC43NzcxOCAyODUuMzc3MDQ5IDY5MC44NDc0NzUgNzU1LjQwOTgzNiA2OTAuODQ3NDc1IDc1NS40MDk4MzYgMzk3LjU5NzM3N1oiIHAtaWQ9IjUzMzAiIGZpbGw9IiNmZmZmZmYiPjwvcGF0aD48L3N2Zz4="
+            alt="E-mail联系" title="E-mail" style="width:20px;height:20px;border:none;" />
+        </a>
+      </span>
+
+      <span>
+        <a target="_blank" href="https://github.com/microzz" style="border-bottom:none">
+          <img
+            src="data:image/png;base64,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"
+            alt="GitHub microzz" title="GitHub" style="width:19px;height:19px;border:none;" /></a>
+      </span>
+      <!-- <span>&copy; 2015 - 2022</span> -->
+
+    </p>
+  </div>
+
+  <div class="beian" style="text-align:center">
+    <a href="http://beian.miit.gov.cn" style="color: rgba(255, 255, 255, .5);font-size: 12px;">粤ICP备2022042010号-1</a>
+  </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://microzz.com/2017/01/14/promise/&title=《Promise对象》 — 涵月天-microzz.com&pic=https://microzz.com/static/avatar.png" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://microzz.com/2017/01/14/promise/&title=《Promise对象》 — 涵月天-microzz.com&source=HTML/HTML5 CSS/CSS3 JavaScript React.js Vue.js Angular.js Node.js ES6 JS" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://microzz.com/2017/01/14/promise/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Promise对象》 — 涵月天-microzz.com&url=https://microzz.com/2017/01/14/promise/&via=https://microzz.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://microzz.com/2017/01/14/promise/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABwklEQVR42u3ay2oDMQwF0P7/T6fQVSHJ9EqynSkcr0Ie40MWQr7y11e8Hj/r9+vn9e7T5/efn7l44eLijrmPy/Xu0dffSVjJX/Dit7i4uAe5yeOut0kqT7Wo4eLi3p+btzJ5f4KLi/vfub3vJ+/g4uLek5uHHZPoJA9TFpzVcHFxB9xeYLr29fZ8FxcXd9FUolfgesOVaEdcXNwj3Lx96bU11eoUFThcXNwj3Gt0dfiaBC7JjoVwBBcXdyl3FD0Uo9Ik8vijYcLFxT3CXRV0Lh6WXDdeuLi4x7nlzqgITS54RZMfXFzcbdzHeCXByoKhKS4u7g2484FrNRyJwlNcXNwj3OohZPeFrcIVDVxc3M3cvJz16HnwEY1scXFxj3Dnj5hU0KStwcXFvQN3HphWj0/JwBUXF/ez3LxgVS9b9NqjqO7i4uJu4666hlVuVuIdcXFxd3N7RWcyXMmDjxef4uLiHuGuOq4kxF7Jw8XF/RS3N/ishqQ5qHlnBBcXdwO32rg0NyuWzrfXL3BxcW/GnbQpvYWLi3tn7vyQsyBUxcXFPcidNC5JA5QclqK/EhcX9wh3PpW9TmGTLSeDHFxc3KXcb+VJvlXJptbdAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/node-waves/0.7.6/waves.min.js"></script>
+
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.5"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.5" async></script>
+
+
+
+
+
+
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+</body>
+</html>
