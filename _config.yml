@@ -94,7 +94,6 @@ jsonContent:
 #baidu_url_submit:
 #  count: 20 ## 比如3，代表提交最新的三个链接
 #  host: microzz.com ## 在百度站长平台中注册的域名
-#  token: SedJ4GFBP4jHVPUU ## 请注意这是您的秘钥， 请不要发布在公众仓库里!
 #  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
 
 #deploy:
@@ -114,3 +113,4 @@ deploy:
   type: git
   repo: git@github.com:microzz/microzz.github.io.git
   branch: master
+  # token: $PERSONAL_TOKEN

@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [22.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -28,5 +28,5 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: rm -rf .deploy_git
-    - run: hexo clean
-    - run: hexo g -d
+    - run: npx hexo clean
+    - run: npx hexo g -d
